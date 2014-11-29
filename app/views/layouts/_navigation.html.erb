@@ -1,2 +1,7 @@
-<%= render 'layouts/crafters_navigation' %>
-<%= render 'layouts/users_navigation' %>
+<% if crafter_signed_in? %>
+    <%= render 'layouts/crafters_registered' %>
+<% elsif user_signed_in? %>
+    <%= render 'layouts/users_registered' %>
+<% else %>
+    <%= render 'layouts/unregistered' %>
+<% end %>
