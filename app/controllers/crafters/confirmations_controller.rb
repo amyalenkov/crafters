@@ -8,7 +8,7 @@ class Crafters::ConfirmationsController < Devise::ConfirmationsController
   private
 
   def after_confirmation_path_for(resource_name, resource)
-    current_crafter
+    edit_crafter_path current_crafter.id
   end
 
 end

@@ -5,4 +5,8 @@ class CraftersController < ApplicationController
   def show
     @crafter = Crafter.find(params[:id])
   end
+
+  def edit
+
+  end
 end
