@@ -1,2 +1,6 @@
-<h1>Crafters::Crafters#index</h1>
-<p>Find me in app/views/crafters/crafters/index.html.erb</p>
+<h1>Crafters</h1>
+<% @all_crafters.each do |crafter| %>
+    <li><%= link_to crafter.email, crafter %></li>
+    <li><%= crafter.service.name %></li>
+    <li><%= crafter.service.category.name %></li>
+<% end %>

@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124174838) do
+ActiveRecord::Schema.define(version: 20150314070341) do
+
+  create_table "categories", force: true do |t|
+    t.text     "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "crafters", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -29,11 +35,22 @@ ActiveRecord::Schema.define(version: 20141124174838) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.integer  "service_id"
   end
 
   add_index "crafters", ["confirmation_token"], name: "index_crafters_on_confirmation_token", unique: true
   add_index "crafters", ["email"], name: "index_crafters_on_email", unique: true
   add_index "crafters", ["reset_password_token"], name: "index_crafters_on_reset_password_token", unique: true
+  add_index "crafters", ["service_id"], name: "index_crafters_on_service_id"
+
+  create_table "services", force: true do |t|
+    t.text     "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "category_id"
+  end
+
+  add_index "services", ["category_id"], name: "index_services_on_category_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

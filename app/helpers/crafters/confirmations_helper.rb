@@ -1,0 +1,2 @@
+module Crafters::ConfirmationsHelper
+end

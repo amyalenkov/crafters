@@ -1,5 +1,9 @@
 class CraftersController < ApplicationController
+
+  before_filter :authenticate_crafter!, :only => :edit
+
   def index
+    @all_crafters = Crafter.all
   end
 
   def show
@@ -7,6 +11,9 @@ class CraftersController < ApplicationController
   end
 
   def edit
-
+    @crafter = current_crafter
+    if @crafter.id != params[:id].to_i
+      redirect_to edit_crafter_path(current_crafter)
+    end
   end
 end

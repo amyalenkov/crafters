@@ -1,0 +1,2 @@
+module Crafters::CraftersHelper
+end
