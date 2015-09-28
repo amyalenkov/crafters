@@ -1,7 +1,22 @@
-<% if crafter_signed_in? %>
-    <%= render 'layouts/crafters_registered' %>
-<% elsif user_signed_in? %>
-    <%= render 'layouts/users_registered' %>
-<% else %>
-    <%= render 'layouts/unregistered' %>
-<% end %>
+<div id="top" class="navbar navbar-inverse navbar-static-top">
+  <div class="center">
+    <div>
+      <h1><a href="/" class="logo">CraftsMan</a></h1>
+      <!--<h1><a href="/" class="logo" onclick="currentCategory('TestShop')">TestShop</a></h1>-->
+    </div>
+    <div class="menu_left">
+      <!--% @categories.each do |category| %>-->
+          <!--<a href="#%= category.name %>" onclick="currentCategory('%= category.name %>')">%= category.name %></a>-->
+      <!--% end %>-->
+    </div>
+    <div class="menu_right">
+      <% if crafter_signed_in? %>
+          <%= render 'layouts/crafters_registered' %>
+      <% elsif user_signed_in? %>
+          <%= render 'layouts/users_registered' %>
+      <% else %>
+          <%= render 'layouts/unregistered' %>
+      <% end %>
+    </div>
+  </div>
+</div>
