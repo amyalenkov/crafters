@@ -1,4 +1,4 @@
-<h2>1111111Sign1 up</h2>
+<h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
@@ -30,9 +30,21 @@
       <%= f.text_area :description %>
     </div>
 
+    <div class="field">
+      <label>Category</label>
+      <br/>
+      <%=select("category", "id", Category.all.collect {|p| [ p.name, p.id ] }, :include_blank => true)%>
+    </div>
+    <div class="field">
+      <label>Service</label>
+      <br/>
+      <select id="service_id" name="service[id]" disabled="true">
+      </select>
+    </div>
+
     <div class="actions">
       <%= f.submit "Sign up" %>
     </div>
 <% end %>
 
-<%= render "crafters/shared/links" %>
+<%= render "devise/crafters/shared/links" %>

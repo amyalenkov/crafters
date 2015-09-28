@@ -19,5 +19,5 @@ class CraftersController < ApplicationController
     unless @service.nil?
       @category = @crafter.service.category
     end
-    end
+  end
 end
