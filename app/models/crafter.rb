@@ -5,5 +5,5 @@ class Crafter < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
-  belongs_to :service
+  belongs_to :subcategory
 end

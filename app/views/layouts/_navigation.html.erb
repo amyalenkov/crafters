@@ -1,13 +1,19 @@
 <div id="top" class="navbar navbar-inverse navbar-static-top">
   <div class="center">
-    <div>
-      <h1><a href="/" class="logo">CraftsMan</a></h1>
-      <!--<h1><a href="/" class="logo" onclick="currentCategory('TestShop')">TestShop</a></h1>-->
-    </div>
+    <div><h1><a href="/" class="logo">CraftsMan</a></h1></div>
     <div class="menu_left">
-      <!--% @categories.each do |category| %>-->
-          <!--<a href="#%= category.name %>" onclick="currentCategory('%= category.name %>')">%= category.name %></a>-->
-      <!--% end %>-->
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Категории</button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+          <% @categories.each do |category| %>
+              <li><a href="#<%= category.name %>"><%= category.name %></a></li>
+              <!-- поиск подкатегорий для категорий -->
+              <ul class="dropdown-menu">
+                ...
+              </ul>
+          <% end %>
+        </ul>
+      </div>
     </div>
     <div class="menu_right">
       <% if crafter_signed_in? %>

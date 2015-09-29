@@ -1,11 +1,12 @@
 ActiveAdmin.register Crafter do
+  menu priority: 3
 
-  permit_params :service_id, :description
+  permit_params :subcategory_id, :description
   index do
     selectable_column
     column :email
     column :description
-    column :service
+    column :subcategory
     actions defaults: true
   end
 

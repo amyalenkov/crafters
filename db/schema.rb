@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328110306) do
+ActiveRecord::Schema.define(version: 20150928124359) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -77,14 +77,14 @@ ActiveRecord::Schema.define(version: 20150328110306) do
   add_index "crafters", ["reset_password_token"], name: "index_crafters_on_reset_password_token", unique: true
   add_index "crafters", ["service_id"], name: "index_crafters_on_service_id"
 
-  create_table "services", force: true do |t|
+  create_table "subcategories", force: true do |t|
     t.text     "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
   end
 
-  add_index "services", ["category_id"], name: "index_services_on_category_id"
+  add_index "subcategories", ["category_id"], name: "index_subcategories_on_category_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,5 +1,5 @@
-ActiveAdmin.register Service do
-
+ActiveAdmin.register Subcategory do
+  menu priority: 5
   permit_params :name, :category_id
   index do
     selectable_column
