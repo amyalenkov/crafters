@@ -36,10 +36,9 @@
       <%=select("category", "id", Category.all.collect {|p| [ p.name, p.id ] }, :include_blank => true)%>
     </div>
     <div class="field">
-      <label>Service</label>
+      <%= f.label :service_id %>
       <br/>
-      <select id="service_id" name="service[id]" disabled="true">
-      </select>
+      <%= f.select :service_id, {},{:disabled => true} %></div>
     </div>
 
     <div class="actions">

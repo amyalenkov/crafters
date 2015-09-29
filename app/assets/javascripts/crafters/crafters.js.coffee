@@ -14,12 +14,12 @@ jQuery ->
       success: (data) ->
         console.log('success ' +data)
         result = JSON.parse data
-        $('#service_id').attr 'disabled', false
-        $('#service_id').empty()
+        $('#crafter_service_id').attr 'disabled', false
+        $('#crafter_service_id').empty()
         for id, name of result
           console.log "#{id} - #{name}"
           option = $ '<option>'
           option.attr 'value', id
           option.text name
-          $('#service_id').append option
+          $('#crafter_service_id').append option
 
