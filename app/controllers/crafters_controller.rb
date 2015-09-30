@@ -17,9 +17,9 @@ class CraftersController < ApplicationController
     if @crafter.id != params[:id].to_i
       redirect_to edit_crafter_path(current_crafter)
     end
-    @service =  @crafter.service
-    unless @service.nil?
-      @category = @crafter.service.category
+    @subcategory =  @crafter.subcategory
+    unless @subcategory.nil?
+      @category = @crafter.subcategory.category
     end
   end
 end

@@ -1,9 +1,9 @@
 <h1>page for edit <%= @crafter.email %> crafter </h1>
-<%if @service.nil?%>
-    <h3>service nil</h3>
+<%if @subcategory.nil?%>
+    <h3>subcategory nil</h3>
     <h3>category nil</h3>
 <%else%>
     <%= @category %>
-    <%= @service %>
+    <%= @subcategory %>
 <%end%>
 <%= select_tag "category", options_from_collection_for_select(Category.all, "id", "name")%>

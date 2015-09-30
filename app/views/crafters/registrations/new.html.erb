@@ -36,9 +36,9 @@
       <%=select("category", "id", Category.all.collect {|p| [ p.name, p.id ] }, :include_blank => true)%>
     </div>
     <div class="field">
-      <%= f.label :service_id %>
+      <%= f.label :subcategory_id %>
       <br/>
-      <%= f.select :service_id, {},{:disabled => true} %></div>
+      <%= f.select :subcategory_id, {},{:disabled => true} %></div>
     </div>
 
     <div class="actions">

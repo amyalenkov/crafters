@@ -1,6 +1,6 @@
 <h1>Crafters</h1>
 <% @all_crafters.each do |crafter| %>
     <li><%= link_to crafter.email, crafter %></li>
-    <li><%= crafter.service.name %></li>
-    <li><%= crafter.service.category.name %></li>
+    <li><%= crafter.subcategory.name %></li>
+    <li><%= crafter.subcategory.category.name %></li>
 <% end %>
