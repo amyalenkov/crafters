@@ -4,7 +4,7 @@
 jQuery ->
   $('#category_id').on 'change', ->
     $.ajax
-      url: '/get_services'
+      url: '/get_subcategory'
       type: 'POST'
       dataType: 'html'
       data:
@@ -14,12 +14,12 @@ jQuery ->
       success: (data) ->
         console.log('success ' +data)
         result = JSON.parse data
-        $('#crafter_service_id').attr 'disabled', false
-        $('#crafter_service_id').empty()
+        $('#crafter_subcategory_id').attr 'disabled', false
+        $('#crafter_subcategory_id').empty()
         for id, name of result
           console.log "#{id} - #{name}"
           option = $ '<option>'
           option.attr 'value', id
           option.text name
-          $('#crafter_service_id').append option
+          $('#crafter_subcategory_id').append option
 

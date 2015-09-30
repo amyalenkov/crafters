@@ -9,6 +9,7 @@ class CraftersController < ApplicationController
   def show
     @crafter = Crafter.find(params[:id])
     @categories = Category.all
+    @subcategories = Subcategory.all
   end
 
   def edit

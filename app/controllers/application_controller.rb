@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  def get_services
+  def get_subcategory
     result_hash = Hash.new
-    Service.where(category_id: params[:category_id]).each do |servise|
-      result_hash.store servise.id, servise.name
+    Subcategory.where(category_id: params[:category_id]).each do |subcategory|
+      result_hash.store subcategory.id, subcategory.name
     end
     render :json => result_hash.to_json
   end
