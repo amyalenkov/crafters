@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   resources :crafters
   resources :users
 
-  post '/get_services' => 'application#get_services'
+  post '/get_subcategory' => 'application#get_subcategory'
 
 end
