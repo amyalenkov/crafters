@@ -8,7 +8,6 @@ class CraftersController < ApplicationController
 
   def show
     @crafter = Crafter.find(params[:id])
-    @categories = Category.all
   end
 
   def edit

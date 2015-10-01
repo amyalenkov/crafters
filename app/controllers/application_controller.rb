@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
 
   def get_services
     result_hash = Hash.new
-    Service.where(category_id: params[:category_id]).each do |servise|
-      result_hash.store servise.id, servise.name
+    Subcategory.where(category_id: params[:category_id]).each do |subcategory|
+      result_hash.store subcategory.id, subcategory.name
     end
     render :json => result_hash.to_json
   end

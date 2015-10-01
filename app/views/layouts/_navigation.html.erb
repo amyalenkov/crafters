@@ -5,13 +5,6 @@
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Категории</button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-          <% @categories.each do |category| %>
-              <li><a href="#<%= category.name %>"><%= category.name %></a></li>
-              <!-- поиск подкатегорий для категорий -->
-              <ul class="dropdown-menu">
-                ...
-              </ul>
-          <% end %>
         </ul>
       </div>
     </div>
