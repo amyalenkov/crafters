@@ -23,6 +23,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'devise'
 
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
+
 gem 'activeadmin', github: 'activeadmin'
 
 
