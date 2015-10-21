@@ -1,6 +1,6 @@
 class CraftersController < ApplicationController
 
-  before_filter :authenticate_crafter!, :only => :edit
+  before_filter :authenticate_crafter!, :only => :edit; :update
 
   def index
     @all_crafters = Crafter.all
@@ -12,12 +12,19 @@ class CraftersController < ApplicationController
 
   def edit
     @crafter = current_crafter
-    if @crafter.id != params[:id].to_i
-      redirect_to edit_crafter_path(current_crafter)
-    end
-    @subcategory =  @crafter.subcategory
-    unless @subcategory.nil?
-      @category = @crafter.subcategory.category
-    end
+  end
+
+  def update
+    @crafter = current_crafter
+    p @crafter
+    @crafter.update_attributes(crafters_params)
+    redirect_to current_crafter
+  end
+
+  private
+
+  def crafters_params
+    params.require(:crafter).permit(:company_name, :description, :city, :address,
+                                    :phone_number, :contact_person, :site, :work_time)
   end
 end
