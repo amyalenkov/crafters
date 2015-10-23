@@ -6,4 +6,17 @@ class Crafter < ActiveRecord::Base
          :confirmable
 
   belongs_to :subcategory
+
+  after_update :send_email_to_crafter_after_checked, if: :check_changed?
+
+  private
+
+  def send_email_to_crafter_after_checked
+    if check == true
+      AdminMailer.successful_checked(email).deliver
+    else
+      AdminMailer.fail_checked(email).deliver
+    end
+  end
+
 end

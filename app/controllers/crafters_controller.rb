@@ -16,8 +16,8 @@ class CraftersController < ApplicationController
 
   def update
     @crafter = current_crafter
-    p @crafter
-    @crafter.update_attributes(crafters_params)
+    @crafter.update_attributes crafters_params
+    AdminMailer.check_crafter(@crafter).deliver
     redirect_to current_crafter
   end
 
