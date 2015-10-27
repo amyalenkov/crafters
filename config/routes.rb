@@ -19,5 +19,6 @@ Rails.application.routes.draw do
 
   post '/get_subcategory' => 'application#get_subcategory'
   post '/search' => 'application#search'
+  post '/search_ajax' => 'application#search_ajax'
 
 end
