@@ -10,6 +10,8 @@ end
 group :development do
   # gem 'sqlite3'
   gem 'spring'
+  gem 'faker'
+  gem 'populator'
 end
 
 gem 'sass-rails', '~> 4.0.3'
