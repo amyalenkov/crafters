@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
   end
 
   def search
-    @search_crafters  = Crafter.search params[:search], :page => params[:page], :per_page => 42
+    @search_crafters  = Crafter.search params[:search], :star => true, :with => {:check => true},
+                                       :page => params[:page], :per_page => 42
     render '/static_page/search'
   end
 
