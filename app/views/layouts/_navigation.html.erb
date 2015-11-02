@@ -6,7 +6,7 @@
       <div class="col-sm-6 col-sm-offset-1">
         <div id="imaginary_container">
           <div class="input-group stylish-input-group">
-            <%= form_tag('/search') do %>
+            <%= form_tag('/search', :method => :get ) do %>
                 <%= text_field_tag(:search) %>
                 <%= submit_tag('OK') %>
             <% end %>
