@@ -1,4 +1,4 @@
-ThinkingSphinx::Index.define :crafter, :with => :active_record do
+ThinkingSphinx::Index.define :crafter, :with => :active_record, :delta => true do
 
   indexes company_name
   indexes description
