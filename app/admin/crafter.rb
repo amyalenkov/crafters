@@ -7,7 +7,7 @@ ActiveAdmin.register Crafter do
     column :email
     column :check
     column :company_name
-    column :description
+    # column :description
     column :city
     column :address
     column :phone_number
