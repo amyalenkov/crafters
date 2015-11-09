@@ -18,5 +18,7 @@ Rails.application.routes.draw do
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   post '/get_subcategory' => 'application#get_subcategory'
+  get '/search' => 'static_page#search'
+  post '/search_ajax' => 'static_page#search_ajax'
 
 end
