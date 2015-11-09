@@ -8,7 +8,7 @@ namespace :db do
   task :create_fake_crafters => :environment do
     require 'populator'
     require 'faker'
-    Crafter.populate 1000 do |crafter|
+    Crafter.populate 100 do |crafter|
       crafter.email = Faker::Internet.email
       crafter.description = Populator.sentences(2..10)
       crafter.company_name = Faker::Company.name
@@ -20,6 +20,7 @@ namespace :db do
       crafter.subcategory_id = Faker::Number.between(1, 377)
       crafter.encrypted_password = Crafter.new(:password => 'password').encrypted_password
       crafter.sign_in_count = 1
+      crafter.delta = false
     end
   end
 
