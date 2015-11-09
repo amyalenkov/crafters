@@ -1,8 +1,9 @@
 namespace :db do
 
-  desc 'prepare db for check crafters'
+  desc 'general task: prepare db for check crafters'
   task :delete_old_and_create_new_crafters => [:delete_all_crafters,
                                                :create_fake_crafters]
+
 
   desc 'create fake crafters'
   task :create_fake_crafters => :environment do
