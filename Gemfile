@@ -36,6 +36,8 @@ gem 'thinking-sphinx', '3.1.4'
 gem 'pg', '0.15.1'
 
 gem 'will_paginate', '~> 3.0.6'
+gem 'therubyracer', :platforms => :ruby
+
 
 gem 'carrierwave'
 
