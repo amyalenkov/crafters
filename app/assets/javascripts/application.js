@@ -16,3 +16,4 @@
 //= require bootstrap.min
 //= require_tree .
 //= require static_page
+//= require jquery.remotipart

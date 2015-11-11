@@ -18,6 +18,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_avatar
+    user = params[:user]
+    current_user.avatar = user[:avatar]
+    current_user.save!
+    render text: 'hey'
+  end
+
   private
 
   def user_params

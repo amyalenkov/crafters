@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
+  mount_uploader :avatar, UserAvatarUploader
+
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
     # Получить identity пользователя, если он уже существует

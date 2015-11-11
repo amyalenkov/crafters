@@ -39,4 +39,6 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'therubyracer', :platforms => :ruby
 
 
+gem 'carrierwave'
 
+gem 'remotipart', '~> 1.2'
