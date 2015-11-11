@@ -1,37 +1,42 @@
+<div id="banner">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 banner">
+        <h3>Для рекламы</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="top" class="navbar navbar-inverse navbar-static-top">
 
-  <div class="center">
-    <div><h1><a href="/" class="logo">CraftsMan</a></h1></div>
-    <div class="menu_left">
-      <div class="col-sm-6 col-sm-offset-1">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 logo">
+        <a href="/"><h1>CraftsMan</h1></a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 menu_left">
         <div id="imaginary_container">
           <div class="input-group stylish-input-group">
-            <%= form_tag('/search', :method => :get ) do %>
-                <%= text_field_tag(:search) %>
-                <%= submit_tag('OK') %>
+            <%= form_tag('/search', :method => :get, :class => 'search') do %>
+                <%= text_field_tag 'search', nil, :placeholder => 'Поиск в каталоге. Например, "ИП Анатолий"', :class => 'search_input' %>
+                <%= submit_tag 'OK', :class => 'search_button' %>
             <% end %>
-
-            <!--<input type="text" class="form-control" placeholder="Search">-->
-                    <!--<span class="input-group-addon">-->
-                        <!--<button type="submit">OK</button>-->
-                    <!--</span>-->
           </div>
         </div>
       </div>
+      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 menu_right">
+        <% if crafter_signed_in? %>
+            <%= render 'layouts/crafters_registered' %>
+        <% elsif user_signed_in? %>
+            <%= render 'layouts/users_registered' %>
+        <% else %>
+            <%= render 'layouts/unregistered' %>
+        <% end %>
+      </div>
     </div>
-    <div class="menu_right">
-      <% if crafter_signed_in? %>
-          <%= render 'layouts/crafters_registered' %>
-      <% elsif user_signed_in? %>
-          <%= render 'layouts/users_registered' %>
-      <% else %>
-          <%= render 'layouts/unregistered' %>
-      <% end %>
-    </div>
-  </div>
 
-  <div class="navigation" style="width: 100%;float: left;">
-    <div class="center">
+    <div class="navigation">
       <div class="dropdown">
         <div class="dropdown-submenu">
           <button class="btn btn-default dropdown-toggle bullet button-no-border" type="button" data-toggle="dropdown">Все крафтеры <span class="caret"></span></button>

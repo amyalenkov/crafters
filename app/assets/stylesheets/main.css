@@ -1,3 +1,20 @@
+.container-fluid{
+    max-width: 980px;
+}
+
+#banner{
+    height: 70px;
+    width: 100%;
+    color: #7d7d7d;
+    margin-top: -10px;
+    text-align: center;
+}
+
+.banner{
+    background-color: #e0e0e0;
+    height: 70px;
+}
+
 .center{
     width: 920px;
     margin: 0 auto;
@@ -5,25 +22,24 @@
 
 #top{
     float: left;
-    height: 105px;
     width: 100%;
     padding: 0;
-    color: #ffffff !important;
-    margin-top: -10px;
+    color: #000000 !important;
 }
 
-.logo{
-    float: left;
-    font-family: Arial;
-    color: #ffffff !important;
+.navbar-inverse{
+    background-color: #ffffff;
+    border: none;
+}
+
+.logo a{
+    font-family: Arial,serif;
     text-decoration: none !important;
     font-size: 35px;
-    margin-top: -15px;
 }
 
 .menu_left{
     float: left;
-    padding-left: 15px;
 }
 
 .menu_left a{
@@ -35,7 +51,7 @@
 
 .menu_right{
     float: right;
-    padding-left: 15px;
+    margin-top: -30px;
 }
 
 .menu_right a:hover{
@@ -49,18 +65,21 @@
 
 .menu_right a{
     font-size: 14px;
-    /*padding-right: 15px;*/
-    color: #ffffff;
     text-decoration: none;
 }
 
+.navigation{
+    width: 100%;
+    border-bottom: 1px solid #a0a0a0;
+}
+
 .button-no-border{
-    border-radius: 0;
-    margin-top: 10px;
+    border-radius: 2px;
+    margin-top: 1px;
 }
 
 .subcategory{
-    margin-left: 240px !important;
+    margin-left: 201px !important;
     top: 0;
     min-height: 506px;
 }
@@ -76,7 +95,7 @@
 
 #imaginary_container{
     width: 410px;
-    margin-top: -12px;
+    margin-top: 10px;
 }
 .stylish-input-group .input-group-addon{
     background: white !important;
@@ -89,4 +108,65 @@
 .stylish-input-group button{
     border:0;
     background:transparent;
+}
+
+.search{
+    color: #000000;
+}
+
+.input-group{
+    display: block;
+}
+
+.search_input{
+    width: 330px;
+}
+
+.search_button{
+    margin-left: -5px;
+}
+
+
+
+@media (min-width: 450px) and (max-width: 767px) {
+    .logo a{
+        text-align: center;
+    }
+    #imaginary_container{
+        width: auto;
+        text-align: -webkit-center;
+    }
+    .menu_right{
+        margin-top: 15px;
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 930px) {
+    .menu_left{
+        margin-top: 15px;
+    }
+    .search_input {
+        width: 270px;
+    }
+    .menu_right{
+        margin-top: 15px;
+        text-align: center;
+    }
+}
+
+@media (min-width: 931px) {
+    .menu_left{
+        margin-top: 15px;
+    }
+    #imaginary_container{
+        width: 100%;
+    }
+    .search_input {
+        width: 90%;
+    }
+    .menu_right{
+        margin-top: 15px;
+        text-align: center;
+    }
 }
