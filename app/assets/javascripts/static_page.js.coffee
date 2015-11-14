@@ -4,7 +4,7 @@
 $ ->
   $('#search').on 'keyup', ->
     search_string = @.value
-    if search_string.length >= 1
+    if search_string.length >= 3
       $.ajax
         type: 'POST'
         url: '/search_ajax'
@@ -16,4 +16,18 @@ $ ->
           live_search(data)
 
 live_search = (data) ->
-  console.log(data)
+  ul = $('#result_search_ul').empty()
+  ul.empty()
+  for index of data
+    li = $('<li></li>', {
+      "class": "li_class"
+    })
+    create_new_li(li, 'company_name', data[index].company_name)
+    create_new_li(li, 'address', data[index].address)
+    create_new_li(li, 'city', data[index].city)
+    ul.append(li)
+
+create_new_li = (li, div_class_name, data) ->
+  div = $('<div></div>', {
+    "class": div_class_name
+  }).text(data).appendTo(li)
