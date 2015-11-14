@@ -21,6 +21,12 @@ class CraftersController < ApplicationController
     redirect_to current_crafter
   end
 
+  def update_avatar
+    crafter = params[:crafter]
+    current_crafter.avatar = user[:avatar]
+    current_crafter.save!
+  end
+
   private
 
   def crafters_params

@@ -2,6 +2,16 @@
 <h1>subcategory crafter: <%= @crafter.subcategory.name %> </h1>
 <h1>category crafter: <%= @crafter.subcategory.category.name %> </h1>
 
+<%= form_for(@crafter, url: '/update_avatar_crafter', method: "post", remote: true, multipart: true)  do |f|%>
+    <div class="field">
+      <%= f.label :avatar %><br />
+      <%= f.file_field :avatar%>
+    </div>
+    <div class="actions">
+      <%= f.submit "Update Avatar" %>
+    </div>
+<% end %>
+
 <%= form_for @crafter do |f| %>
     <div>
       <%= f.label :company_name %>

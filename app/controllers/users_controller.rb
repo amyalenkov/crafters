@@ -22,7 +22,6 @@ class UsersController < ApplicationController
     user = params[:user]
     current_user.avatar = user[:avatar]
     current_user.save!
-    render text: 'hey'
   end
 
   private
