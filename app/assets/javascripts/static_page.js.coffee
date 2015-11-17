@@ -2,9 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
+  $('#search').on 'focusout', ->
+    $('#search_result').hide()
   $('#search').on 'keyup', ->
     search_string = @.value
     if search_string.length >= 3
+      $('#search_result').show()
       $.ajax
         type: 'POST'
         url: '/search_ajax'
@@ -14,6 +17,8 @@ $ ->
         success: (data, textStatus, jqXHR) ->
           console.log('success')
           live_search(data)
+    else
+      $('#search_result').hide()
 
 live_search = (data) ->
   ul = $('#result_search_ul').empty()
