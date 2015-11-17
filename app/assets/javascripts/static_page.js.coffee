@@ -25,9 +25,17 @@ live_search = (data) ->
     create_new_li(li, 'company_name', data[index].company_name)
     create_new_li(li, 'address', data[index].address)
     create_new_li(li, 'city', data[index].city)
+    add_image_tag(li, data[index].avatar.url)
     ul.append(li)
 
 create_new_li = (li, div_class_name, data) ->
   div = $('<div></div>', {
     "class": div_class_name
   }).text(data).appendTo(li)
+
+add_image_tag = (li, image_src) ->
+  image = $('<img/>', {
+    "src": "/assets/"+image_src,
+    "height": 100,
+    "width": 100
+  }).appendTo(li)

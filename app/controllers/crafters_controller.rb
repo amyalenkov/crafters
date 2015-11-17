@@ -6,24 +6,15 @@ class CraftersController < ApplicationController
     @all_crafters = Crafter.all
   end
 
-  def show
-    @crafter = Crafter.find(params[:id])
-  end
-
-  def edit
-    @crafter = current_crafter
-  end
-
   def update
-    @crafter = current_crafter
-    @crafter.update_attributes crafters_params
-    AdminMailer.check_crafter(@crafter).deliver
+    current_crafter.update_attributes crafters_params
+    AdminMailer.check_crafter.deliver
     redirect_to current_crafter
   end
 
   def update_avatar
     crafter = params[:crafter]
-    current_crafter.avatar = user[:avatar]
+    current_crafter.avatar = crafter[:avatar]
     current_crafter.save!
   end
 

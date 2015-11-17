@@ -2,8 +2,7 @@ class AdminMailer < ActionMailer::Base
   default from: "admin@example.com"
   default to: "admin@example.com"
 
-  def check_crafter crafter
-    @crafter = crafter
+  def check_crafter
     mail(:subject => 'check  crafter')
   end
 
