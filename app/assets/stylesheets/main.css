@@ -127,20 +127,18 @@
 }
 
 #search_result{
-    width: auto;
+    width: 100%;
+    position: relative;
 }
 
-
 .search_result{
-    /* left: 245px; */
-    /* top: -55px; */
-    float: left;
     display: block;
     width: 350px;
     padding-bottom: 20px;
     padding-right: 30px;
     position: absolute;
     background-color: #c7c7c7;
+    z-index: 10000;
 }
 
 .search_result span{
@@ -179,6 +177,11 @@
         margin-top: 15px;
         text-align: center;
         position: inherit;
+    }
+    .search_result{
+        /*left: 15%;*/
+        display: table;
+        margin: 0 auto;
     }
 }
 
