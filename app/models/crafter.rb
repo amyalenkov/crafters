@@ -8,6 +8,7 @@ class Crafter < ActiveRecord::Base
   belongs_to :subcategory
 
   mount_uploader :avatar, CrafterAvatarUploader
+  mount_uploaders :images, CrafterImagesUploader
 
   after_update :send_email_to_crafter_after_checked, if: :check_changed?
 

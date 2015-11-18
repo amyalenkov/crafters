@@ -12,6 +12,16 @@
     </div>
 <% end %>
 
+<%= form_for(current_crafter, url: '/update_images_crafter', method: "post", remote: true, multipart: true)  do |f|%>
+    <div class="field">
+      <%= f.label :images %><br />
+      <%= f.file_field :images, multiple: true %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Update Images" %>
+    </div>
+<% end %>
+
 <%= form_for current_crafter do |f| %>
     <div>
       <%= f.label :company_name %>

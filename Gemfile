@@ -38,7 +38,6 @@ gem 'pg', '0.15.1'
 gem 'will_paginate', '~> 3.0.6'
 gem 'therubyracer', :platforms => :ruby
 
-
-gem 'carrierwave'
+gem 'carrierwave', :git => 'git://github.com/carrierwaveuploader/carrierwave.git', :branch => 'master'
 
 gem 'remotipart', '~> 1.2'

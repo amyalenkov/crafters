@@ -16,6 +16,14 @@ class CraftersController < ApplicationController
     crafter = params[:crafter]
     current_crafter.avatar = crafter[:avatar]
     current_crafter.save!
+    render :nothing => true
+  end
+
+  def update_images
+    p params[:crafter][:images]
+    current_crafter.images = params[:crafter][:images]
+    current_crafter.save!
+    render :nothing => true
   end
 
   private
