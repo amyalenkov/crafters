@@ -2,7 +2,7 @@
 <h1>subcategory crafter: <%= current_crafter.subcategory.name %> </h1>
 <h1>category crafter: <%= current_crafter.subcategory.category.name %> </h1>
 
-<%= form_for(current_crafter, url: '/update_avatar_crafter', method: "post", remote: true, multipart: true)  do |f|%>
+<%= form_for(current_crafter, url: update_avatar_crafter_path(current_crafter), method: "post", remote: true)  do |f|%>
     <div class="field">
       <%= f.label :avatar %><br />
       <%= f.file_field :avatar%>
@@ -12,7 +12,7 @@
     </div>
 <% end %>
 
-<%= form_for(current_crafter, url: '/update_images_crafter', method: "post", remote: true, multipart: true)  do |f|%>
+<%= form_for(current_crafter, url: update_images_crafter_path(current_crafter), method: "post", remote: true, multipart: true)  do |f|%>
     <div class="field">
       <%= f.label :images %><br />
       <%= f.file_field :images, multiple: true %>

@@ -13,10 +13,18 @@ Rails.application.routes.draw do
                                    sessions: 'users/sessions',
                                    omniauth_callbacks: 'omniauth_callbacks'}
 
-  resources :crafters
-  resources :users
-  post '/update_avatar' => 'users#update_avatar'
-  post '/update_avatar_crafter' => 'crafters#update_avatar'
+  resources :crafters do
+    member do
+      post 'update_avatar'
+      post 'update_images'
+    end
+  end
+  resources :users do
+    post 'update_avatar', on: :member
+  end
+  # post '/update_avatar' => 'users#update_avatar'
+  # post '/update_avatar_crafter' => 'crafters#update_avatar'
+  # post '/update_images_crafter' => 'crafters#update_images'
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
