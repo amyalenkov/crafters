@@ -20,7 +20,7 @@
         <div id="imaginary_container">
           <div class="input-group stylish-input-group">
             <%= form_tag('/search', :method => :get, :class => 'search') do %>
-                <%= text_field_tag 'search', nil, :placeholder => 'Поиск в каталоге. Например, "ИП Анатолий"', :class => 'search_input' %>
+                <%= text_field_tag 'search', nil, :placeholder => 'Поиск в каталоге. Например, "ИП Анатолий"',  :autocomplete => 'off', :class => 'search_input' %>
                 <%= submit_tag 'OK', :class => 'search_button' %>
             <% end %>
           </div>
