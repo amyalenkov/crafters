@@ -1,22 +1,28 @@
-<h1>search</h1>
-<table style="width:500px">
-  <thead>
-  <tr>
-    <th>company_name</th>
-    <th style="text-align:right;">City</th>
-    <th style="text-align:right;">Check</th>
-    <!--<th style="text-align:right;">Description</th>-->
-  </tr>
-  </thead>
-  <tbody>
-  <% @search_crafters.each do |crafter| %>
-      <tr>
-        <td><%= crafter.company_name %></td>
-        <td style="text-align:right;"><%= crafter.city %></td>
-        <td style="text-align:right;"><%= crafter.check%></td>
-        <!--<td style="text-align:right;"><%= crafter.description%></td>-->
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-<%= will_paginate @search_crafters %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h1>search</h1>
+      <table style="width:500px">
+        <thead>
+        <tr>
+          <th>company_name</th>
+          <th style="text-align:right;">City</th>
+          <th style="text-align:right;">Check</th>
+          <!--<th style="text-align:right;">Description</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <% @search_crafters.each do |crafter| %>
+            <tr>
+              <td><%= crafter.company_name %></td>
+              <td style="text-align:right;"><%= crafter.city %></td>
+              <td style="text-align:right;"><%= crafter.check%></td>
+              <!--<td style="text-align:right;"><%= crafter.description%></td>-->
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @search_crafters %>
+    </div>
+  </div>
+</div>
