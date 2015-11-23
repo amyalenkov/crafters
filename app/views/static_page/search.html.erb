@@ -2,7 +2,53 @@
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <h1>search</h1>
-      <table style="width:500px">
+
+      <table style="width:600px">
+        <thead>
+        <tr>
+          <th>search input</th>
+          <th style="text-align:right;">Catigory</th>
+          <th style="text-align:right;">Subcatigory</th>
+          <th style="text-align:right;">City</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><%= text_field_tag 'search', @search_input %></td>
+          <td style="text-align:right;">
+            <ul>
+              <% @search_categories.each do |categories_id,categories_value| %>
+                  <li>
+                    <%= label_tag categories_value %>
+                    <%= check_box_tag categories_id, categories_value, true %>
+                  </li>
+              <% end %>
+            </ul>
+          </td>
+          <td style="text-align:right;">
+            <ul>
+              <% @search_subcategories.each do |subcategories_id,subcategories_value| %>
+                  <li>
+                    <%= label_tag subcategories_value %>
+                    <%= check_box_tag subcategories_id, subcategories_value, true %>
+                  </li>
+              <% end %>
+            </ul>
+          </td>
+          <td style="text-align:right;">
+            <ul>
+              <% @cities.each do |city| %>
+                  <li>
+                    <%= label_tag city %>
+                    <%= check_box_tag city, {}, true %>
+                  </li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <table style="width:600px">
         <thead>
         <tr>
           <th>company_name</th>
@@ -16,8 +62,8 @@
             <tr>
               <td><%= crafter.company_name %></td>
               <td style="text-align:right;"><%= crafter.city %></td>
-              <td style="text-align:right;"><%= crafter.check%></td>
-              <!--<td style="text-align:right;"><%= crafter.description%></td>-->
+              <td style="text-align:right;"><%= crafter.check %></td>
+              <!--<td style="text-align:right;"><%= crafter.description %></td>-->
             </tr>
         <% end %>
         </tbody>
