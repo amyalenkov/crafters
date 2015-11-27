@@ -4,6 +4,7 @@
 $ ->
   $('#search').on 'focusout', ->
     $('#search_result').hide()
+
   $('#search').on 'keyup', ->
     search_string = @.value
     if search_string.length >= 3
@@ -19,6 +20,46 @@ $ ->
           live_search(data)
     else
       $('#search_result').hide()
+
+  $('.cities').on 'change', ->
+    cities = $('.cities')
+    subcategories = $('.subcategories')
+    send_search_request $('#search').val(), get_checked_elements(cities), get_checked_subcategories(subcategories)
+
+  $('.subcategories').on 'change', ->
+    cities = $('.cities')
+    subcategories = $('.subcategories')
+    send_search_request $('#search').val(), get_checked_elements(cities), get_checked_subcategories(subcategories)
+
+  $('.categories').on 'change', ->
+    console.log('categories')
+
+get_checked_elements = (elements) ->
+  result_cities = new String()
+  for i in [0..elements.size()-1]
+    if elements[i].checked == true
+      result_cities = result_cities + elements[i].name
+      if i != elements.size()-1
+        result_cities = result_cities + '|'
+  return result_cities
+
+get_checked_subcategories = (elements) ->
+  result_subcategories = new Array()
+  for i in [0..elements.size()-1]
+    if elements[i].checked == true
+      result_subcategories.push(elements[i].name)
+  return result_subcategories
+
+send_search_request = (search, result_cities, result_subcategories) ->
+  $.ajax
+    type: 'POST'
+    url: '/search_new_ajax'
+    data: { cities: result_cities, subcategories: result_subcategories, search: search}
+    error: (jqXHR, textStatus, errorThrown) ->
+      console.log('error')
+    success: (data, textStatus, jqXHR) ->
+      console.log('success')
+
 
 live_search = (data) ->
   ul = $('#result_search_ul').empty()

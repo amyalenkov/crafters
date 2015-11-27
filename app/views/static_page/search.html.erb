@@ -20,7 +20,7 @@
               <% @search_categories.each do |categories_id,categories_value| %>
                   <li>
                     <%= label_tag categories_value %>
-                    <%= check_box_tag categories_id, categories_value, true %>
+                    <%= check_box_tag categories_id, categories_value, true, class: 'categories'%>
                   </li>
               <% end %>
             </ul>
@@ -30,7 +30,7 @@
               <% @search_subcategories.each do |subcategories_id,subcategories_value| %>
                   <li>
                     <%= label_tag subcategories_value %>
-                    <%= check_box_tag subcategories_id, subcategories_value, true %>
+                    <%= check_box_tag subcategories_id, subcategories_value, true, class: 'subcategories' %>
                   </li>
               <% end %>
             </ul>
@@ -40,7 +40,7 @@
               <% @cities.each do |city| %>
                   <li>
                     <%= label_tag city %>
-                    <%= check_box_tag city, {}, true %>
+                    <%= check_box_tag city, {}, true, class:'cities' %>
                   </li>
               <% end %>
             </ul>
