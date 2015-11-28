@@ -21,15 +21,23 @@ $ ->
     else
       $('#search_result').hide()
 
+  $('#search_text_value').on 'keyup', ->
+    search_string = @.value
+    if search_string.length >= 3
+      cities = $('.cities')
+      subcategories = $('.subcategories')
+      send_search_request search_string, get_checked_elements(cities), get_checked_subcategories(subcategories)
+
+
   $('.cities').on 'change', ->
     cities = $('.cities')
     subcategories = $('.subcategories')
-    send_search_request $('#search').val(), get_checked_elements(cities), get_checked_subcategories(subcategories)
+    send_search_request $('#search_text_value').val(), get_checked_elements(cities), get_checked_subcategories(subcategories)
 
   $('.subcategories').on 'change', ->
     cities = $('.cities')
     subcategories = $('.subcategories')
-    send_search_request $('#search').val(), get_checked_elements(cities), get_checked_subcategories(subcategories)
+    send_search_request $('#search_text_value').val(), get_checked_elements(cities), get_checked_subcategories(subcategories)
 
   $('.categories').on 'change', ->
     console.log('categories')
@@ -59,7 +67,6 @@ send_search_request = (search, result_cities, result_subcategories) ->
       console.log('error')
     success: (data, textStatus, jqXHR) ->
       console.log('success')
-
 
 live_search = (data) ->
   ul = $('#result_search_ul').empty()
