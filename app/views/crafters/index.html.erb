@@ -1,6 +1,12 @@
-<h1>Crafters</h1>
-<% @all_crafters.each do |crafter| %>
-    <li><%= link_to crafter.email, crafter %></li>
-    <li><%= crafter.subcategory.name %></li>
-    <li><%= crafter.subcategory.category.name %></li>
-<% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h1>Crafters</h1>
+      <% @all_crafters.each do |crafter| %>
+          <li><%= link_to crafter.email, crafter %></li>
+          <li><%= crafter.subcategory.name %></li>
+          <li><%= crafter.subcategory.category.name %></li>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,15 @@
-<h1>This user have email: <%= current_user.email %></h1>
-<h1>avatar url: <%= image_tag current_user.avatar.url, size: "100x100" %></h1>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h2>Личный кабинет <%= current_user.name %></h2><br/>
+      <div class="avatar">
+        <%= image_tag current_user.avatar.url, size: "200x200" %>
+      </div>
+      <div class="description">
+        <p><b>Логин:</b> <%= current_user.name %></p>
+        <p><b>Email:</b> <%= current_user.email %></p>
+      </div>
+      <p><%= link_to 'Редактировать профиль', edit_user_registration_path %></p>
+    </div>
+  </div>
+</div>

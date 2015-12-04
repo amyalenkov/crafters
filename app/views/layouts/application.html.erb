@@ -6,12 +6,27 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body style="height: 2000px">
-<%= render 'layouts/navigation' %>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<body>
 
-<%= yield %>
+<div id="wrap">
+  <div id="main" class="clearfix">
+    <%= render 'layouts/banner' %>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render 'layouts/navigation' %>
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <div class="content"><%= yield %></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>
 
 </body>
 </html>

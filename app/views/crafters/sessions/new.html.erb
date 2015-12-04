@@ -1,0 +1,29 @@
+<div class="login_title">
+  <h3>Для доступа к приложению необходима авторизация</h3>
+</div>
+<div class='login_form'>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :email, class: 'label_login' %><br />
+          <%= f.email_field :email, class: 'form-control', autofocus: true %>
+        </div>
+
+        <div class="field">
+          <%= f.label :Пароль, class: 'label_login' %><br />
+          <%= f.password_field :password, class: 'form-control', autocomplete: 'off' %>
+        </div>
+
+        <% if devise_mapping.rememberable? -%>
+            <div class="checkbox field">
+              <%= f.check_box :remember_me, id: 'check_box' %>
+              <%= f.label :Запомнить_меня, for: 'check_box' %>
+            </div>
+        <% end %>
+
+        <button type="submit" class="btn btn-success">Войти</button>
+  <% end %>
+  </div>
+
+  <%= render 'crafters/shared/links' %>
+</div>
