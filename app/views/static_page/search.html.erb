@@ -14,13 +14,14 @@
         </thead>
         <tbody>
         <tr>
-          <td><%= text_field_tag 'search', @search_input %></td>
+          <td><%= text_field_tag :search_text_value, @search_input %></td>
+          <!--<td><input id="search" type="text" size="40" value="<%=@search_input%>"></td>-->
           <td style="text-align:right;">
             <ul>
               <% @search_categories.each do |categories_id,categories_value| %>
                   <li>
                     <%= label_tag categories_value %>
-                    <%= check_box_tag categories_id, categories_value, true %>
+                    <%= check_box_tag categories_id, categories_value, true, class: 'categories'%>
                   </li>
               <% end %>
             </ul>
@@ -30,7 +31,7 @@
               <% @search_subcategories.each do |subcategories_id,subcategories_value| %>
                   <li>
                     <%= label_tag subcategories_value %>
-                    <%= check_box_tag subcategories_id, subcategories_value, true %>
+                    <%= check_box_tag subcategories_id, subcategories_value, true, class: 'subcategories' %>
                   </li>
               <% end %>
             </ul>
@@ -40,7 +41,7 @@
               <% @cities.each do |city| %>
                   <li>
                     <%= label_tag city %>
-                    <%= check_box_tag city, {}, true %>
+                    <%= check_box_tag city, {}, true, class:'cities' %>
                   </li>
               <% end %>
             </ul>
@@ -48,27 +49,9 @@
         </tr>
         </tbody>
       </table>
-      <table style="width:600px">
-        <thead>
-        <tr>
-          <th>company_name</th>
-          <th style="text-align:right;">City</th>
-          <th style="text-align:right;">Check</th>
-          <!--<th style="text-align:right;">Description</th>-->
-        </tr>
-        </thead>
-        <tbody>
-        <% @search_crafters.each do |crafter| %>
-            <tr>
-              <td><%= crafter.company_name %></td>
-              <td style="text-align:right;"><%= crafter.city %></td>
-              <td style="text-align:right;"><%= crafter.check %></td>
-              <!--<td style="text-align:right;"><%= crafter.description %></td>-->
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
-      <%= will_paginate @search_crafters %>
+      <div class="search_crafter">
+        <%= render 'crafters/search_crafter'%>
+      </div>
     </div>
   </div>
 </div>

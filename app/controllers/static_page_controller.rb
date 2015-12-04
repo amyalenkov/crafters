@@ -25,4 +25,12 @@ class StaticPageController < ApplicationController
     render json: @search_ajax_crafters.to_json
   end
 
+  def search_new_ajax
+    cities = params[:cities]
+    subcategories = params[:subcategories]
+    @search_crafters = Crafter.search params[:search], :conditions => {:city => cities},
+                                            :with => {:subcategory_id => subcategories},
+                                            :star => true, :page => params[:page], :per_page => 42
+  end
+
 end

@@ -15,5 +15,5 @@
 //= require turbolinks
 //= require bootstrap.min
 //= require_tree .
-//= require static_page
+//= require static_page.js.coffee
 //= require jquery.remotipart
