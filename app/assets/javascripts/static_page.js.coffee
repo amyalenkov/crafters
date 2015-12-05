@@ -17,7 +17,7 @@ $ ->
           console.log('error')
         success: (data, textStatus, jqXHR) ->
           console.log('success')
-          live_search(data)
+          live_search(data,search_string)
     else
       $('#search_result').hide()
 
@@ -26,7 +26,10 @@ $ ->
     if search_string.length >= 3
       cities = $('.cities')
       subcategories = $('.subcategories')
-      send_search_request search_string, get_checked_elements(cities), get_checked_subcategories(subcategories)
+      if $('#full_search').checked == true
+        send_search_full_request search_string
+      else
+        send_search_request search_string, get_checked_elements(cities), get_checked_subcategories(subcategories)
 
 
   $('.cities').on 'change', ->
@@ -39,21 +42,34 @@ $ ->
     subcategories = $('.subcategories')
     send_search_request $('#search_text_value').val(), get_checked_elements(cities), get_checked_subcategories(subcategories)
 
-  $('.categories').on 'change', ->
-    console.log('categories')
+  $('.categories').on 'click', ->
+    category_id = @.id
+    all_subcategories = $('.subcategories')
+    for i in [0..all_subcategories.size() - 1]
+      current_category = $('#' + all_subcategories[i].id).attr('catygory')
+      if current_category == category_id
+        all_subcategories[i].checked = true
+      else
+        all_subcategories[i].checked = false
+    cities = $('.cities')
+    subcategories = $('.subcategories')
+    send_search_request $('#search_text_value').val(), get_checked_elements(cities), get_checked_subcategories(subcategories)
 
 get_checked_elements = (elements) ->
   result_cities = new String()
-  for i in [0..elements.size()-1]
+  checked_cities = new Array()
+  for i in [0..elements.size() - 1]
     if elements[i].checked == true
-      result_cities = result_cities + elements[i].name
-      if i != elements.size()-1
-        result_cities = result_cities + '|'
+      checked_cities.push(elements[i].name)
+  for i in [0...len = checked_cities.length]
+    result_cities = result_cities + checked_cities[i]
+    if i != checked_cities.length - 1
+      result_cities = result_cities + '|'
   return result_cities
 
 get_checked_subcategories = (elements) ->
   result_subcategories = new Array()
-  for i in [0..elements.size()-1]
+  for i in [0..elements.size() - 1]
     if elements[i].checked == true
       result_subcategories.push(elements[i].name)
   return result_subcategories
@@ -68,18 +84,37 @@ send_search_request = (search, result_cities, result_subcategories) ->
     success: (data, textStatus, jqXHR) ->
       console.log('success')
 
-live_search = (data) ->
+send_search_full_request = (search) ->
+  $.ajax
+    type: 'POST'
+    url: '/search_ajax_full'
+    data: { search: search}
+    error: (jqXHR, textStatus, errorThrown) ->
+      console.log('error')
+    success: (data, textStatus, jqXHR) ->
+      console.log('success')
+
+live_search = (data,search_request) ->
   ul = $('#result_search_ul').empty()
   ul.empty()
   for index of data
-    li = $('<li></li>', {
-      "class": "li_class"
-    })
-    create_new_li(li, 'company_name', data[index].company_name)
-    create_new_li(li, 'address', data[index].address)
-    create_new_li(li, 'city', data[index].city)
-    add_image_tag(li, data[index].avatar.url)
-    ul.append(li)
+    if index < 3
+      li = $('<li></li>', {
+        "class": "li_class"
+      })
+      create_new_li(li, 'company_name', data[index].company_name)
+      create_new_li(li, 'address', data[index].address)
+      create_new_li(li, 'city', data[index].city)
+      add_image_tag(li, data[index].avatar.url)
+      ul.append(li)
+    else
+      url = "/search?utf8=✓&search="+search_request+"&commit=OK"
+      li = $('<li><a id="all_results" href='+url+'>all_results</a></li>', {
+        "class": "li_class"
+      })
+      ul.append(li)
+      break
+
 
 create_new_li = (li, div_class_name, data) ->
   div = $('<div></div>', {
@@ -88,7 +123,7 @@ create_new_li = (li, div_class_name, data) ->
 
 add_image_tag = (li, image_src) ->
   image = $('<img/>', {
-    "src": "/assets/"+image_src,
+    "src": "/assets/" + image_src,
     "height": 100,
     "width": 100
   }).appendTo(li)

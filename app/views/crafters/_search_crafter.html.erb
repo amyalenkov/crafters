@@ -1,21 +1,6 @@
-<table style="width:600px">
-  <thead>
-  <tr>
-    <th>company_name</th>
-    <th style="text-align:right;">City</th>
-    <th style="text-align:right;">Check</th>
-    <!--<th style="text-align:right;">Description</th>-->
-  </tr>
-  </thead>
-  <tbody>
-  <% @search_crafters.each do |crafter| %>
-      <tr>
-        <td><%= crafter.company_name %></td>
-        <td style="text-align:right;"><%= crafter.city %></td>
-        <td style="text-align:right;"><%= crafter.check %></td>
-        <!--<td style="text-align:right;"><%= crafter.description %></td>-->
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-<%= will_paginate @search_crafters %>
+<div class="search_crafter_title">
+  <%= render 'crafters/search_crafter_title' %>
+</div>
+<div class="search_crafter_result">
+  <%= render 'crafters/search_crafter_result' %>
+</div>
