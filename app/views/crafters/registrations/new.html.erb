@@ -1,5 +1,6 @@
 <div class="login_title">
-  <h3>Регистрация</h3>
+  <h2>Добавьте компанию за 5 минут!</h2>
+  <h4>Это совершенно бесплатно и пользователи смогут узнать об услугах вашей компании, графике работы, найти вас на карте и связаться с Вами!</h4>
 </div>
 
 <div class='login_form'>
@@ -9,9 +10,15 @@
 
       <div class="form-group">
         <div class="field">
+          <%= f.label :Название_компании, class: 'label_login' %>
+          <br/>
+          <%= f.text_field :company_name, class: 'form-control', autofocus: true %>
+        </div>
+
+        <div class="field">
           <%= f.label :email, class: 'label_login' %>
           <br/>
-          <%= f.email_field :email, class: 'form-control', autofocus: true %>
+          <%= f.email_field :email, class: 'form-control' %>
         </div>
 
         <div class="field">

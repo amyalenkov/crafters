@@ -6,12 +6,13 @@
         <%= image_tag current_crafter.avatar.url, size: "200x200" %>
       </div>
       <div class="description">
-        <p><b>Логин:</b> <%= current_crafter.company_name %></p>
+        <p><b>Название компании:</b> <%= current_crafter.company_name %></p>
+        <p><b>Категория/подкатегория:</b> <%= current_crafter.subcategory.category.name %>/<%= current_crafter.subcategory.name %> </p>
         <p><b>Email:</b> <%= current_crafter.email %></p>
         <p><b>Город:</b> <%= current_crafter.city %></p>
         <p><b>Описание:</b> <%= current_crafter.description %></p>
+        <p><%= link_to 'Редактировать профиль', edit_crafter_registration_path %></p>
       </div>
-      <p><%= link_to 'Редактировать профиль', edit_crafter_registration_path %></p>
     </div>
   </div>
 </div>

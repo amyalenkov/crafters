@@ -1,11 +1,9 @@
 class Crafters::RegistrationsController < Devise::RegistrationsController
 
-
-
   private
 
   def sign_up_params
-    params.require(:crafter).permit(:email, :password, :password_confirmation,
+    params.require(:crafter).permit(:company_name, :email, :password, :password_confirmation,
                                     :subcategory_id)
   end
 
