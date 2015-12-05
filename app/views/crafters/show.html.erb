@@ -1,1 +1,18 @@
-<h1>This crafter have email: <%= current_crafter.email %></h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h2>Личный кабинет <%= current_crafter.company_name %></h2><br/>
+      <div class="avatar">
+        <%= image_tag current_crafter.avatar.url, size: "200x200" %>
+      </div>
+      <div class="description">
+        <p><b>Название компании:</b> <%= current_crafter.company_name %></p>
+        <p><b>Категория/подкатегория:</b> <%= current_crafter.subcategory.category.name %>/<%= current_crafter.subcategory.name %> </p>
+        <p><b>Email:</b> <%= current_crafter.email %></p>
+        <p><b>Город:</b> <%= current_crafter.city %></p>
+        <p><b>Описание:</b> <%= current_crafter.description %></p>
+        <p><%= link_to 'Редактировать профиль', edit_crafter_registration_path %></p>
+      </div>
+    </div>
+  </div>
+</div>

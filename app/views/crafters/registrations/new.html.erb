@@ -1,43 +1,54 @@
-<h2>Sign up</h2>
+<div class="login_title">
+  <h2>Добавьте компанию за 5 минут!</h2>
+  <h4>Это совершенно бесплатно и пользователи смогут узнать об услугах вашей компании, графике работы, найти вас на карте и связаться с Вами!</h4>
+</div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
+<div class='login_form'>
 
-    <div class="field">
-      <%= f.label :email %>
-      <br/>
-      <%= f.email_field :email, autofocus: true %>
-    </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
-    <div class="field">
-      <%= f.label :password %>
-      <% if @validatable %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %>
-      <br/>
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :Название_компании, class: 'label_login' %>
+          <br/>
+          <%= f.text_field :company_name, class: 'form-control', autofocus: true %>
+        </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation %>
-      <br/>
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
+        <div class="field">
+          <%= f.label :email, class: 'label_login' %>
+          <br/>
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
 
-    <div class="field">
-      <label>Category</label>
-      <br/>
-      <%=select("category", "id", Category.all.collect {|p| [ p.name, p.id ] }, :include_blank => true)%>
-    </div>
-    <div class="field">
-      <%= f.label :subcategory_id %>
-      <br/>
-      <%= f.select :subcategory_id, {},{:disabled => true} %></div>
-    </div>
+        <div class="field">
+          <%= f.label :Пароль, class: 'label_login' %>
+          <% if @validatable %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          <br/>
+          <%= f.password_field :password, class: 'form-control', autocomplete: 'off' %>
+        </div>
 
-    <div class="actions">
-      <%= f.submit "Sign up" %>
-    </div>
-<% end %>
+        <div class="field">
+          <%= f.label :Подтверждение_пароля, class: 'label_login' %>
+          <br/>
+          <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off' %>
+        </div>
 
-<%= render "devise/crafters/shared/links" %>
+        <div class="field">
+          <label>Категория</label>
+          <br/>
+          <%=select('category', 'id', Category.all.collect {|p| [ p.name, p.id ] }, :include_blank => true)%>
+        </div>
+        <div class="field">
+          <%= f.label :Подкатегория, class: 'label_login' %>
+          <br/>
+          <%= f.select :subcategory_id, {},{:disabled => true} %>
+        </div>
+        <button type="submit" class="btn btn-success register-btn">Зарегистрироваться</button>
+  <% end %>
+  </div>
+
+  <%= render 'devise/crafters/shared/links' %>
+</div>

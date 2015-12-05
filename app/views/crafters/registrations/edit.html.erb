@@ -1,98 +1,101 @@
-<h1>page for edit <%= current_crafter.email %> crafter </h1>
-<h1>subcategory crafter: <%= current_crafter.subcategory.name %> </h1>
-<h1>category crafter: <%= current_crafter.subcategory.category.name %> </h1>
+<div class="login_title left">
+  <h3>Редактирование профиля</h3>
+</div>
 
-<%= form_for(current_crafter, url: update_avatar_crafter_path(current_crafter), method: "post", remote: true)  do |f|%>
-    <div class="field">
-      <%= f.label :avatar %><br />
-      <%= f.file_field :avatar%>
-    </div>
-    <div class="actions">
-      <%= f.submit "Update Avatar" %>
-    </div>
-<% end %>
+<div class='reg_form'>
 
-<%= form_for(current_crafter, url: update_images_crafter_path(current_crafter), method: "post", remote: true, multipart: true)  do |f|%>
-    <div class="field">
-      <%= f.label :images %><br />
-      <%= f.file_field :images, multiple: true %>
-    </div>
-    <div class="actions">
-      <%= f.submit "Update Images" %>
-    </div>
-<% end %>
+  <%= form_for(current_crafter, url: update_avatar_crafter_path(current_crafter), method: 'post', remote: true)  do |f|%>
+      <div class="avatar">
+        <%= image_tag current_crafter.avatar.url, style: 'width: 150px; height: 150px;' %>
+        <span class="btn btn-large btn-default btn-file span">
+          Загрузить аватар
+          <%= f.file_field :avatar %>
+        </span>
+        <%= f.submit 'Обновить', class: 'btn btn-success input' %>
+      </div>
+  <% end %>
 
-<%= form_for current_crafter do |f| %>
-    <div>
-      <%= f.label :company_name %>
-      <%= f.text_field :company_name %>
-    </div>
-    <div>
-      <%= f.label :description %>
-      <%= f.text_area :description %>
-    </div>
-    <div>
-      <%= f.label :city %>
-      <%= f.text_field :city %>
-    </div>
-    <div>
-      <%= f.label :address %>
-      <%= f.text_field :address %>
-    </div>
-    <div>
-      <%= f.label :phone_number %>
-      <%= f.text_field :phone_number %>
-    </div>
-    <div>
-      <%= f.label :contact_person %>
-      <%= f.text_field :contact_person %>
-    </div>
-    <div>
-      <%= f.label :site %>
-      <%= f.text_field :site %>
-    </div>
-    <div>
-      <%= f.label :work_time %>
-      <%= f.text_field :work_time %>
-    </div>
-    <%= f.submit %>
-<% end %>
+  <h4>Название компании: <b><%= current_crafter.company_name %></b> </h4>
+  <h4>Категория/подкатегория: <b><%= current_crafter.subcategory.category.name %></b>/<b><%= current_crafter.subcategory.name %></b> </h4>
+  <h4>Время работы: <b><%= current_crafter.work_time %></b></h4>
+  <h4>Адресс: <b><%= current_crafter.city %> <%= current_crafter.address %></b></h4>
+  <h4>Номер телефона: <b><%= current_crafter.phone_number %></b></h4>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= devise_error_messages! %>
+  <div class="line"></div>
 
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true %>
-    </div>
+  <div class="info_for_reg">
+    <dl>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <dt><%= f.label :Изменить_категорию, class: 'label_login' %></dt>
+          <dd><%=select('category', 'id', Category.all.collect {|p| [ p.name, p.id ] }, :include_blank => true)%></dd>
+          <dt><%= f.label :Изменить_подкатегорию, class: 'label_login' %></dt>
+          <dd><%= f.select :subcategory_id, {},{:disabled => true} %></dd>
+      <% end %>
+      <%= form_for(current_crafter, url: update_images_crafter_path(current_crafter), method: 'post', remote: true, multipart: true)  do |f|%>
+          <dt><%= f.label :Изображения, class: 'label_login' %><br /></dt>
+          <dd>
+            <% current_crafter.images.each { |image| %>
+                <%= image_tag image.url, style: 'width: 100px; height: 100px;'  %>
+            <% }   %>
+          </dd>
+          <dt></dt>
+          <dd>
+              <span class="btn btn-large btn-default btn-file">
+                Загрузить изображение
+                <%= f.file_field :images, multiple: true %>
+              </span>
+            <button type="submit" class="btn btn-success register-btn">Обновить</button>
+          </dd>
+      <% end %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
+      <div class='reg_form'>
 
-    <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
+        <%= form_for current_crafter do |f| %>
+            <dt><%= f.label :Название_компании, class: 'label_login' %></dt>
+            <dd><%= f.text_field :company_name, class: 'form-control' %></dd>
+            <dt><%= f.label :Описание, class: 'label_login' %></dt>
+            <dd><%= f.text_area :description, class: 'form-control' %></dd>
+            <dt><%= f.label :Город, class: 'label_login' %></dt>
+            <dd><%= f.text_field :city, class: 'form-control' %></dd>
+            <dt><%= f.label :Адресс, class: 'label_login' %></dt>
+            <dd><%= f.text_field :address, class: 'form-control' %></dd>
+            <dt><%= f.label :Номер_телефона, class: 'label_login' %></dt>
+            <dd><%= f.text_field :phone_number, class: 'form-control' %></dd>
+            <dt><%= f.label :Контактное_лицо, class: 'label_login' %></dt>
+            <dd><%= f.text_field :contact_person, class: 'form-control' %></dd>
+            <dt><%= f.label :Сайт, class: 'label_login' %></dt>
+            <dd><%= f.text_field :site, class: 'form-control' %></dd>
+            <dt><%= f.label :Время_работы, class: 'label_login' %></dt>
+            <dd><%= f.text_field :work_time, class: 'form-control' %></dd>
 
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
+        <% end %>
 
-    <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password, autocomplete: "off" %>
-    </div>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= devise_error_messages! %>
 
-    <div class="actions">
-      <%= f.submit "Update" %>
-    </div>
-<% end %>
+            <dt><%= f.label :email, class: 'label_login' %><br /></dt>
+            <dd><%= f.email_field :email, class: 'form-control' %></dd>
 
-<h3>Cancel my account</h3>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+            <dt><%= f.label :password, class: 'label_login' %> <i>(leave blank if you don't want to change it)</i><br /></dt>
+            <dd><%= f.password_field :password, class: 'form-control', autocomplete: 'off' %></dd>
 
-<%= link_to "Back", :back %>
+            <dt><%= f.label :password_confirmation, class: 'label_login' %><br /></dt>
+            <dd><%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off' %></dd>
 
+            <dt><%= f.label :current_password, class: 'label_login' %> <i>(we need your current password to confirm your changes)</i><br /></dt>
+            <dd><%= f.password_field :current_password, class: 'form-control', autocomplete: 'off' %></dd>
+
+            <dd><button type="submit" class="btn btn-success register-btn">Сохранить</button></dd>
+        <% end %>
+
+        <dt><h4>Удалить профиль ?</h4></dt>
+        <dd><%= button_to 'Удалить профиль', registration_path(resource_name), data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger register-btn' %></dd>
+      </div>
+    </dl>
+
+  </div>
+</div>
