@@ -2,55 +2,11 @@
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <h1>search</h1>
-
-      <table style="width:600px">
-        <thead>
-        <tr>
-          <th>search input</th>
-          <th style="text-align:right;">Catigory</th>
-          <th style="text-align:right;">Subcatigory</th>
-          <th style="text-align:right;">City</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td><%= text_field_tag :search_text_value, @search_input %></td>
-          <!--<td><input id="search" type="text" size="40" value="<%=@search_input%>"></td>-->
-          <td style="text-align:right;">
-            <ul>
-              <% @search_categories.each do |categories_id,categories_value| %>
-                  <li>
-                    <%= label_tag categories_value %>
-                    <%= check_box_tag categories_id, categories_value, true, class: 'categories'%>
-                  </li>
-              <% end %>
-            </ul>
-          </td>
-          <td style="text-align:right;">
-            <ul>
-              <% @search_subcategories.each do |subcategories_id,subcategories_value| %>
-                  <li>
-                    <%= label_tag subcategories_value %>
-                    <%= check_box_tag subcategories_id, subcategories_value, true, class: 'subcategories' %>
-                  </li>
-              <% end %>
-            </ul>
-          </td>
-          <td style="text-align:right;">
-            <ul>
-              <% @cities.each do |city| %>
-                  <li>
-                    <%= label_tag city %>
-                    <%= check_box_tag city, {}, true, class:'cities' %>
-                  </li>
-              <% end %>
-            </ul>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+      <%= text_field_tag :search_text_value, @search_input %>
+      <label>full_search</label>
+      <%= check_box_tag :full_search%>
       <div class="search_crafter">
-        <%= render 'crafters/search_crafter'%>
+        <%= render 'crafters/search_crafter' %>
       </div>
     </div>
   </div>

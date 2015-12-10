@@ -10,8 +10,12 @@ class StaticPageController < ApplicationController
     @search_subcategories = Hash.new
     @search_categories = Hash.new
     @search_crafters.each { |crafter|
-      @search_subcategories[crafter.subcategory.id] = crafter.subcategory.name
-      @search_categories[crafter.subcategory.category.id] = crafter.subcategory.category.name
+      subcategory = Hash.new
+      category = crafter.subcategory.category
+      subcategory['name'] = crafter.subcategory.name
+      subcategory['category_id'] = category.id
+      @search_subcategories[crafter.subcategory.id] = subcategory
+      @search_categories[category.id] = category.name
       @cities.push crafter.city
     }
     @search_subcategories.keys.uniq!
@@ -31,6 +35,27 @@ class StaticPageController < ApplicationController
     @search_crafters = Crafter.search params[:search], :conditions => {:city => cities},
                                             :with => {:subcategory_id => subcategories},
                                             :star => true, :page => params[:page], :per_page => 42
+  end
+
+  def search_ajax_full
+    @search_input = params[:search]
+    @search_crafters  = Crafter.search params[:search], :star => true, :with => {:check => true},
+                                       :page => params[:page], :per_page => 42
+    @cities = Array.new
+    @search_subcategories = Hash.new
+    @search_categories = Hash.new
+    @search_crafters.each { |crafter|
+      subcategory = Hash.new
+      category = crafter.subcategory.category
+      subcategory['name'] = crafter.subcategory.name
+      subcategory['category_id'] = category.id
+      @search_subcategories[crafter.subcategory.id] = subcategory
+      @search_categories[category.id] = category.name
+      @cities.push crafter.city
+    }
+    @search_subcategories.keys.uniq!
+    @search_categories.keys.uniq!
+    @cities.uniq!
   end
 
 end
