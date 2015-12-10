@@ -3,99 +3,30 @@
 </div>
 
 <div class='reg_form'>
+  <div class="avatar">
+    <%=link_to image_tag(current_crafter.avatar.url), current_crafter %>
+    <p>Название компании: <b><%= current_crafter.company_name %></b></p>
+    <p>Сфера деятельности: <b><%= current_crafter.subcategory.category.name %>/<%= current_crafter.subcategory.name %></b></p>
+    <p>Время работы: <b><%= current_crafter.work_time %></b></p>
+    <p>Адресс: <b><%= current_crafter.city %> <%= current_crafter.address %></b></p>
+    <p>Номер телефона: <b><%= current_crafter.phone_number %></b></p>
+  </div>
 
-  <%= form_for(current_crafter, url: update_avatar_crafter_path(current_crafter), method: 'post', remote: true)  do |f|%>
-      <div class="avatar">
-        <%= image_tag current_crafter.avatar.url, style: 'width: 150px; height: 150px;' %>
-        <span class="btn btn-large btn-default btn-file span">
-          Загрузить аватар
-          <%= f.file_field :avatar %>
-        </span>
-        <%= f.submit 'Обновить', class: 'btn btn-success input' %>
-      </div>
-  <% end %>
-
-  <h4>Название компании: <b><%= current_crafter.company_name %></b> </h4>
-  <h4>Категория/подкатегория: <b><%= current_crafter.subcategory.category.name %></b>/<b><%= current_crafter.subcategory.name %></b> </h4>
-  <h4>Время работы: <b><%= current_crafter.work_time %></b></h4>
-  <h4>Адресс: <b><%= current_crafter.city %> <%= current_crafter.address %></b></h4>
-  <h4>Номер телефона: <b><%= current_crafter.phone_number %></b></h4>
-
-  <div class="line"></div>
-
-  <div class="info_for_reg">
-    <dl>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <dt><%= f.label :Изменить_категорию, class: 'label_login' %></dt>
-          <dd><%=select('category', 'id', Category.all.collect {|p| [ p.name, p.id ] }, :include_blank => true)%></dd>
-          <dt><%= f.label :Изменить_подкатегорию, class: 'label_login' %></dt>
-          <dd><%= f.select :subcategory_id, {},{:disabled => true} %></dd>
-      <% end %>
-      <%= form_for(current_crafter, url: update_images_crafter_path(current_crafter), method: 'post', remote: true, multipart: true)  do |f|%>
-          <dt><%= f.label :Изображения, class: 'label_login' %><br /></dt>
-          <dd>
-            <% current_crafter.images.each { |image| %>
-                <%= image_tag image.url, style: 'width: 100px; height: 100px;'  %>
-            <% }   %>
-          </dd>
-          <dt></dt>
-          <dd>
-              <span class="btn btn-large btn-default btn-file">
-                Загрузить изображение
-                <%= f.file_field :images, multiple: true %>
-              </span>
-            <button type="submit" class="btn btn-success register-btn">Обновить</button>
-          </dd>
-      <% end %>
-
-      <div class='reg_form'>
-
-        <%= form_for current_crafter do |f| %>
-            <dt><%= f.label :Название_компании, class: 'label_login' %></dt>
-            <dd><%= f.text_field :company_name, class: 'form-control' %></dd>
-            <dt><%= f.label :Описание, class: 'label_login' %></dt>
-            <dd><%= f.text_area :description, class: 'form-control' %></dd>
-            <dt><%= f.label :Город, class: 'label_login' %></dt>
-            <dd><%= f.text_field :city, class: 'form-control' %></dd>
-            <dt><%= f.label :Адресс, class: 'label_login' %></dt>
-            <dd><%= f.text_field :address, class: 'form-control' %></dd>
-            <dt><%= f.label :Номер_телефона, class: 'label_login' %></dt>
-            <dd><%= f.text_field :phone_number, class: 'form-control' %></dd>
-            <dt><%= f.label :Контактное_лицо, class: 'label_login' %></dt>
-            <dd><%= f.text_field :contact_person, class: 'form-control' %></dd>
-            <dt><%= f.label :Сайт, class: 'label_login' %></dt>
-            <dd><%= f.text_field :site, class: 'form-control' %></dd>
-            <dt><%= f.label :Время_работы, class: 'label_login' %></dt>
-            <dd><%= f.text_field :work_time, class: 'form-control' %></dd>
-
-        <% end %>
-
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-            <%= devise_error_messages! %>
-
-            <dt><%= f.label :email, class: 'label_login' %><br /></dt>
-            <dd><%= f.email_field :email, class: 'form-control' %></dd>
-
-            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-            <% end %>
-
-            <dt><%= f.label :password, class: 'label_login' %> <i>(leave blank if you don't want to change it)</i><br /></dt>
-            <dd><%= f.password_field :password, class: 'form-control', autocomplete: 'off' %></dd>
-
-            <dt><%= f.label :password_confirmation, class: 'label_login' %><br /></dt>
-            <dd><%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off' %></dd>
-
-            <dt><%= f.label :current_password, class: 'label_login' %> <i>(we need your current password to confirm your changes)</i><br /></dt>
-            <dd><%= f.password_field :current_password, class: 'form-control', autocomplete: 'off' %></dd>
-
-            <dd><button type="submit" class="btn btn-success register-btn">Сохранить</button></dd>
-        <% end %>
-
-        <dt><h4>Удалить профиль ?</h4></dt>
-        <dd><%= button_to 'Удалить профиль', registration_path(resource_name), data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger register-btn' %></dd>
-      </div>
-    </dl>
-
+  <div class="info_for_reg description">
+    <div class="menu1">
+      <br id="category"/><br id="logo_and_images"/><br id="password"/>
+      <a href="#info">Данные о компании</a>
+      <a href="#category">Виды деятельности</a>
+      <a href="#logo_and_images">Логотип и фотоальбомы</a>
+      <a href="#password">Пароль</a>
+      <!--information-->
+        <%= render 'crafters/registrations/partials/info' %>
+      <!--category and subcategory-->
+        <%= render 'crafters/registrations/partials/category' %>
+      <!--logo and images-->
+        <%= render 'crafters/registrations/partials/logo_and_images' %>
+      <!--password-->
+        <%= render 'crafters/registrations/partials/password' %>
+    </div>
   </div>
 </div>
