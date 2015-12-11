@@ -4,7 +4,9 @@
 
 <div class='reg_form'>
   <div class="avatar">
-    <%=link_to image_tag(current_crafter.avatar.url), current_crafter %>
+    <dev id="crafter_avatar_img">
+        <%= render 'crafters/registrations/partials/img' %>
+    </dev>
     <p>Название компании: <b><%= current_crafter.company_name %></b></p>
     <p>Сфера деятельности: <b><%= current_crafter.subcategory.category.name %>/<%= current_crafter.subcategory.name %></b></p>
     <p>Время работы: <b><%= current_crafter.work_time %></b></p>

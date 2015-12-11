@@ -22,5 +22,4 @@ jQuery ->
           $('#crafter_subcategory_id').append option
 
   $('#crafter_avatar').on 'change', ->
-    console.log(@.files[0])
     $('#img_view_upload').attr('src', URL.createObjectURL(@.files[0]));

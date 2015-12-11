@@ -2,7 +2,7 @@
   <%= form_for(current_crafter, url: update_avatar_crafter_path(current_crafter), method: 'post', remote: true)  do |f|%>
       <div class="avatar_edit">
         <div class="avatar_icon">
-          <%= image_tag current_crafter.avatar.url %>
+          <%= image_tag current_crafter.avatar.url, id: 'img_view_upload' %>
         </div>
         <div class="avatar_button">
               <span class="btn btn-large btn-default btn-file">
@@ -10,7 +10,7 @@
                 <%= f.file_field :avatar %>
             </span>
           <p>jpg, jpeg, png, gif, не более 2 МБ</p>
-          <%= f.submit 'Сохранить', class: 'btn btn-success' %>
+          <%= f.submit 'Сохранить', class: 'btn btn-success', id: 'button_for_safe_img' %>
         </div>
       </div>
   <% end %>
