@@ -16,7 +16,14 @@
   <% end %>
 
   <div class="albums">
-    <p>Ваши альбомы</p>
+    <div class="your_albums">
+      <p>Ваши альбомы: </p>
+      <div class="you_album"></div>
+      <div class="you_album"></div>
+      <div class="you_album"></div>
+      <div class="you_album"></div>
+    </div>
+
     <p>
       У Вас пока нет альбомов.
       <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Создать альбом ?</button>
@@ -27,29 +34,49 @@
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Альбомы</h4>
-        </div>
-        <div class="modal-body">
-          <%= form_for(current_crafter, url: update_images_crafter_path(current_crafter), method: 'post', remote: true, multipart: true, class: 'modal_form_albums')  do |f|%>
+        <%= form_for(current_crafter, url: update_images_crafter_path(current_crafter), method: 'post', remote: true, multipart: true, class: 'modal_form_albums')  do |f|%>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <%= f.label :Имя_альбома, class: 'label_login' %>
+              <%= f.text_field :phone_number, class: 'form-control' %>
+            </div>
+            <div class="modal-body">
               <%= f.label :Загруженные_изображения, class: 'label_login' %><br />
+
               <div class="upload_images">
                 <% current_crafter.images.each { |image| %>
-                    <%= image_tag image.url, style: 'width: 100px; height: 100px;'  %>
+                    <div class="box">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <div class="image">
+                        <%= image_tag image.url %>
+                      </div>
+                      <div class="description_image">
+                        <%= f.label :Имя_изображения, class: 'label_login' %>
+                        <%= f.text_field :phone_number, class: 'form-control' %>
+                        <%= f.label :Описание, class: 'label_login' %>
+                        <%= f.text_area :phone_number, class: 'form-control', rows: '2' %>
+                        <div class="checkbox">
+                          <label class="label_for_checkbox">
+                            <input type="checkbox" class="input_checkbox" value="">Использовать как обложку для альбома
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                 <% }   %>
               </div>
+
               <span class="btn btn-large btn-default btn-file">
                     Загрузить изображение
                 <%= f.file_field :images, multiple: true %>
-                  </span>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-success register-btn">Сохранить</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-              </div>
-          <% end %>
-        </div>
+              </span>
+
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success register-btn">Сохранить</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
+        <% end %>
+      </div>
     </div>
   </div>
 
