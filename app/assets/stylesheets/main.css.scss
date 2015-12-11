@@ -432,6 +432,20 @@ body > #wrap {height: auto; min-height: 100%;}
     font-size: 15px;
     margin-top: -2px;
   }
+  .your_albums{
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    .you_album{
+      float: left;
+      width: 100px;
+      height: 100px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      border-radius: 15px;
+      background: rgba(16, 16, 16, 0.25);
+    }
+  }
 }
 
 .modal_form_albums{
@@ -446,6 +460,46 @@ body > #wrap {height: auto; min-height: 100%;}
   width: 100%;
   margin-bottom: 15px;
   margin-top: 15px;
+  .box{
+    float: left;
+//    width: 95%;
+    width: 540px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    border-bottom: 1px dotted rgba(16, 16, 16, 0.4);
+    .image{
+      float: left;
+      width: 150px;
+    }
+    .description_image{
+      float: left;
+      width: 68%;
+    }
+    textarea, input, label{
+      float: left;
+      width: 70%;
+      margin-left: 15px;
+    }
+    label{
+      margin-top: 0 !important;
+      font-size: 14px;
+    }
+    img{
+      width: 150px;
+      float: left;
+    }
+    .label_for_checkbox{
+      margin-top: 5px !important;
+    }
+    .input_checkbox{
+      float: left;
+      margin-left: -20px;
+      width: 15px;
+      margin-top: -20px;
+      height: 55px;
+    }
+  }
 }
 
 /*END_TABS*/
