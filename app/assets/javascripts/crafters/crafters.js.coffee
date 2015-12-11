@@ -12,12 +12,10 @@ jQuery ->
       error: () ->
         console.log('error')
       success: (data) ->
-        console.log('success ' +data)
         result = JSON.parse data
         $('#crafter_subcategory_id').attr 'disabled', false
         $('#crafter_subcategory_id').empty()
         for id, name of result
-          console.log "#{id} - #{name}"
           option = $ '<option>'
           option.attr 'value', id
           option.text name
