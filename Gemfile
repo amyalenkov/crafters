@@ -4,7 +4,7 @@ ruby '2.2.1'
 gem 'rails', '4.1.0'
 
 group :production do
-  gem 'rails_12factor', '0.0.2'
+  # gem 'rails_12factor', '0.0.2'
 end
 group :development do
   gem 'spring'
@@ -42,3 +42,6 @@ gem 'therubyracer', :platforms => :ruby
 gem 'carrierwave', :git => 'git://github.com/carrierwaveuploader/carrierwave.git', :branch => 'master'
 
 gem 'remotipart', '~> 1.2'
+
+gem 'html2slim'
+gem 'slim-rails'
