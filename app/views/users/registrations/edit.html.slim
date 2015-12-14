@@ -1,0 +1,31 @@
+.login_title.left
+  h3
+    | Редактирование профиля
+.reg_form
+  .avatar
+    =link_to image_tag(current_user.avatar.url), current_user
+    p
+      | Имя: 
+      b
+        = current_user.name
+    p
+      | Email: 
+      b
+        = current_user.email
+  .info_for_reg.description
+    .menu1
+      br#category
+      br#logo_and_images
+      br#password
+      a[href="#info"]
+        | Личные данные
+      a[href="#category"]
+        | Настройки
+      a[href="#logo_and_images"]
+        | Аватар
+      a[href="#password"]
+        | Пароль
+      = render 'users/registrations/partials/info'
+      = render 'users/registrations/partials/settings'
+      = render 'users/registrations/partials/logo_and_images'
+      = render 'users/registrations/partials/password'

@@ -1,0 +1,39 @@
+.info_reg
+  dl
+    = form_for current_crafter do |f|
+      dt
+        = f.label :Название_компании, class: 'label_login'
+      dd
+        = f.text_field :company_name, class: 'form-control'
+      dt
+        = f.label :Описание, class: 'label_login'
+      dd
+        = f.text_area :description, class: 'form-control'
+      dt
+        = f.label :Город, class: 'label_login'
+      dd
+        = f.text_field :city, class: 'form-control'
+      dt
+        = f.label :Адресс, class: 'label_login'
+      dd
+        = f.text_field :address, class: 'form-control'
+      dt
+        = f.label :Номер_телефона, class: 'label_login'
+      dd
+        = f.text_field :phone_number, class: 'form-control'
+      dt
+        = f.label :Контактное_лицо, class: 'label_login'
+      dd
+        = f.text_field :contact_person, class: 'form-control'
+      dt
+        = f.label :Сайт, class: 'label_login'
+      dd
+        = f.text_field :site, class: 'form-control'
+      dt
+        = f.label :Время_работы, class: 'label_login'
+      dd
+        = f.text_field :work_time, class: 'form-control'
+      dt
+      dd
+        button.btn.btn-success.register-btn[type="submit"]
+          | Сохранить изменения

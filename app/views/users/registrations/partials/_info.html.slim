@@ -1,0 +1,10 @@
+.info_reg
+  dl
+    = form_for current_user do |f|
+      dt
+        = f.label :Имя, class: 'label_login'
+      dd
+        = f.text_field :name, class: 'form-control'
+      dd
+        button.btn.btn-success.register-btn[type="submit"]
+          | Сохранить изменения

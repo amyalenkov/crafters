@@ -1,0 +1,13 @@
+.info_reg
+  = form_for(current_crafter, url: update_avatar_crafter_path(current_crafter), method: 'post', remote: true)  do |f|
+    .avatar_edit
+      .avatar_icon
+        = image_tag current_crafter.avatar.url, id: 'img_view_upload'
+      .avatar_button
+        span.btn.btn-large.btn-default.btn-file
+          |  Загрузить логотип 
+          = f.file_field :avatar
+        p
+          | jpg, jpeg, png, gif, не более 2 МБ
+        = f.submit 'Сохранить', class: 'btn btn-success', id: 'button_for_safe_img'
+  = render 'crafters/registrations/partials/albums'

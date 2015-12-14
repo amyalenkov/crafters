@@ -1,0 +1,19 @@
+table[style="width:600px"]
+  thead
+    tr
+      th
+        | company_name
+      th[style="text-align:right;"]
+        | City
+      th[style="text-align:right;"]
+        | Check
+  tbody
+    - @search_crafters.each do |crafter|
+      tr
+        td
+          = crafter.company_name
+        td[style="text-align:right;"]
+          = crafter.city
+        td[style="text-align:right;"]
+          = crafter.check
+= will_paginate @search_crafters

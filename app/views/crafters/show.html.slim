@@ -1,0 +1,37 @@
+.container-fluid
+  .row
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12
+      h2
+        | Личный кабинет 
+        = current_crafter.company_name
+      br
+      .avatar
+        = image_tag current_crafter.avatar.url
+      .description.description_show
+        p
+          b
+            | Название компании:
+          = current_crafter.company_name
+        p
+          b
+            | Категория/подкатегория:
+          = current_crafter.subcategory.category.name
+          | /
+          = current_crafter.subcategory.name
+        p
+          b
+            | Email:
+          = current_crafter.email
+        p
+          b
+            | Город:
+          = current_crafter.city
+        p
+          b
+            | Описание:
+          = current_crafter.description
+        p
+          b
+            | Альбомы:
+        p
+          = link_to 'Редактировать профиль', edit_crafter_registration_path

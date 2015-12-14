@@ -1,0 +1,21 @@
+.login_title
+  h3
+    | Для доступа к приложению необходима авторизация
+.login_form
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .form-group
+      .field
+        = f.label :email, class: 'label_login'
+        br
+        = f.email_field :email, class: 'form-control', autofocus: true
+      .field
+        = f.label :Пароль, class: 'label_login'
+        br
+        = f.password_field :password, class: 'form-control', autocomplete: 'off'
+      - if devise_mapping.rememberable?
+        .checkbox.field
+          = f.check_box :remember_me, id: 'check_box'
+          = f.label :Запомнить_меня, for: 'check_box'
+      button.btn.btn-success[type="submit"]
+        | Войти
+= render 'crafters/shared/links'

@@ -1,0 +1,24 @@
+.dropdown
+  .dropdown-submenu
+    button.btn.btn-default.dropdown-toggle.bullet.button-no-border[type="button" data-toggle="dropdown"]
+      | Все крафтеры 
+      span.caret
+    ul.dropdown-menu
+      - @categories.each do |category|
+        li.dropdown-submenu
+          |  <a href="#
+          = category.name
+          | ">
+          = category.name
+          .subcategory.dropdown-menu
+            ul[style="list-style: none outside none; width: 350px;"]
+              - @subcategories.where(category_id: category.id).each do |subcategory|
+                - if subcategory.title_sub_category != ('') and subcategory.title_sub_category != (nil)
+                  li[style="float: left; display: block; width: 220px;"]
+                    p[style="font-weight: bold; color: #000000; font-size: 17px; margin-bottom: 5px;margin-top: 5px;"]
+                      = subcategory.title_sub_category
+                li[style="display: block; width: 220px;"]
+                  | <a href="#
+                  = subcategory.name
+                  | ">
+                  = subcategory.name

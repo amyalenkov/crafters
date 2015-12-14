@@ -1,0 +1,47 @@
+.login_title.left
+  h3
+    | Редактирование профиля
+.reg_form
+  .avatar
+    #crafter_avatar_img
+      = render 'crafters/registrations/partials/img'
+    p
+      | Название компании: 
+      b
+        = current_crafter.company_name
+    p
+      | Сфера деятельности: 
+      b
+        = current_crafter.subcategory.category.name
+        | /
+        = current_crafter.subcategory.name
+    p
+      | Время работы: 
+      b
+        = current_crafter.work_time
+    p
+      | Адресс: 
+      b
+        = current_crafter.city
+        = current_crafter.address
+    p
+      | Номер телефона: 
+      b
+        = current_crafter.phone_number
+  .info_for_reg.description
+    .menu1
+      br#category
+      br#logo_and_images
+      br#password
+      a[href="#info"]
+        | Данные о компании
+      a[href="#category"]
+        | Виды деятельности
+      a[href="#logo_and_images"]
+        | Логотип и фотоальбомы
+      a[href="#password"]
+        | Пароль
+      = render 'crafters/registrations/partials/info'
+      = render 'crafters/registrations/partials/category'
+      = render 'crafters/registrations/partials/logo_and_images'
+      = render 'crafters/registrations/partials/password'

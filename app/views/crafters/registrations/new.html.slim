@@ -1,0 +1,42 @@
+.login_title
+  h2
+    | Добавьте компанию за 5 минут!
+  h4
+    | Это совершенно бесплатно и пользователи смогут узнать об услугах вашей компании, графике работы, найти вас на карте и связаться с Вами!
+.login_form
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = devise_error_messages!
+    .form-group
+      .field
+        = f.label :Название_компании, class: 'label_login'
+        br
+        = f.text_field :company_name, class: 'form-control', autofocus: true
+      .field
+        = f.label :email, class: 'label_login'
+        br
+        = f.email_field :email, class: 'form-control'
+      .field
+        = f.label :Пароль, class: 'label_login'
+        - if @validatable
+          em
+            | (
+            = @minimum_password_length
+            |  characters minimum)
+        br
+        = f.password_field :password, class: 'form-control', autocomplete: 'off'
+      .field
+        = f.label :Подтверждение_пароля, class: 'label_login'
+        br
+        = f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off'
+      .field
+        label
+          | Категория
+        br
+        =select('category', 'id', Category.all.collect {|p| [ p.name, p.id ] }, :include_blank => true)
+      .field
+        = f.label :Подкатегория, class: 'label_login'
+        br
+        = f.select :subcategory_id, {},{:disabled => true}
+      button.btn.btn-success.register-btn[type="submit"]
+        | Зарегистрироваться
+= render 'devise/crafters/shared/links'

@@ -1,0 +1,12 @@
+.container-fluid
+  .row
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12
+      h1
+        | Crafters
+      - @all_crafters.each do |crafter|
+        li
+          = link_to crafter.email, crafter
+        li
+          = crafter.subcategory.name
+        li
+          = crafter.subcategory.category.name

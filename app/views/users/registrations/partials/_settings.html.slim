@@ -1,0 +1,14 @@
+.info_reg
+  dl
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      dt
+        = f.label :Текущий_адрес, class: 'label_login'
+        br
+      dt
+        = f.label :email, class: 'label_login'
+        br
+      dd
+        = f.email_field :email, class: 'form-control'
+      dd
+        button.btn.btn-success.register-btn[type="submit"]
+          | Обновить
