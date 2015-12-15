@@ -1,11 +1,11 @@
-= link_to 'Login in user', new_user_session_path
+= link_to 'In User', new_user_session_path
 |  / 
-= link_to 'Sign up user', new_user_registration_path
+= link_to 'Up User', new_user_registration_path
+br
+= link_to 'In Crafter', new_crafter_session_path
 |  / 
-= link_to 'Sign in crafter', new_crafter_session_path
-|  / 
-= link_to 'Sign up crafter', new_crafter_registration_path
-= link_to 'Sign in Facebook', user_omniauth_authorize_path(:facebook)
-|  / 
-= link_to 'Sign in VK', user_omniauth_authorize_path(:vkontakte)
-|  / 
+= link_to 'Up Crafter', new_crafter_registration_path
+br
+= link_to 'Facebook', user_omniauth_authorize_path(:facebook)
+|  /
+= link_to 'VK', user_omniauth_authorize_path(:vkontakte)
