@@ -23,15 +23,18 @@ class CraftersController < ApplicationController
   def update_images
     images = params[:crafter][:images]
     album = current_crafter.albums.build
-    album.logo = images[0]
     album.name = params[:album_name]
     album.description = params[:album_desc]
     images.each_with_index { |image, index|
       album_image = album.album_images.build
-      album_image.name = params['img_name'+(index+1).to_s]
-      album_image.description = params['img_decs'+(index+1).to_s]
-      album_image.image = image
-      album_image.save!
+      if params['logo'+(index+1).to_s] == '1'
+        album.logo = image
+      else
+        album_image.name = params['img_name'+(index+1).to_s]
+        album_image.description = params['img_decs'+(index+1).to_s]
+        album_image.image = image
+        album_image.save!
+      end
     }
     album.save!
     render :nothing => true
