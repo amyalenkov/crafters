@@ -1,6 +1,6 @@
 .info_reg
   dl
-    = form_for current_crafter do |f|
+    = form_for current_crafter, remote: true do |f|
       dt
         = f.label :Название_компании, class: 'label_login'
       dd

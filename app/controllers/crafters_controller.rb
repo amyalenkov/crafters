@@ -10,8 +10,8 @@ class CraftersController < ApplicationController
 
   def update
     current_crafter.update_attributes crafters_params
-    AdminMailer.check_crafter.deliver
-    redirect_to current_crafter
+    # AdminMailer.check_crafter.deliver
+    # redirect_to current_crafter
   end
 
   def update_avatar
