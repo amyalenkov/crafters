@@ -29,7 +29,7 @@ jQuery ->
     images = $('#div_album_images')
     for i in [1..@.files.length]
       div = $('<div class="div_for_one_image"><div/>')
-      $('<input name="logo'+i+'" type="checkbox" value="1">').appendTo(div)
+      $('<input class="set_crafter_album_logo" name="logo'+i+'" type="checkbox" value="1">').appendTo(div)
       $('<input class="form-control" id="img_name'+i+'" name="img_name'+i+'" type="text" value="">').appendTo(div)
       $('<input class="form-control" id="img_desc'+i+'" name="img_decs'+i+'" type="text" value="">').appendTo(div)
       $('<img/>', {
@@ -38,3 +38,11 @@ jQuery ->
         "width": 100
       }).appendTo(div)
       div.appendTo(images)
+
+# событие на динамические создаваемые checbox'ы
+  $('.modal-body').on 'change', '[type=checkbox]',->
+    checked_name = @.name
+    inputs = $('.set_crafter_album_logo')
+    for input in inputs
+      if input.name != checked_name
+        input.checked = false
