@@ -31,11 +31,24 @@ $ ->
       else
         send_search_request search_string, get_checked_elements(cities), get_checked_subcategories(subcategories)
 
+  $('#search_text_value_in_subcategory').on 'keyup', ->
+    search_string = @.value
+    if search_string.length >= 3
+      cities = $('.cities_for_subcategory')
+      subcategory = $('#subcategory').val()
+      console.log(subcategory)
+      send_search_request search_string, get_checked_elements(cities), subcategory
+
 
   $('.cities').on 'change', ->
     cities = $('.cities')
     subcategories = $('.subcategories')
     send_search_request $('#search_text_value').val(), get_checked_elements(cities), get_checked_subcategories(subcategories)
+
+  $('.cities_for_subcategory').on 'change', ->
+    cities = $('.cities_for_subcategory')
+    subcategory = $('#subcategory').val()
+    send_search_request $('#search_text_value').val(), get_checked_elements(cities), subcategory
 
   $('.subcategories').on 'change', ->
     cities = $('.cities')
