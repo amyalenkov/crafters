@@ -40,6 +40,16 @@ class CraftersController < ApplicationController
     render :nothing => true
   end
 
+  def get_crafters_for_category
+    subcategory = Subcategory.find_by_name params[:name]
+    @subcategory_id = subcategory.id
+    @search_crafters = subcategory.crafters
+    @cities = Array.new
+    @search_crafters.each { |crafter|
+       @cities.push crafter.city
+    }
+  end
+
   private
 
   def crafters_params
