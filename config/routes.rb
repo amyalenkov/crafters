@@ -19,17 +19,22 @@ Rails.application.routes.draw do
       post 'update_images'
     end
   end
+
+  get '/subcategory/:name' => 'crafters#get_crafters_for_category'
+
   resources :users do
     post 'update_avatar', on: :member
   end
-  # post '/update_avatar' => 'users#update_avatar'
-  # post '/update_avatar_crafter' => 'crafters#update_avatar'
-  # post '/update_images_crafter' => 'crafters#update_images'
+
+
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   post '/get_subcategory' => 'application#get_subcategory'
   get '/search' => 'static_page#search'
   post '/search_ajax' => 'static_page#search_ajax'
+  post '/search_new_ajax' => 'static_page#search_new_ajax'
+  post '/search_ajax_full' => 'static_page#search_ajax_full'
+  post '/search_ajax_full' => 'static_page#search_ajax_full'
 
 end
