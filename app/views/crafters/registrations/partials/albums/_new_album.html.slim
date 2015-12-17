@@ -1,15 +1,4 @@
-.albums
-  .your_albums
-    p
-      | Ваши альбомы: 
-    - current_crafter.albums.each do |album|
-      .you_album
-        = image_tag album.logo.url, :size => '100x100'
-  p
-    |  У Вас пока нет альбомов. 
-    button.btn.btn-info.btn-sm[type="button" data-toggle="modal" data-target="#myModal"]
-      | Создать альбом ?
-#myModal.modal.fade[role="dialog"]
+#myModalNew.modal.fade[role="dialog"]
   .modal-dialog
     .modal-content
       = form_for(current_crafter, url: update_images_crafter_path(current_crafter), method: 'post', remote: true, multipart: true, class: 'modal_form_albums')  do |f|
@@ -26,9 +15,20 @@
           #div_album_images
 
           span.btn.btn-large.btn-default.btn-file
-            |  Загрузить изображение 
+            |  Загрузить изображение
             = f.file_field :images, multiple: true
         .modal-footer
           = f.submit 'Сохранить', class: 'btn btn-success', id: 'button_for_safe_img'
           button.btn.btn-default[type="button" data-dismiss="modal"]
             | Закрыть
+
+          a href="#demo" class="btn btn-info" data-toggle="collapse"
+            | Simple collapsible
+            #demo
+              .collapse
+                p
+                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                p
+                  | sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                p
+                  | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
