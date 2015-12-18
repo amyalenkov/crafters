@@ -20,7 +20,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/subcategory/:name' => 'crafters#get_crafters_for_category'
+  get '/subcategory/:name' => 'crafters#get_crafters_for_subcategory'
+  get '/category/:name' => 'crafters#get_crafters_for_category'
 
   resources :users do
     post 'update_avatar', on: :member

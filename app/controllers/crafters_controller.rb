@@ -41,13 +41,29 @@ class CraftersController < ApplicationController
   end
 
   def get_crafters_for_category
+    category = Category.find_by_name params[:name]
+    @search_subcategories = Hash.new
+    @search_categories = Hash.new
+    @search_categories[category.id] = category.name
+    @search_crafters = Array.new
+    category.subcategories.each { |subcategory|
+      @search_subcategories[subcategory.id] = {'name'=> subcategory.name, 'category_id' => category.id}
+      crafters = subcategory.crafters
+      if crafters.count != 0
+        crafters.each { |crafter| @search_crafters.push crafter }
+      end
+    }
+    @cities = Array.new
+    @search_crafters.each { |crafter| @cities.push crafter.city }
+    @cities.uniq!
+  end
+
+  def get_crafters_for_subcategory
     subcategory = Subcategory.find_by_name params[:name]
     @subcategory_id = subcategory.id
     @search_crafters = subcategory.crafters
     @cities = Array.new
-    @search_crafters.each { |crafter|
-       @cities.push crafter.city
-    }
+    @search_crafters.each { |crafter| @cities.push crafter.city }
   end
 
   def get_crafter_album
