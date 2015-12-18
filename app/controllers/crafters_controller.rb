@@ -53,6 +53,7 @@ class CraftersController < ApplicationController
         crafters.each { |crafter| @search_crafters.push crafter }
       end
     }
+
     @cities = Array.new
     @search_crafters.each { |crafter| @cities.push crafter.city }
     @cities.uniq!
