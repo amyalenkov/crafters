@@ -1,0 +1,27 @@
+<div class='info_reg'>
+  <dl>
+    <!--%= form_for(resource, as: resource_name, url: update_crafter_path(current_crafter)) do |f| %>-->
+    <!--%= form_for(current_crafter, url: update_info_crafter_path(current_crafter), method: 'post', remote: true)  do |f|%>-->
+    <%= form_for current_crafter do |f| %>
+        <dt><%= f.label :Название_компании, class: 'label_login' %></dt>
+        <dd><%= f.text_field :company_name, class: 'form-control' %></dd>
+        <dt><%= f.label :Описание, class: 'label_login' %></dt>
+        <dd><%= f.text_area :description, class: 'form-control' %></dd>
+        <dt><%= f.label :Город, class: 'label_login' %></dt>
+        <dd><%= f.text_field :city, class: 'form-control' %></dd>
+        <dt><%= f.label :Адресс, class: 'label_login' %></dt>
+        <dd><%= f.text_field :address, class: 'form-control' %></dd>
+        <dt><%= f.label :Номер_телефона, class: 'label_login' %></dt>
+        <dd><%= f.text_field :phone_number, class: 'form-control' %></dd>
+        <dt><%= f.label :Контактное_лицо, class: 'label_login' %></dt>
+        <dd><%= f.text_field :contact_person, class: 'form-control' %></dd>
+        <dt><%= f.label :Сайт, class: 'label_login' %></dt>
+        <dd><%= f.text_field :site, class: 'form-control' %></dd>
+        <dt><%= f.label :Время_работы, class: 'label_login' %></dt>
+        <dd><%= f.text_field :work_time, class: 'form-control' %></dd>
+        <dt></dt>
+        <!--% end %>-->
+        <dd><button type="submit" class="btn btn-success register-btn">Сохранить изменения</button></dd>
+    <% end %>
+  </dl>
+</div>

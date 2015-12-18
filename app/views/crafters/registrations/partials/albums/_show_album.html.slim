@@ -1,28 +1,12 @@
-/#myModalShow.modal.fade[role="dialog"]
-/  .modal-dialog
-/    .modal-content
-/      = form_for(current_crafter, url: update_images_crafter_path(current_crafter), method: 'post', remote: true, multipart: true, class: 'modal_form_albums')  do |f|
-/        .modal-header
-/          button.close[type="button" data-dismiss="modal"]
-/            | ×
-/          = f.label :Имя_альбома, class: 'label_login'
-/          = text_field_tag :album_name, '',class: 'form-control'
-/          = f.label :Описание_альбома, class: 'label_login'
-/          = text_field_tag :album_desc, '',class: 'form-control'
-/        .modal-body
-/          = f.label :Загруженные_изображения, class: 'label_login'
-/          br
-/          #div_album_images
-/        .modal-footer
-/          button.btn.btn-default[type="button" data-dismiss="modal"]
-/            | Закрыть
-a href="#demo" class="btn btn-info" data-toggle="collapse"
-  | Simple collapsible
-#demo
- .collapse
-    p
-      | Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-    p
-      | sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    p
-      | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+.collapse#collapseExample
+  .card.card-block
+    #demoLightbox.lightbox.hide.fade tabindex="-1" role="dialog" aria-hidden="true"
+      .lightbox-content
+        /- @album.album_images.each do |image|
+
+          = image_tag image.image.url, :size => '100x100'
+          .lightbox-caption
+            p
+              | Your caption here
+    a data-toggle="lightbox" href="#demoLightbox"
+      | Open Lightbox

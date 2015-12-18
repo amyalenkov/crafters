@@ -50,6 +50,10 @@ class CraftersController < ApplicationController
     }
   end
 
+  def get_crafter_album
+    @album = Album.find_by_id params[:album_id]
+  end
+
   private
 
   def crafters_params
