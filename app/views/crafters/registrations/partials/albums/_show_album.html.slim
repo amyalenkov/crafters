@@ -1,12 +1,13 @@
+-if !@album.nil?
+  - @album.album_images.each do |image|
+    = image_tag image.image.url, :size => '100x100'
+    .lightbox-caption
+      p
+        | Your caption here
+
 .collapse#collapseExample
   .card.card-block
     #demoLightbox.lightbox.hide.fade tabindex="-1" role="dialog" aria-hidden="true"
       .lightbox-content
-        /- @album.album_images.each do |image|
-
-          = image_tag image.image.url, :size => '100x100'
-          .lightbox-caption
-            p
-              | Your caption here
     a data-toggle="lightbox" href="#demoLightbox"
       | Open Lightbox

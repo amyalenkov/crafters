@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     member do
       post 'update_avatar'
       post 'update_images'
+      get 'get_crafter_album'
     end
   end
 
