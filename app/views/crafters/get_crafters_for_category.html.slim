@@ -1,28 +1,11 @@
 .container-fluid
   .row
     .col-xs-12.col-sm-12.col-md-12.col-lg-12
-      = text_field_tag 'subcategory', @subcategory_id
-      table[style="width:600px"]
-        thead
-          tr
-            th[style="text-align:right;"]
-              | search
-            th[style="text-align:right;"]
-              | City
-        tbody
-          tr
-            td[style="text-align:right;"]
-              ul
-                h1
-                  | search
-                  = text_field_tag :search_text_value_in_subcategory, ''
-
-          td[style="text-align:right;"]
-              ul
-                - @cities.each_with_index do |city,index|
-                  li
-                    = label_tag city
-                    = check_box_tag city, index, true, class:'cities_for_subcategory', id: index
-
-      .search_crafter_result
-        = render 'crafters/search_crafter_result'
+      h1
+        | search
+      = text_field_tag :search_text_value, @search_input
+      label
+        | full_search
+      = check_box_tag :full_search
+      .search_crafter
+        = render 'crafters/search_crafter'

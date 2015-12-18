@@ -6,7 +6,7 @@
     ul.dropdown-menu
       - @categories.each do |category|
         li.dropdown-submenu
-          a href="#{category.name}"
+          a href="/category/#{category.name}"
            = category.name
 
           .subcategory.dropdown-menu
