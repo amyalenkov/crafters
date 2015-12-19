@@ -8,6 +8,10 @@ class CraftersController < ApplicationController
     crafter.albums.album_images.image
   end
 
+  def show
+    @crafter = Crafter.find_by_id params[:id]
+  end
+
   def update
     current_crafter.update_attributes crafters_params
     # AdminMailer.check_crafter.deliver

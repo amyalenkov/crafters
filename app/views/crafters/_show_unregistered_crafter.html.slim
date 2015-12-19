@@ -1,0 +1,34 @@
+.container-fluid
+  .row
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12
+      h2
+        = @crafter.company_name
+      br
+      .avatar
+        = image_tag @crafter.avatar.url
+      .description.description_show
+        p
+          b
+            | Название компании:
+          = @crafter.company_name
+        p
+          b
+            | Категория/подкатегория:
+          = @crafter.subcategory.category.name
+          | /
+          = @crafter.subcategory.name
+        p
+          b
+            | Email:
+          = @crafter.email
+        p
+          b
+            | Город:
+          = @crafter.city
+        p
+          b
+            | Описание:
+          = @crafter.description
+        p
+          b
+            | Альбомы:
