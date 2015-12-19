@@ -7,6 +7,25 @@
       .avatar
         = image_tag @crafter.avatar.url
       .description.description_show
+        - unless current_user.nil?
+          p
+            dl
+              = form_tag conversation_index_path, method: :post, remote: true do
+                dt
+                  = hidden_field_tag :sender_user_id, current_user.id
+                dt
+                  = hidden_field_tag :receiver_crafter_id, @crafter.id
+                dt
+                  = label_tag :Тема
+                dd
+                  = text_field_tag :theme
+                dt
+                  = label_tag :Сообщение
+                dd
+                  = text_area_tag :message
+                dd
+                  = submit_tag 'Отправить сообщение'
+
         p
           b
             | Название компании:
@@ -32,3 +51,9 @@
         p
           b
             | Альбомы:
+            - @crafter.albums.each do |album|
+              .you_album
+                = link_to get_crafter_album_crafter_path(@crafter)+'?album_id='+album.id.to_s, :class=>'btn btn-primary',  :id=>album.id,  :remote=>true
+                  = image_tag album.logo.url, :size => '100x100'
+
+

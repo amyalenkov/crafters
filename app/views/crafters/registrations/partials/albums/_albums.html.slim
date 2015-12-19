@@ -4,9 +4,6 @@
       | Ваши альбомы:
     - current_crafter.albums.each do |album|
       .you_album
-        /a href="_show_album.html.slim" src='#{album.logo.url}' data-toggle="modal" data-target="#myModalShow"
-        / = image_tag album.logo.url, :size => '100x100'
-        /a href="#{get_crafter_album_crafter_path(current_crafter)+'?album_id='+album.id.to_s}" class="btn btn-info" data-toggle="collapse"
         = link_to get_crafter_album_crafter_path(current_crafter)+'?album_id='+album.id.to_s, :class=>'btn btn-primary',  :id=>album.id,  :remote=>true
           = image_tag album.logo.url, :size => '100x100'
   p

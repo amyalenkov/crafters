@@ -25,7 +25,12 @@ Rails.application.routes.draw do
   get '/category/:name' => 'crafters#get_crafters_for_category'
 
   resources :users do
-    post 'update_avatar', on: :member
+    member do
+      post 'update_avatar'
+      resources :conversation do
+        post 'add_message'
+      end
+    end
   end
 
 
