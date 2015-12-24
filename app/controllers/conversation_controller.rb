@@ -17,9 +17,11 @@ class ConversationController < ApplicationController
   def index
     unless current_user.nil?
       @conversations = Conversation.where sender_user_id: current_user.id
+      @unread_messages = current_user.unread_messages
     end
     unless current_crafter.nil?
       @conversations = Conversation.where receiver_crafter_id: current_crafter.id
+      @unread_messages = current_crafter.unread_messages
     end
   end
 
