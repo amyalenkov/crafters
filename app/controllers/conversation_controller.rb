@@ -26,6 +26,22 @@ class ConversationController < ApplicationController
   def show
     @conversation = Conversation.find_by_id params[:id]
     @messages = @conversation.messages
+    unless current_user.nil?
+      @messages.each { |message|
+        if message.receiver_user_id == current_user.id
+          message.read = true
+          message.save!
+        end
+      }
+    end
+    unless current_crafter.nil?
+      @messages.each { |message|
+        if message.receiver_crafter_id == current_crafter.id
+          message.read = true
+          message.save!
+        end
+      }
+    end
   end
 
   def add_message

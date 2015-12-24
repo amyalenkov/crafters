@@ -1,7 +1,10 @@
 = link_to current_user.email, current_user
 |  / 
 = link_to 'Сообщения', conversation_index_path
-|  /
+- unread_messages = current_user.unread_messages
+-unless unread_messages == 0
+  = link_to 'не прочитанных '+unread_messages.to_s, conversation_index_path
+  |  /
 = link_to 'Выйти', destroy_user_session_path, :method=>'delete'
 |  / 
 = link_to 'Все пользователи', users_path
