@@ -79,6 +79,6 @@ class CraftersController < ApplicationController
 
   def crafters_params
     params.require(:crafter).permit(:company_name, :description, :city, :address,
-                                    :phone_number, :contact_person, :site, :work_time)
+                                    :phone_number, :contact_person, :site, :work_time, :subcategory_id)
   end
 end

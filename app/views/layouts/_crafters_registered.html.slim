@@ -1,7 +1,7 @@
 = link_to current_crafter.company_name, current_crafter
 |  / 
-= link_to 'Сообщения', conversation_index_path
-|  /
+/= link_to 'Сообщения', conversation_index_path
+/|  /
 - unread_messages = current_crafter.unread_messages
 -unless unread_messages == 0
   = link_to 'Сообщения(+'+unread_messages.to_s+')', conversation_index_path
