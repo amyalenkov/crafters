@@ -11,7 +11,7 @@ table[style="width:600px"]
     - @search_crafters.each do |crafter|
       tr
         td
-          = crafter.company_name
+          = link_to crafter.company_name, crafter_path(crafter.id)
         td[style="text-align:right;"]
           = crafter.city
         td[style="text-align:right;"]

@@ -4,8 +4,6 @@ class CraftersController < ApplicationController
 
   def index
     @all_crafters = Crafter.all
-    crafter = Crafter.first
-    crafter.albums.album_images.image
   end
 
   def show

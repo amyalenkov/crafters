@@ -27,10 +27,11 @@ Rails.application.routes.draw do
   resources :users do
     member do
       post 'update_avatar'
-      resources :conversation do
-        post 'add_message'
-      end
     end
+  end
+
+  resources :conversation do
+    post 'add_message'
   end
 
 
