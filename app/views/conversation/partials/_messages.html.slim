@@ -1,0 +1,17 @@
+-@messages.each do |message|
+  -unless message.sender_crafter_id.nil?
+    h4
+      'from crafter'
+    h5
+      =message.created_at
+    p
+      'body: '
+      =message.body
+  -unless message.sender_user_id.nil?
+    h4
+      'from user'
+    h5
+      =message.created_at
+    p
+      'body: '
+      =message.body

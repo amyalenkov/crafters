@@ -31,7 +31,9 @@ Rails.application.routes.draw do
   end
 
   resources :conversation do
-    post 'add_message'
+    member do
+      post 'add_message'
+    end
   end
 
 

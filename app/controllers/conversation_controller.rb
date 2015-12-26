@@ -47,10 +47,10 @@ class ConversationController < ApplicationController
   end
 
   def add_message
-    conversation = Conversation.find_by_id params[:conversation_id]
+    conversation = Conversation.find_by_id params[:id]
     message = conversation.messages.build
     message.body = params[:message]
-    message.conversation_id = params[:conversation_id]
+    message.conversation_id = params[:id]
     unless current_user.nil?
       message.sender_user_id = params[:conversation_user_id]
       message.receiver_crafter_id = params[:conversation_crafter_id]
@@ -60,7 +60,7 @@ class ConversationController < ApplicationController
       message.sender_crafter_id = params[:conversation_crafter_id]
     end
     message.save!
-    render :nothing => "sdf"
+    @messages = conversation.messages
   end
 
 end

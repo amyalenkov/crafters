@@ -1,21 +1,6 @@
--@messages.each do |message|
-  -unless message.sender_crafter_id.nil?
-    h4
-      'from crafter'
-    h5
-      =message.created_at
-    p
-      'body: '
-      =message.body
-  -unless message.sender_user_id.nil?
-    h4
-      'from user'
-    h5
-      =message.created_at
-    p
-      'body: '
-      =message.body
-= form_tag conversation_index_path+'/'+@conversation.id.to_s + '/add_message', method: :post, remote: true do
+.messages
+  =render 'conversation/partials/messages'
+= form_tag add_message_conversation_path, method: :post, remote: true do
   dt
     = hidden_field_tag :conversation_user_id, @conversation.sender_user_id
   dt
