@@ -20,4 +20,5 @@ html
                 = alert
               .content
                 = yield
-    = render 'layouts/footer'
+    - cache @categories do
+      = render 'layouts/footer', categories: @categories
