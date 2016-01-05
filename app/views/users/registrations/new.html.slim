@@ -8,11 +8,11 @@
       .field
         = f.label :Имя, class: 'label_login'
         br
-        = f.text_field :name, class: 'form-control', autofocus: true
+        = f.text_field :name, class: 'form-control user_registration', autofocus: true
       .field
         = f.label :email, class: 'label_login'
         br
-        = f.email_field :email, class: 'form-control'
+        = f.email_field :email, class: 'form-control user_registration'
       .field
         = f.label :Пароль, class: 'label_login'
         - if @validatable
@@ -21,11 +21,11 @@
             = @minimum_password_length
             |  characters minimum)
         br
-        = f.password_field :password, class: 'form-control', autocomplete: "off"
+        = f.password_field :password, class: 'form-control user_registration', autocomplete: "off"
       .field
         = f.label :Подтверждение_пароля, class: 'label_login'
         br
-        = f.password_field :password_confirmation, class: 'form-control', autocomplete: "off"
-      button.btn.btn-success.register-btn[type="submit"]
+        = f.password_field :password_confirmation, class: 'form-control user_registration', autocomplete: "off"
+      button.btn.btn-success.register-btn.register-btn-user[type="submit"]
         | Зарегистрироваться
     = render "users/shared/links"

@@ -21,4 +21,4 @@
 //= require static_page.js.coffee
 //= require jquery.remotipart
 //= require crafters/crafters
-//= require crafters/validation
+//= require validations/validation.coffee
