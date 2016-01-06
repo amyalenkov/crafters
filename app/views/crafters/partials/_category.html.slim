@@ -4,13 +4,15 @@
       dt
         = f.label :Изменить_категорию, class: 'label_login'
       dd
-        =select('category', 'id', Category.all.collect {|p| [ p.name, p.id ] }, {:include_blank => true}, {:class => 'form-control'})
+        =select('category', 'id', options_for_select(Category.all.collect {|p| [ p.name, p.id ] },current_crafter.subcategory.category.id),
+          {},{:class => 'form-control'})
       dt
         = f.label :Изменить_подкатегорию, class: 'label_login'
       dd
-        = f.select :subcategory_id, {},{:disabled => true}, {:class => 'form-control'}
+        = f.select :subcategory_id, options_for_select(Subcategory.where(category_id: current_crafter.subcategory.category.id).collect{|p| [ p.name, p.id ] },current_crafter.subcategory.id),
+          {},{:class => 'form-control'}
       dt
       dd
-        =f.submit 'submit'
+        =f.submit 'Обновить', :class => 'button btn btn-success register-btn'
         /button.btn.btn-success.register-btn[type="submit"]
           | Обновить

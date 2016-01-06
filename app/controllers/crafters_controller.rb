@@ -4,6 +4,7 @@ class CraftersController < ApplicationController
 
   def index
     @all_crafters = Crafter.all
+    @all_crafters[0].subcategory.category.id
   end
 
   def show

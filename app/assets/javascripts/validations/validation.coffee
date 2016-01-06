@@ -1,6 +1,8 @@
 jQuery ->
   registered_crafter = new UpCrafter('register-btn-crafter')
   login_crafter = new InCrafter('btn-login-crafter')
+  edit_crafter = new EditCrafter('btn-edit-crafter')
+  edit_email_or_password_crafter = new EditEmailOrPasswordCrafter('edit-email-or-password-crafter-btn')
   registered_user = new UpUser('register-btn-user')
   login_user = new InUser('btn-login-user')
 
@@ -22,4 +24,12 @@ jQuery ->
   $('input.login_user').on 'keyup', ->
     login_user.check_field(@.name)
     login_user.validate_login_user_form()
+
+  $('input.edit_crafter').on 'keyup', ->
+    edit_crafter.check_field(@.name)
+    edit_crafter.validate_edit_crafter_form()
+
+  $('input.edit_email_or_password_crafter').on 'keyup', ->
+    edit_email_or_password_crafter.check_field(@.name)
+    edit_email_or_password_crafter.validate_edit_crafter_form()
 
