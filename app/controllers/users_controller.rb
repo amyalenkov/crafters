@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   def index
   end
 
+  def edit
+  end
+
   # GET/PATCH /users/:id/finish_signup
   def finish_signup
     # authorize! :update, @user

@@ -15,23 +15,52 @@ class ConversationController < ApplicationController
   end
 
   def index
-    @conversations = Conversation.where sender_user_id: current_user.id
+    unless current_user.nil?
+      @conversations = Conversation.where sender_user_id: current_user.id
+      @unread_messages = current_user.unread_messages
+    end
+    unless current_crafter.nil?
+      @conversations = Conversation.where receiver_crafter_id: current_crafter.id
+      @unread_messages = current_crafter.unread_messages
+    end
   end
 
   def show
     @conversation = Conversation.find_by_id params[:id]
     @messages = @conversation.messages
+    unless current_user.nil?
+      @messages.each { |message|
+        if message.receiver_user_id == current_user.id
+          message.read = true
+          message.save!
+        end
+      }
+    end
+    unless current_crafter.nil?
+      @messages.each { |message|
+        if message.receiver_crafter_id == current_crafter.id
+          message.read = true
+          message.save!
+        end
+      }
+    end
   end
 
   def add_message
-    conversation = Conversation.find_by_id params[:conversation_id]
+    conversation = Conversation.find_by_id params[:id]
     message = conversation.messages.build
     message.body = params[:message]
-    message.sender_user_id = params[:sender_user_id]
-    message.receiver_crafter_id = params[:receiver_crafter_id]
-    message.conversation_id = params[:conversation_id]
+    message.conversation_id = params[:id]
+    unless current_user.nil?
+      message.sender_user_id = params[:conversation_user_id]
+      message.receiver_crafter_id = params[:conversation_crafter_id]
+    end
+    unless current_crafter.nil?
+      message.receiver_user_id = params[:conversation_user_id]
+      message.sender_crafter_id = params[:conversation_crafter_id]
+    end
     message.save!
-    render :nothing => "sdf"
+    @messages = conversation.messages
   end
 
 end

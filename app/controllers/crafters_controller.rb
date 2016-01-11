@@ -4,8 +4,7 @@ class CraftersController < ApplicationController
 
   def index
     @all_crafters = Crafter.all
-    crafter = Crafter.first
-    crafter.albums.album_images.image
+    @all_crafters[0].subcategory.category.id
   end
 
   def show
@@ -79,6 +78,6 @@ class CraftersController < ApplicationController
 
   def crafters_params
     params.require(:crafter).permit(:company_name, :description, :city, :address,
-                                    :phone_number, :contact_person, :site, :work_time)
+                                    :phone_number, :contact_person, :site, :work_time, :subcategory_id)
   end
 end

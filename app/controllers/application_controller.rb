@@ -14,8 +14,12 @@ class ApplicationController < ActionController::Base
 
 
   private
+
   def get_all_categories_subcategories
-    @categories = Category.all
-    @subcategories = Subcategory.all
+    @categories = Category.includes :subcategories
+    @menu_hash = Hash.new
+    @categories.each do |category|
+      @menu_hash.store category, category.subcategories
+    end
   end
 end

@@ -10,6 +10,7 @@ group :development do
   gem 'spring'
   gem 'faker'
   gem 'populator'
+  gem 'rack-mini-profiler'
 end
 
 gem 'sass-rails', '~> 4.0.3'
@@ -45,3 +46,8 @@ gem 'remotipart', '~> 1.2'
 
 gem 'html2slim'
 gem 'slim-rails'
+
+# memcached
+gem 'dalli'
+
+gem 'jquery-validation-rails'

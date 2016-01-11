@@ -25,4 +25,7 @@
         - else
           = render 'layouts/unregistered'
     .navigation
-      = render 'layouts/caregories'
+      /- cache @categories do
+      /  = render 'layouts/caregories', categories: @categories
+      - cache @menu_hash do
+        = render 'layouts/caregories', menu: @menu_hash

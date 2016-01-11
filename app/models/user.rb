@@ -11,6 +11,19 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, UserAvatarUploader
 
+  def unread_messages
+    conversations = Conversation.where('sender_user_id=? OR receiver_user_id=?', id, id)
+    count_messages = 0
+    conversations.each{ |conversation|
+      conversation.messages.each{|message|
+        if message.receiver_user_id == id
+          count_messages=count_messages+1 unless message.read
+        end
+      }
+    }
+    count_messages
+  end
+
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
     # Получить identity пользователя, если он уже существует

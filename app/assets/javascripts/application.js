@@ -15,7 +15,10 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require bootstrap.min
+//= require jquery.validate
+//= require jquery.validate.additional-methods
 //= require_tree .
 //= require static_page.js.coffee
 //= require jquery.remotipart
 //= require crafters/crafters
+//= require validations/validation.coffee

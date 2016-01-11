@@ -14,6 +14,19 @@ class Crafter < ActiveRecord::Base
 
   after_update :send_email_to_crafter_after_checked, if: :check_changed?
 
+  def unread_messages
+    conversations = Conversation.where('sender_crafter_id=? OR receiver_crafter_id=?', id, id)
+    count_messages = 0
+    conversations.each{ |conversation|
+      conversation.messages.each{|message|
+        if message.receiver_crafter_id == id
+          count_messages=count_messages+1 unless message.read
+        end
+      }
+    }
+    count_messages
+  end
+
   private
 
   def send_email_to_crafter_after_checked

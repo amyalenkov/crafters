@@ -1,11 +1,10 @@
--@messages.each do |message|
-  p
-    =message.body
-= form_tag conversation_index_path+'/'+@conversation.id.to_s + '/add_message', method: :post, remote: true do
+.messages
+  =render 'conversation/partials/messages'
+= form_tag add_message_conversation_path, method: :post, remote: true do
   dt
-    = hidden_field_tag :sender_user_id, @conversation.sender_user_id
+    = hidden_field_tag :conversation_user_id, @conversation.sender_user_id
   dt
-    = hidden_field_tag :receiver_crafter_id, @conversation.receiver_crafter_id
+    = hidden_field_tag :conversation_crafter_id, @conversation.receiver_crafter_id
   dt
   dt
     = label_tag :Сообщение

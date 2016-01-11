@@ -1,5 +1,12 @@
 = link_to current_crafter.company_name, current_crafter
 |  / 
+- unread_messages = current_crafter.unread_messages
+-unless unread_messages == 0
+  = link_to 'Сообщения(+'+unread_messages.to_s+')', conversation_index_path
+  |  /
+-else
+  = link_to 'Сообщения', conversation_index_path
+  |  /
 = link_to 'Выйти', destroy_crafter_session_path, :method => 'delete'
 br
 = link_to 'Все крафтеры', crafters_path
