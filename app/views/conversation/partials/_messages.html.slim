@@ -1,17 +1,21 @@
--@messages.each do |message|
-  -unless message.sender_crafter_id.nil?
-    h4
-      'from crafter'
-    h5
-      =message.created_at
-    p
-      'body: '
-      =message.body
-  -unless message.sender_user_id.nil?
-    h4
-      'from user'
-    h5
-      =message.created_at
-    p
-      'body: '
-      =message.body
+.messages_dialog
+  .messages
+    -@messages.each do |message|
+      -unless message.sender_crafter_id.nil?
+        .from
+          .from_message
+            h4
+              = current_crafter.company_name
+            p
+              =message.body
+            h5
+              =message.created_at.to_s.gsub(/UTC/, '')
+      -unless message.sender_user_id.nil?
+        .for
+          .for_message
+            h4
+              | =@user.id
+            p
+              =message.body
+            h5
+              =message.created_at.to_s.gsub(/UTC/, '')

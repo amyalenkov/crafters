@@ -446,8 +446,9 @@ body > #wrap {height: auto; min-height: 100%;}
   border-right: none !important;
   border-top: none !important;
 
-  height: 430px;
+  min-height: 430px;
   margin-bottom: 30px;
+  display: inline-block;
 }
 
 .delete_profile{
@@ -464,10 +465,14 @@ body > #wrap {height: auto; min-height: 100%;}
   float: left;
   width: 100%;
   padding-top: 15px;
-  border-bottom: 1px dotted #262626;
   button{
     font-size: 15px;
     margin-top: -2px;
+  }
+  .your_albums_line{
+    width: 100%;
+    float: left;
+    margin-bottom: 20px;
   }
   .your_albums{
     float: left;
@@ -475,7 +480,7 @@ body > #wrap {height: auto; min-height: 100%;}
     margin-bottom: 10px;
     .you_album{
       float: left;
-      width: 100px;
+      width: 125px;
       height: 100px;
       margin-right: 5px;
       margin-bottom: 5px;
@@ -579,6 +584,83 @@ body > #wrap {height: auto; min-height: 100%;}
 
 /*END_FOOTER*/
 
+/*CONVERSATION*/
+.conversation{
+  font: bold 20px Arial,Helvetica,Tahoma,Verdana,sans-serif;
+  padding-bottom: 9px;
+}
+
+.messages, .themes{
+  float: right;
+  width: 50%;
+}
+
+.themes{
+  float: left;
+  .theme{
+    float: left;
+    width: 60%;
+    height: 25px;
+    padding-left: 10px;
+    padding-top: 3px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background: rgba(32, 77, 116, 0.1);
+  }
+  .theme:hover{
+    cursor: pointer;
+    transition: 0.3s;
+    background: rgba(32, 77, 116, 0.2);
+  }
+}
+
+.from, .for  {
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+  .from_message, .for_message{
+    width: 50%;
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 5px;
+    color: #000000;
+    background: rgba(34, 34, 34, 0.35);
+    h4{
+      font-size: 14px;
+      margin-bottom: 5px;
+      margin-top: -5px;
+    }
+    h5{
+      font-size: 13px;
+      float: right;
+      margin-bottom: -10px;
+      margin-top: -5px;
+    }
+  }
+}
+
+.for {
+  float: right;
+  .for_message{
+    float: right;
+    color: #ffffff;
+    background: rgba(58, 182, 57, 0.84);
+  }
+}
+
+.add_message{
+  width: 100%;
+  float: left;
+  border-top: 1px solid #a0a0a0;
+  .btn-send{
+    float: right;
+    width: 150px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+  }
+}
+
+/*END_CONVERSATION*/
 
 
 @media (min-width: 450px) and (max-width: 767px) {

@@ -1,14 +1,12 @@
-.messages
+.center
+  =render 'conversation/partials/themes'
   =render 'conversation/partials/messages'
-= form_tag add_message_conversation_path, method: :post, remote: true do
-  dt
-    = hidden_field_tag :conversation_user_id, @conversation.sender_user_id
-  dt
-    = hidden_field_tag :conversation_crafter_id, @conversation.receiver_crafter_id
-  dt
-  dt
-    = label_tag :Сообщение
-  dd
-    = text_area_tag :message
-  dd
-    = submit_tag 'Отправить сообщение'
+  .add_message
+    = form_tag add_message_conversation_path, method: :post, remote: true do
+      = hidden_field_tag :conversation_user_id, @conversation.sender_user_id
+      = hidden_field_tag :conversation_crafter_id, @conversation.receiver_crafter_id
+      = label_tag :Написать_сообщение
+      dd
+        = text_area_tag :message, nil, class: 'form-control'
+      dd
+        = submit_tag 'Отправить', class: 'btn btn-success btn-send'

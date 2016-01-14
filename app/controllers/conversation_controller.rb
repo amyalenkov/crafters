@@ -15,20 +15,15 @@ class ConversationController < ApplicationController
   end
 
   def index
-    unless current_user.nil?
-      @conversations = Conversation.where sender_user_id: current_user.id
-      @unread_messages = current_user.unread_messages
-    end
-    unless current_crafter.nil?
-      @conversations = Conversation.where receiver_crafter_id: current_crafter.id
-      @unread_messages = current_crafter.unread_messages
-    end
+    set_conversations
   end
 
   def show
+    set_conversations
     @conversation = Conversation.find_by_id params[:id]
     @messages = @conversation.messages
     unless current_user.nil?
+      # @user = User.find_by_id @conversation.sender_user_id
       @messages.each { |message|
         if message.receiver_user_id == current_user.id
           message.read = true
@@ -62,5 +57,19 @@ class ConversationController < ApplicationController
     message.save!
     @messages = conversation.messages
   end
+
+  private
+
+  def set_conversations
+    unless current_user.nil?
+      @conversations = Conversation.where sender_user_id: current_user.id
+      @unread_messages = current_user.unread_messages
+    end
+    unless current_crafter.nil?
+      @conversations = Conversation.where receiver_crafter_id: current_crafter.id
+      @unread_messages = current_crafter.unread_messages
+    end
+  end
+
 
 end

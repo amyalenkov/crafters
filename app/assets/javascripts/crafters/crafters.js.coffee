@@ -43,12 +43,6 @@ jQuery ->
       $('<label class="label_login">Описание</label>').appendTo(div_box)
       $('<input class="upload_images" id="img_desc'+i+'" name="img_decs'+i+'" type="text" value="">').appendTo(div_box)
 
-#      <div class="checkbox">
-#      <label class="label_for_checkbox">
-#      <input type="checkbox" class="input_checkbox" value="">Использовать как обложку для альбома
-#      </label>
-#      </div>
-
 #      div_check_box = $('<div class="checkbox"><div/>')
 #      $('<label class="label_for_checkbox">').appendTo(div_check_box)
 #      $('<input class="input_checkbox" name="logo'+i+'" type="checkbox" value="1">Использовать как обложку для альбома').appendTo(div_check_box)

@@ -1,5 +1,7 @@
--@conversations.each do |conversation|
-  p
+.center.conversation
+  | Ваши диалоги
+  br
+  -@conversations.each do |conversation|
     -unless @unread_messages == 0
       =link_to conversation.theme+'(+'+@unread_messages.to_s+')', conversation_index_path+'/'+conversation.id.to_s
     -else

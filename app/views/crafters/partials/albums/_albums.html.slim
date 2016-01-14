@@ -1,18 +1,27 @@
 .albums
   .your_albums
-    p
-      | Ваши альбомы:
+    - albums_count = ''
     - current_crafter.albums.each do |album|
-      .you_album
-        = link_to get_crafter_album_crafter_path(current_crafter)+'?album_id='+album.id.to_s, :class=>'btn btn-primary',  :id=>album.id,  :remote=>true
-          = image_tag album.logo.url, :size => '100x100'
-  p
-    |  У Вас пока нет альбомов.
-    button.btn.btn-info.btn-sm[type="button" data-toggle="modal" data-target="#myModalNew"]
-      | Создать альбом ?
+      - albums_count = album.id.to_s
+    - if (albums_count).to_s == ''
+      p
+        | У Вас пока нет альбомов
+      button.btn.btn-info.btn-sm[type="button" data-toggle="modal" data-target="#myModalNew"]
+        | Создать альбом ?
+    - else
+      p
+        | Ваши альбомы
+
+    .your_albums_line
+      - current_crafter.albums.each do |album|
+        .you_album
+          = link_to get_crafter_album_crafter_path(current_crafter)+'?album_id='+album.id.to_s, :class=>'btn btn-primary',  :id=>album.id,  :remote=>true
+            = image_tag album.logo.url, :size => '100x100'
+
+    - if (albums_count).to_s != ''
+      button.btn.btn-info.btn-sm[type="button" data-toggle="modal" data-target="#myModalNew"]
+        | Добавить еще альбом
 
   = render 'crafters/partials/albums/new_album'
-  a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
-    | Slide_show
   .album_show
     = render 'crafters/partials/albums/show_album'

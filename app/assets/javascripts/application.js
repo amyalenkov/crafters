@@ -11,13 +11,14 @@
 // about supported directives.
 //
 //= require jquery
+//= require fancybox
 //= require jquery_ujs
-//= require jquery.turbolinks
+//= require crafters/album_slider
 //= require turbolinks
 //= require bootstrap.min
+//= require_tree .
 //= require jquery.validate
 //= require jquery.validate.additional-methods
-//= require_tree .
 //= require static_page.js.coffee
 //= require jquery.remotipart
 //= require crafters/crafters
