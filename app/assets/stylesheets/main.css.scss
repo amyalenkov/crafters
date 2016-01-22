@@ -1,5 +1,5 @@
 * { margin:0; padding:0; }
-html, body, #wrap { height: 100%; }
+html, body, #wrap { height: 100%; /*background: #d8d8d8*/}
 body > #wrap {height: auto; min-height: 100%;}
 #main { padding-bottom: 250px; }  /* must be same height as the footer */
 .clearfix:after {content: ".";
@@ -16,6 +16,7 @@ body > #wrap {height: auto; min-height: 100%;}
 
 .container-fluid{
   max-width: 980px;
+  background: #ffffff;
 }
 
 #banner{
@@ -149,18 +150,25 @@ body > #wrap {height: auto; min-height: 100%;}
 
 .search_result{
   display: block;
-  width: 350px;
-  padding-bottom: 20px;
+  width: 370px;
+  padding-left: 15px;
   padding-right: 30px;
   position: absolute;
-  background-color: #c7c7c7;
+  background-color: rgba(241, 241, 241, 0.95);
   z-index: 10000;
+  border-radius: 0 0 5px 5px;
+  padding-top: 10px;
 }
 
 .search_result span{
-  margin-right: 10px;
+  margin-right: -10px;
   margin-top: 5px;
   float: right;
+}
+
+.a_class{
+  color: #101010 !important;
+  font-size: 15px !important;
 }
 
 .search_result span:hover{
@@ -178,6 +186,51 @@ body > #wrap {height: auto; min-height: 100%;}
   border-bottom: 1px dotted #a9a9a9;
   list-style-type: none;
 }
+
+.all_results{
+  color: #101010 !important;
+  font-size: 15px !important;
+}
+
+.search_crafter_title{
+  float: left;
+  width: 25%;
+  border-right: solid 1px #d8d8d8;
+  padding: 10px;
+  .search_criterion{
+    width: 100%;
+    float: left;
+    .subcategories_title{
+      float: left;
+      width: 100%;
+      font-size: 16px;
+      font-weight: 100;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    .categories, label{
+      float: right;
+      width: 100%;
+    }
+    .subcategories, label{
+      float: right;
+      width: 90%;
+    }
+    .city, label{
+      float: right;
+      width: 90%;
+    }
+    .checkbox{
+      float: left;
+    }
+  }
+}
+.search_crafter_result{
+  float: left;
+  width: 65%;
+}
+
+/*END_SEARCH*/
 
 /*CONTENT*/
 .content{
@@ -441,12 +494,14 @@ body > #wrap {height: auto; min-height: 100%;}
 
 .info_reg{
   border: 1px solid rgba(38, 38, 38, 0.2);
-
   border-left: none !important;
   border-right: none !important;
   border-top: none !important;
-
   min-height: 430px;
+  margin-bottom: 30px;
+}
+
+.image_block{
   margin-bottom: 30px;
   display: inline-block;
 }
@@ -474,6 +529,27 @@ body > #wrap {height: auto; min-height: 100%;}
     float: left;
     margin-bottom: 20px;
   }
+
+// delete free space in divs
+  .masonry-container {
+    -moz-column-count: 3;
+    -moz-column-gap: 0;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 0;
+    column-count: 3;
+    column-gap: 10px;
+  }
+
+  .masonry-container, .item {
+//    display: inline-block;
+    width: 100%;
+  }
+
+  .slide_image{
+    width: 100%;
+  }
+// end
+
   .your_albums{
     float: left;
     width: 100%;
@@ -682,6 +758,27 @@ body > #wrap {height: auto; min-height: 100%;}
     display: table;
     margin: 0 auto;
   }
+  .company_logo{
+    height: 100px;
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .company_logo, .company_name,
+  .address, .description_search, .city{
+    float: left;
+  }
+  .company_name{
+    font-weight: bold;
+  }
+  .description_search {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px 5px 5px 0;
+    text-overflow: ellipsis;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 930px) {
@@ -695,6 +792,27 @@ body > #wrap {height: auto; min-height: 100%;}
     margin-top: 15px;
     //    text-align: center;
     text-align: left;
+  }
+  .company_logo{
+    height: 100px;
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .company_logo, .company_name,
+  .address, .description_search, .city{
+    float: left;
+  }
+  .company_name{
+    font-weight: bold;
+  }
+  .description_search {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px 5px 5px 0;
+    text-overflow: ellipsis;
   }
 }
 
@@ -712,5 +830,26 @@ body > #wrap {height: auto; min-height: 100%;}
     margin-top: 15px;
     //    text-align: center;
     text-align: left;
+  }
+  .company_logo{
+    height: 100px;
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .company_logo, .company_name,
+  .address, .description_search, .city{
+    float: left;
+  }
+  .company_name{
+    font-weight: bold;
+  }
+  .description_search {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px 5px 5px 0;
+    text-overflow: ellipsis;
   }
 }

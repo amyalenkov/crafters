@@ -23,3 +23,13 @@
 //= require jquery.remotipart
 //= require crafters/crafters
 //= require validations/validation.coffee
+//= require nprogress
+//= require nprogress-turbolinks
+
+
+angular.module('myApp', [ 'nprogress-rails' ]);
+NProgress.configure({
+    showSpinner: false,
+    ease: 'ease',
+    speed: 500
+});

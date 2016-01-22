@@ -1,29 +1,20 @@
-table[style="width:600px"]
-  thead
-    tr
-      th[style="text-align:right;"]
-        | Catigory
-      th[style="text-align:right;"]
-        | Subcatigory
-      th[style="text-align:right;"]
-        | City
-  tbody
-    tr
-      td[style="text-align:right;"]
-        ul
-          - @search_categories.each do |categories_id,categories_value|
-            li
-              = label_tag categories_value, nil,id: categories_id, class: 'categories'
-        ul
-          - @search_subcategories.each do |subcategories_id,subcategory|
-            li
-              = label_tag subcategory['name']
-              = check_box_tag subcategories_id, subcategory['name'], true, class: 'subcategories', catygory: subcategory['category_id']
-      td[style="text-align:right;"]
+.search_criterion
+  .categories
+    = label_tag 'Категория', nil, class: 'subcategories_title'
+    - @search_categories.each do |categories_id, categories_value|
+      = label_tag categories_value, nil, id: categories_id, class: 'categories'
 
-      td[style="text-align:right;"]
-        ul
-          - @cities.each_with_index do |city,index|
-            li
-              = label_tag city
-              = check_box_tag city, index, true, class:'cities', id: index
+  .subcategories
+    = label_tag 'Подкатегория', nil, class: 'subcategories_title'
+    - @search_subcategories.each do |subcategories_id, subcategory|
+      = check_box_tag subcategories_id, subcategory['name'], true, class: 'checkbox', catygory: subcategory['category_id']
+      = label_tag subcategory['name'], nil, id: subcategories_id,  class: 'subcategories'
+
+  .city
+    = label_tag 'Город', nil, class: 'subcategories_title'
+    - @cities.each_with_index do |city,index|
+      = check_box_tag city, index, true, class:'checkbox', id: index
+      = label_tag city, nil, id: city, class: 'city'
+
+
+

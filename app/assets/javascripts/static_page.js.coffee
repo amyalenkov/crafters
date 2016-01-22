@@ -115,14 +115,22 @@ live_search = (data,search_request) ->
       li = $('<li></li>', {
         "class": "li_class"
       })
+      a = $('<a></a>', {
+        "href":"/crafters/#{data[index].id}",
+        "class": "a_class"
+      })
+      add_image_tag(li, data[index].avatar.url)
       create_new_li(li, 'company_name', data[index].company_name)
+      create_new_li(li, 'description_search', data[index].description)
       create_new_li(li, 'address', data[index].address)
       create_new_li(li, 'city', data[index].city)
-      add_image_tag(li, data[index].avatar.url)
-      ul.append(li)
+
+      a.append(li)
+
+      ul.append(a)
     else
       url = "/search?utf8=✓&search="+search_request+"&commit=OK"
-      li = $('<li><a id="all_results" href='+url+'>all_results</a></li>', {
+      li = $('<li><a id="all_results" class="all_results" href='+url+'>Просмотреть все результаты</a></li>', {
         "class": "li_class"
       })
       ul.append(li)
@@ -137,6 +145,5 @@ create_new_li = (li, div_class_name, data) ->
 add_image_tag = (li, image_src) ->
   image = $('<img/>', {
     "src": "/assets/" + image_src,
-    "height": 100,
-    "width": 100
+    "class": "company_logo"
   }).appendTo(li)

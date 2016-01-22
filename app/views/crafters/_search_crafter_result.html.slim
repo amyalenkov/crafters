@@ -1,19 +1,23 @@
-table[style="width:600px"]
+table[style="width:100%"]
   thead
     tr
-      th
-        | company_name
       th[style="text-align:right;"]
-        | City
+        | Название компании
       th[style="text-align:right;"]
-        | Check
+        | Город
+      th[style="text-align:right;"]
+        | Пройдена проверка
   tbody
     - @search_crafters.each do |crafter|
       tr
-        td
+        td[style="text-align:right;"]
           = link_to crafter.company_name, crafter_path(crafter.id)
         td[style="text-align:right;"]
           = crafter.city
         td[style="text-align:right;"]
-          = crafter.check
+          - if !crafter.check
+            | нет
+          - else
+            | да
 /= will_paginate @search_crafters
+

@@ -51,3 +51,9 @@ gem 'slim-rails'
 gem 'dalli'
 
 gem 'jquery-validation-rails'
+
+#slideshow
+gem 'fancybox2-rails', '~> 0.2.8'
+
+#progressBar
+gem 'nprogress-rails'

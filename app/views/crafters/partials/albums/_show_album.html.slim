@@ -1,4 +1,6 @@
 -if !@album.nil?
-  - @album.album_images.each do |image|
-    a.fancybox-thumb rel='fancybox-thumb' href="#{image.image.url}" title="#{image.name+': '+image.description}"
-      = image_tag image.image.url
+  .masonry-container
+    - @album.album_images.each do |image|
+      a.fancybox-thumb rel='fancybox-thumb' href="#{image.image.url}" title="#{image.name.to_s+': '+image.description.to_s}"
+        .item
+          = image_tag image.image.url, class: 'slide_image'

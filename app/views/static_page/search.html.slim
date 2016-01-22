@@ -2,10 +2,10 @@
   .row
     .col-xs-12.col-sm-12.col-md-12.col-lg-12
       h1
-        | search
+        | Результаты поиска
       = text_field_tag :search_text_value, @search_input
       label
-        | full_search
+        | Поиск по любому совпадению
       = check_box_tag :full_search
       .search_crafter
         = render 'crafters/search_crafter'
