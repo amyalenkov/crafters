@@ -1,5 +1,5 @@
 .avatar_icon_right_menu
-  = image_tag current_crafter.avatar.url, id: 'img_view_upload'
+  = image_tag current_crafter.avatar.url
 .name_right_menu
   = link_to current_crafter.company_name, current_crafter, :class=> 'link'
   = link_to 'Выйти', destroy_crafter_session_path, :method => 'delete', :class=> 'exit'
