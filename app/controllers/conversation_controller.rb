@@ -23,7 +23,6 @@ class ConversationController < ApplicationController
     @conversation = Conversation.find_by_id params[:id]
     @messages = @conversation.messages
     unless current_user.nil?
-      # @user = User.find_by_id @conversation.sender_user_id
       @messages.each { |message|
         if message.receiver_user_id == current_user.id
           message.read = true

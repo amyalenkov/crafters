@@ -5,7 +5,7 @@
         .from
           .from_message
             h4
-              = current_crafter.company_name
+              = link_to Crafter.find_by_id(message.sender_crafter_id).company_name, '/crafters/'+message.sender_crafter_id.to_s, :class=> 'link'
             p
               =message.body
             h5
@@ -14,7 +14,7 @@
         .for
           .for_message
             h4
-              | =@user.id
+              = link_to User.find_by_id(message.sender_user_id).email, '/users/'+message.sender_user_id.to_s, :class=> 'link'
             p
               =message.body
             h5
