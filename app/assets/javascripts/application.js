@@ -22,14 +22,15 @@
 //= require static_page.js.coffee
 //= require jquery.remotipart
 //= require crafters/crafters
+//= require users/users
 //= require validations/validation.coffee
 //= require nprogress
 //= require nprogress-turbolinks
 
 
-angular.module('myApp', [ 'nprogress-rails' ]);
-NProgress.configure({
-    showSpinner: false,
-    ease: 'ease',
-    speed: 500
-});
+//angular.module('myApp', [ 'nprogress-rails' ]);
+//NProgress.configure({
+//    showSpinner: false,
+//    ease: 'ease',
+//    speed: 500
+//});

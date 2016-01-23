@@ -3,7 +3,8 @@
     | Редактирование профиля
 .reg_form
   .avatar
-    =link_to image_tag(current_user.avatar.url), current_user
+    .user-avatar
+      = render 'users/partials/avatar'
     p
       | Имя: 
       b

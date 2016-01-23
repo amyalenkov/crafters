@@ -1,5 +1,5 @@
 .avatar_icon_right_menu
-  = image_tag current_user.avatar.url, id: 'img_view_upload'
+  = image_tag current_user.avatar.url
 .name_right_menu
   = link_to current_user.email, current_user, :class=> 'link'
   = link_to 'Выйти', destroy_user_session_path, :method=>'delete', :class=> 'exit'
