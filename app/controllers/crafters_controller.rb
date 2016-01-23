@@ -32,15 +32,13 @@ class CraftersController < ApplicationController
       album_image = album.album_images.build
       if params['logo'+(index+1).to_s] == '1'
         album.logo = image
-      else
-        album_image.name = params['img_name'+(index+1).to_s]
-        album_image.description = params['img_decs'+(index+1).to_s]
-        album_image.image = image
-        album_image.save!
       end
+      album_image.name = params['img_name'+(index+1).to_s]
+      album_image.description = params['img_decs'+(index+1).to_s]
+      album_image.image = image
+      album_image.save!
     }
     album.save!
-    render :nothing => true
   end
 
   def get_crafters_for_category
@@ -50,7 +48,7 @@ class CraftersController < ApplicationController
     @search_categories[category.id] = category.name
     @search_crafters = Array.new
     category.subcategories.each { |subcategory|
-      @search_subcategories[subcategory.id] = {'name'=> subcategory.name, 'category_id' => category.id}
+      @search_subcategories[subcategory.id] = {'name' => subcategory.name, 'category_id' => category.id}
       crafters = subcategory.crafters
       if crafters.count != 0
         crafters.each { |crafter| @search_crafters.push crafter }
