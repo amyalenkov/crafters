@@ -1,14 +1,15 @@
 .avatar_icon_right_menu
   = image_tag current_user.avatar.url
 .name_right_menu
-  = link_to current_user.email, current_user, :class=> 'link'
-  = link_to 'Выйти', destroy_user_session_path, :method=>'delete', :class=> 'exit'
+  = link_to current_user.email, current_user, :class=> 'link link_email'
 - unread_messages = current_user.unread_messages
 -unless unread_messages == 0
   .message
     a href='#{conversation_index_path}'
       | Cooбщения
       span +#{unread_messages.to_s}
+    = link_to 'Выйти', destroy_user_session_path, :method=>'delete', :class=> 'exit'
 -else
   .message
     = link_to 'Сообщения', conversation_index_path
+    = link_to 'Выйти', destroy_user_session_path, :method=>'delete', :class=> 'exit'

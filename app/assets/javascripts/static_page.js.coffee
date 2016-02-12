@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   $('#search').on 'focusout', ->
-    $('#search_result').hide()
+#    $('#search_result').hide()
 
   $('#search').on 'keyup', ->
     search_string = @.value
@@ -19,7 +19,7 @@ $ ->
           console.log('success')
           live_search(data,search_string)
     else
-      $('#search_result').hide()
+#      $('#search_result').hide()
 
   $('#search_text_value').on 'keyup', ->
     search_string = @.value

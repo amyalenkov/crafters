@@ -275,14 +275,15 @@ body > #wrap {height: auto; min-height: 100%;}
 }
 
 .name_right_menu{
+  /*ограничение текста*/
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /*end ограничение текста*/
   .link{
     font-size: 13px;
     color: #000000;
     font-weight: bold;
-  }
-  .exit{
-    float: right;
-    color: gray;
   }
 }
 
@@ -297,6 +298,11 @@ body > #wrap {height: auto; min-height: 100%;}
   }
 }
 
+.exit{
+  float: right;
+  color: gray;
+  padding: 2px;
+}
 
 .avatar_button{
   width: 60%;
@@ -528,6 +534,10 @@ body > #wrap {height: auto; min-height: 100%;}
     width: 100%;
     float: left;
     margin-bottom: 20px;
+    .btn_album:hover{
+      transaction: 0.3s;
+      background: rgba(16, 16, 16, 0.06);
+    }
   }
 
 // delete free space in divs
@@ -557,11 +567,11 @@ body > #wrap {height: auto; min-height: 100%;}
     .you_album{
       float: left;
       width: 125px;
-      height: 100px;
+      height: 113px;
       margin-right: 5px;
-      margin-bottom: 5px;
+      margin-bottom: 20px;
       border-radius: 15px;
-      background: rgba(16, 16, 16, 0.25);
+      background: rgba(16, 16, 16, 0.05);
     }
   }
 }
@@ -573,6 +583,11 @@ body > #wrap {height: auto; min-height: 100%;}
   padding-right: 10px;
 }
 
+.upload_images_text{
+  margin-bottom: 10px;
+  border-bottom: 1px dotted rgba(16, 16, 16, 0.4);
+}
+
 .upload_images{
   float: left;
   width: 100%;
@@ -581,8 +596,8 @@ body > #wrap {height: auto; min-height: 100%;}
   .box{
     float: left;
     width: 540px;
-    margin-bottom: 5px;
-    padding-bottom: 5px;
+//    margin-bottom: 5px;
+//    padding-bottom: 5px;
     padding-left: 15px;
     border-bottom: 1px dotted rgba(16, 16, 16, 0.4);
     .image{
@@ -688,6 +703,11 @@ body > #wrap {height: auto; min-height: 100%;}
     transition: 0.3s;
     background: rgba(32, 77, 116, 0.2);
   }
+}
+
+.active{
+  cursor: pointer;
+  background: rgba(32, 77, 116, 0.2);
 }
 
 .from, .for  {

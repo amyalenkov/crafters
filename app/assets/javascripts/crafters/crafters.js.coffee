@@ -41,7 +41,7 @@ jQuery ->
       $('<label class="label_login">Имя изображения</label>').appendTo(div_box)
       $('<input class="upload_images" id="img_name'+i+'" name="img_name'+i+'" type="text" value="'+@.files[i-1].name+'">').appendTo(div_box)
       $('<label class="label_login">Описание</label>').appendTo(div_box)
-      $('<input class="upload_images" id="img_desc'+i+'" name="img_decs'+i+'" type="text" value="">').appendTo(div_box)
+      $('<textarea class="upload_images" id="img_desc'+i+'" name="img_decs'+i+'" type="text" value="">').appendTo(div_box)
 
       div_check_box = $('<div class="checkbox"><div/>')
 #      $('<label class="label_for_checkbox">').appendTo(div_check_box)

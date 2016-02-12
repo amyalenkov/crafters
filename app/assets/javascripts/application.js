@@ -19,18 +19,11 @@
 //= require_tree .
 //= require jquery.validate
 //= require jquery.validate.additional-methods
-//= require static_page.js.coffee
 //= require jquery.remotipart
+//= require static_page.js.coffee
 //= require crafters/crafters
 //= require users/users
 //= require validations/validation.coffee
 //= require nprogress
 //= require nprogress-turbolinks
-
-
-//angular.module('myApp', [ 'nprogress-rails' ]);
-//NProgress.configure({
-//    showSpinner: false,
-//    ease: 'ease',
-//    speed: 500
-//});
+//= require active_link

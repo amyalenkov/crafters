@@ -1,4 +1,4 @@
 - current_crafter.albums.each do |album|
   .you_album
-    = link_to get_crafter_album_crafter_path(current_crafter)+'?album_id='+album.id.to_s, :class=>'btn btn-primary',  :id=>album.id,  :remote=>true
+    = link_to get_crafter_album_crafter_path(current_crafter)+'?album_id='+album.id.to_s, :class=>'btn btn_album',  :id=>album.id,  :remote=>true
       = image_tag album.logo.url, :size => '100x100'
