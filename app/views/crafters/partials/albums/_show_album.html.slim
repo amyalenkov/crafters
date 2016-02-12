@@ -1,4 +1,6 @@
 -if !@album.nil?
+  p
+    = @album.name
   .masonry-container
     - @album.album_images.each do |image|
       a.fancybox-thumb rel='fancybox-thumb' href="#{image.image.url}" title="#{image.name.to_s+': '+image.description.to_s}"

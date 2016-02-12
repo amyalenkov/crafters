@@ -1,12 +1,65 @@
 .center
-  =render 'conversation/partials/themes'
-  =render 'conversation/partials/messages'
-  .add_message
-    = form_tag add_message_conversation_path, method: :post, remote: true do
-      = hidden_field_tag :conversation_user_id, @conversation.sender_user_id
-      = hidden_field_tag :conversation_crafter_id, @conversation.receiver_crafter_id
-      = label_tag :Написать_сообщение
-      dd
-        = text_area_tag :message, nil, class: 'form-control'
-      dd
-        = submit_tag 'Отправить', class: 'btn btn-success btn-send'
+  /=render 'conversation/partials/themes'
+  .themes
+    p
+      b Другие переписки:
+    -@conversations.each do |conversation|
+      -unless @unread_messages == 0
+        =link_to conversation.theme+'(+'+@unread_messages.to_s+')', conversation_index_path+'/'+conversation.id.to_s, class: 'theme'
+      -else
+        =link_to conversation.theme, conversation_index_path+'/'+conversation.id.to_s, class: 'theme'
+
+
+  /=render 'conversation/partials/messages'
+  .messages_dialog
+    .messages
+      -@messages.each do |message|
+        - if crafter_signed_in?
+          -unless message.sender_user_id.nil?
+            .from
+              .from_message
+                h4
+                  -if User.find_by_id(message.sender_user_id).name == nil
+                    = link_to User.find_by_id(message.sender_user_id).email, '/users/'+message.sender_user_id.to_s, :class=> 'link'
+                  -else
+                    = link_to User.find_by_id(message.sender_user_id).name, '/users/'+message.sender_user_id.to_s, :class=> 'link'
+                p
+                  =message.body
+                h5
+                  =message.created_at.to_s.gsub(/UTC/, '')
+
+          -unless message.sender_crafter_id.nil?
+            .for
+              .for_message
+                h4
+                  = link_to Crafter.find_by_id(message.sender_crafter_id).company_name, '/crafters/'+message.sender_crafter_id.to_s, :class=> 'link'
+                p
+                  =message.body
+                h5
+                  =message.created_at.to_s.gsub(/UTC/, '')
+
+        - elsif user_signed_in?
+          -unless message.sender_crafter_id.nil?
+            .from
+              .from_message
+                h4
+                  = link_to Crafter.find_by_id(message.sender_crafter_id).company_name, '/crafters/'+message.sender_crafter_id.to_s, :class=> 'link'
+                p
+                  =message.body
+                h5
+                  =message.created_at.to_s.gsub(/UTC/, '')
+          -unless message.sender_user_id.nil?
+            .for
+              .for_message
+                h4
+                  -if User.find_by_id(message.sender_user_id).name == nil
+                    = link_to User.find_by_id(message.sender_user_id).email, '/users/'+message.sender_user_id.to_s, :class=> 'link'
+                  -else
+                    = link_to User.find_by_id(message.sender_user_id).name, '/users/'+message.sender_user_id.to_s, :class=> 'link'
+                p
+                  =message.body
+                h5
+                  =message.created_at.to_s.gsub(/UTC/, '')
+
+  =render 'conversation/partials/send_message'
+

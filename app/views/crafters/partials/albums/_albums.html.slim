@@ -6,7 +6,7 @@
     - if (albums_count).to_s == ''
       p
         | У Вас пока нет альбомов
-      button.btn.btn-info.btn-sm[type="button" data-toggle="modal" data-target="#myModalNew"]
+      button.btn.btn-info.btn-sm[type="button" data-toggle="modal" data-target="#newAlbum"]
         | Создать альбом ?
     - else
       p
@@ -15,11 +15,14 @@
     .your_albums_line
       = render 'crafters/partials/albums/crafter_albums'
 
-
     - if (albums_count).to_s != ''
-      button.btn.btn-info.btn-sm[type="button" data-toggle="modal" data-target="#myModalNew"]
+      button.btn.btn-info.btn-sm[type="button" data-toggle="modal" data-target="#newAlbum"]
         | Добавить еще альбом
 
+      button.btn.btn-warning.btn-sm.pull-right[type="button" data-toggle="modal" data-target="#editAlbum"]
+        | Редактировать альбомы
+
   = render 'crafters/partials/albums/new_album'
+  = render 'crafters/partials/albums/edit_album'
   .album_show
     = render 'crafters/partials/albums/show_album'
