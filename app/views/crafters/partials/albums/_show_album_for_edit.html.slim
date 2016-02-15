@@ -1,0 +1,17 @@
+-if !@album.nil?
+  .title
+    - @album.name
+  - @album.album_images.each do |image|
+    .image_box
+      .img
+        = image_tag image.image.url
+
+      = label_tag :Название_изображения, nil, class: 'label_login name'
+      = text_field_tag :album_name, "#{image.name.to_s}", class: 'form-control name'
+
+      = label_tag :Описание_альбома, nil, class: 'label_login description'
+      = text_area_tag :album_desc, "#{image.description.to_s}", class: 'form-control description'
+
+      = label_tag :Обложка_альбома, nil, class: 'label_login label_checkbox'
+      /<input class="upload_images set_crafter_album_logo" name="logo'+i+'" type="checkbox" value="1">Использовать как обложку для альбома
+      = text_field_tag :album_desc, "#{image.description.to_s}", class: 'upload_images set_crafter_album_logo checkbox', type:'checkbox', value: '1'

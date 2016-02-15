@@ -1,5 +1,5 @@
 #editAlbum.modal.fade[role="dialog"]
-  .modal-dialog
+  .modal-dialog.modal-edit-album
     .modal-content
       = form_for(current_crafter, url: update_images_crafter_path(current_crafter), method: 'post', remote: true, multipart: true, class: 'modal_form_albums')  do |f|
         .modal-header
@@ -12,25 +12,16 @@
           .albums
             .your_albums
               .your_albums_line
-                = render 'crafters/partials/albums/crafter_albums'
+                - current_crafter.albums.each do |album|
+                  .you_album
+                    = link_to get_crafter_album_for_edit_crafter_path(current_crafter)+'?album_id='+album.id.to_s, :class=>'btn btn_album',  :id=>album.id,  :remote=>true
+                      = image_tag album.logo.url, :size => '100x100'
 
-          #div_album_images
+        .show_album_for_edit
+          = render 'crafters/partials/albums/show_album_for_edit'
 
-          span.btn.btn-large.btn-default.btn-file
-            |  Загрузить изображение
-            = f.file_field :images, multiple: true
         .modal-footer
+          = f.submit 'Удалить выбранные альбомы', class: 'btn btn-danger pull-left', id: 'button_for_safe_img'
           = f.submit 'Сохранить', class: 'btn btn-success', id: 'button_for_safe_img'
           button.btn.btn-default[type="button" data-dismiss="modal"]
             | Закрыть
-
-          a href="#demo" class="btn btn-info" data-toggle="collapse"
-            | Simple collapsible
-            #demo
-              .collapse
-                p
-                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                p
-                  | sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                p
-                  | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

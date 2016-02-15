@@ -69,10 +69,19 @@ class CraftersController < ApplicationController
   end
 
   def get_crafter_album
-    @album = Album.find_by_id params[:album_id]
+    get_album
+  end
+
+  def get_crafter_album_for_edit
+    get_album
   end
 
   private
+
+  def get_album
+    @album = Album.find_by_id params[:album_id]
+  end
+
 
   def crafters_params
     params.require(:crafter).permit(:company_name, :description, :city, :address,
