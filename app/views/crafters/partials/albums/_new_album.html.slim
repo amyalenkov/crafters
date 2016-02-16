@@ -1,5 +1,5 @@
 #newAlbum.modal.fade[role="dialog"]
-  .modal-dialog
+  .modal-dialog.modal-for-album
     .modal-content
       = form_for(current_crafter, url: update_images_crafter_path(current_crafter), method: 'post', remote: true, multipart: true, class: 'modal_form_albums')  do |f|
         .modal-header
@@ -9,12 +9,13 @@
           = text_field_tag :album_name, '', class: 'form-control'
           = f.label :Описание_альбома, class: 'label_login'
           = text_area_tag :album_desc, '', class: 'form-control'
-        .modal-body
-          = f.label :Загруженные_изображения, class: 'label_login upload_images_text'
-          br
 
+          /= f.label :Загруженные_изображения, class: 'label_login upload_text'
+
+        .show_album
           #div_album_images
 
+        .modal-body
           span.btn.btn-large.btn-default.btn-file
             |  Загрузить изображение
             = f.file_field :images, multiple: true

@@ -1,5 +1,5 @@
 #editAlbum.modal.fade[role="dialog"]
-  .modal-dialog.modal-edit-album
+  .modal-dialog.modal-for-album
     .modal-content
       = form_for(current_crafter, url: update_images_crafter_path(current_crafter), method: 'post', remote: true, multipart: true, class: 'modal_form_albums')  do |f|
         .modal-header
@@ -9,7 +9,7 @@
 
         .modal-body
           = f.label :Выберите_альбом_для_редактирования, class: 'label_login'
-          .albums
+          .albums.line_bottom
             .your_albums
               .your_albums_line
                 - current_crafter.albums.each do |album|
