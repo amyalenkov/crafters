@@ -11,10 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require fancybox
+//= require jquery.turbolinks
 //= require jquery_ujs
+//= require fancybox
 //= require crafters/album_slider
-//= require turbolinks
 //= require bootstrap.min
 //= require_tree .
 //= require jquery.validate
@@ -27,3 +27,5 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require active_link
+//= require login
+//= require turbolinks

@@ -8,23 +8,34 @@
     .info_crafter
       = render 'crafters/partials/info_crafter'
   .info_for_reg.description
-    .menu1
-      br#category
-      br#logo_and_images
-      br#password
-      a[href="#info"]
-        | Данные о компании
-      a[href="#category"]
-        | Виды деятельности
-      a[href="#logo_and_images"]
-        | Логотип и фотоальбомы
-      a[href="#password"]
-        | Пароль
-      .info
-        = render 'crafters/partials/info'
-      .category
-        = render 'crafters/partials/category'
-      .logo_and_images
-        = render 'crafters/partials/logo_and_images'
-      .password
-        = render 'crafters/partials/password'
+
+    .tabs
+
+      .tab-2
+        label for="tab2-1" class="name_tab" id="info_tab" Данные о компании
+        input id="tab2-1" name="tabs-two" type="radio" checked="checked"
+        .info#info
+          = render 'crafters/partials/info'
+
+      .tab-2
+        label for="tab2-2" class="name_tab" id="logo_tab" Логотип и фото
+        input id="tab2-2" name="tabs-two" type="radio"
+        .logo_and_images#logo_and_images
+          = render 'crafters/partials/logo_and_images'
+
+      .tab-2
+        label for="tab2-3" class="name_tab" id="password_tab" Пароль
+        input id="tab2-3" name="tabs-two" type="radio"
+        .password#password
+          = render 'crafters/partials/password'
+
+#SuccessMessage.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title id="myModalLabel" Сообщение
+      .modal-body
+        p Изменения успешно сохранены
+      /.modal-footer
+        button type="button" id='login_form' class="btn btn-default" Войти

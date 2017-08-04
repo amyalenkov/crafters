@@ -1,23 +1,21 @@
 p
-  | Название компании:
+  | Название компании:&nbsp;
   b
     = ' '+current_crafter.company_name
-  p
+  /p
     | Сфера деятельности:
     b
       = ' '+current_crafter.subcategory.category.name
       | /
       = ' '+current_crafter.subcategory.name
   p
-    | Время работы:
-    b
-      = ' '+current_crafter.work_time
+    | Время работы:&nbsp;
+    b = current_crafter.work_time
   p
-    | Адресс:
-    b
-      = ' '+current_crafter.city
-      = ' '+current_crafter.address
+    | Адресс:&nbsp;
+    b =current_crafter.city
+    b &nbsp;
+    b =current_crafter.address
   p
-    | Номер телефона:
-    b
-      = ' '+current_crafter.phone_number
+    | Номер телефона:&nbsp;
+    b = current_crafter.phone_number

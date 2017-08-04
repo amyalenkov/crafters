@@ -12,14 +12,15 @@ group :development do
   gem 'populator'
   gem 'rack-mini-profiler'
 end
+# gem 'sqlite3'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 gem 'jquery-rails'
-gem 'turbolinks'
 gem 'jquery-turbolinks'
+gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
@@ -30,7 +31,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin', '~> 1.0.0.pre2'
 
 gem 'mysql2', '~> 0.3.18', :platform => :ruby
 gem 'thinking-sphinx', '3.1.4'

@@ -3,22 +3,22 @@ html
   head
     title
       | Crafters
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
     #wrap
       #main.clearfix
-        = render 'layouts/banner'
+        =render 'layouts/banner'
         .container-fluid
           .row
             .col-xs-12.col-sm-12.col-md-12.col-lg-12
-              = render 'layouts/navigation'
-              p.notice
+              =render 'layouts/navigation'
+              .container-fluid.notice
                 = notice
-              p.alert
+              .alert
                 = alert
               .content
                 = yield
-    - cache @categories do
-      = render 'layouts/footer', categories: @categories
+    =render 'layouts/footer'
+

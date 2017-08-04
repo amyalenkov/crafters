@@ -8,7 +8,7 @@
       dt
         = f.label :Описание, class: 'label_login'
       dd
-        = f.text_area :description, class: 'form-control edit_crafter'
+        = f.text_area :description, class: 'form-control edit_crafter', rows: 7
       dt
         = f.label :Город, class: 'label_login'
       dd
@@ -33,7 +33,6 @@
         = f.label :Время_работы, class: 'label_login'
       dd
         = f.text_field :work_time, class: 'form-control edit_crafter'
-      dt
-      dd
-        button.btn.btn-success.register-btn.btn-edit-crafter[type="submit"]
+
+        button.btn.btn-success.register-btn.btn-edit-crafter[type="submit" id="button_edit_crafter"]
           | Сохранить изменения

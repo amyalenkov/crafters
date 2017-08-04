@@ -1,42 +1,33 @@
 .login_title
+  .img
+    =image_tag ('add_car_service.png')
   h2
-    | Добавьте компанию за 5 минут!
-  h4
-    | Это совершенно бесплатно и пользователи смогут узнать об услугах вашей компании, графике работы, найти вас на карте и связаться с Вами!
+    | Регистрация автосервиса
 .login_form
-  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    = devise_error_messages!
+  = form_for(Crafter.new, as: Crafter.new, url: registration_path(Crafter.new)) do |f|
+    /= devise_error_messages!
     .form-group
       .field
-        = f.label :Название_компании, class: 'label_login'
-        br
-        = f.text_field :company_name, class: 'form-control crafter_registration', autofocus: true
+        = f.text_field :company_name, class: 'form-control crafter_registration', placeholder: 'Название автосервиса*'
       .field
-        = f.label :email, class: 'label_login'
-        br
-        = f.email_field :email, class: 'form-control crafter_registration'
+        = f.email_field :email, class: 'form-control crafter_registration', placeholder: 'E-mail*'
       .field
-        = f.label :Пароль, class: 'label_login'
-        - if @validatable
-          em
-            | (
-            = @minimum_password_length
-            |  characters minimum)
-        br
-        = f.password_field :password, class: 'form-control crafter_registration', autocomplete: 'off'
+        = f.text_field :site, class: 'form-control crafter_registration', autocomplete: 'off', placeholder: 'Сайт'
       .field
-        = f.label :Подтверждение_пароля, class: 'label_login'
-        br
-        = f.password_field :password_confirmation, class: 'form-control crafter_registration', autocomplete: 'off'
+        = f.text_field :city, class: 'form-control crafter_registration', autocomplete: 'off', placeholder: 'Город*'
       .field
-        label
-          | Категория
-        br
-        =select('category', 'id', Category.all.collect {|p| [ p.name, p.id ] }, :include_blank => true, class: 'crafter_registration')
+        = f.text_field :address, class: 'form-control crafter_registration', autocomplete: 'off', placeholder: 'Адрес*'
       .field
-        = f.label :Подкатегория, class: 'label_login'
-        br
-        = f.select :subcategory_id, {},{:disabled => true}
-      button.btn.btn-success.register-btn.register-btn-crafter[type="submit"]
+        = f.text_field :phone_number, class: 'form-control crafter_registration', autocomplete: 'off', placeholder: 'Номер телефона* (80259340284)'
+      .field
+        = f.text_area :description, class: 'form-control crafter_registration', autocomplete: 'off', placeholder: 'Дополнительная информация'
+      br
+
+      .field
+        = f.password_field :password, class: 'form-control crafter_registration', autocomplete: 'off', placeholder: 'Пароль*'
+      .field
+        = f.password_field :password_confirmation, class: 'form-control crafter_registration', autocomplete: 'off', placeholder: 'Подтверждение пароля*'
+
+      button.btn.btn-success.register-btn.register-btn-crafter[type='submit' id='button_reg_crafter']
         | Зарегистрироваться
-    = render 'devise/crafters/shared/links'
+    /= render 'devise/crafters/shared/links'

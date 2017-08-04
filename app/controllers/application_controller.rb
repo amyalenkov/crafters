@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
     render :json => result_hash.to_json
   end
 
+  def get_all_crafters_and_users
+    result_hash = Hash.new
+    result_hash['crafters'] = Crafter.all
+    result_hash['users'] = User.all
+    render :json => result_hash.to_json
+  end
 
   private
 
@@ -22,4 +28,5 @@ class ApplicationController < ActionController::Base
       @menu_hash.store category, category.subcategories
     end
   end
+
 end

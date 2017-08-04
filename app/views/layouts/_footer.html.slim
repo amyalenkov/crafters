@@ -2,9 +2,30 @@
   .container-fluid
     .row
       .col-xs-12.col-sm-12.col-md-12.col-lg-12
-        h4
+        /<!-- Modal -->
+        #myModal.modal.fade.loginModalPopUp
+          .modal-dialog
+            .modal-content
+              .modal-header
+                button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+                h4.modal-title id="myModalLabel" Вход
+              .modal-body
+                #error_text
+                  p Не правильный email или пароль
+                input name='email' id='sign_in_email' placeholder='E-mail' class='form-control login_user'
+                input name='password' id='sign_in_password' placeholder='Пароль' class='form-control login_user' type='password'
+                .another_enter
+                  p Вход при помощи
+                  .link_vk
+                    = link_to image_tag('vk.png'), '#', id: 'vk_link'
+                  .link_fb
+                    = link_to image_tag('fb.png'), '#'
+              .modal-footer
+                = link_to 'Зарегистрироваться', '/registration_form', class: 'btn btn-default left'
+                button type="button" id='login_form' class="btn btn-default" Войти
+        /h4
           | Каталог Крафтеров
-        .footer_catalog.column
+        /.footer_catalog.column
           - categories.each do |category|
             |  <a href="#
             = category.name

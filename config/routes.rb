@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       post 'update_avatar'
       post 'update_images'
       get 'get_crafter_album'
+      get 'get_crafter_album_for_edit'
     end
   end
 
@@ -47,4 +48,7 @@ Rails.application.routes.draw do
   post '/search_ajax_full' => 'static_page#search_ajax_full'
   post '/search_ajax_full' => 'static_page#search_ajax_full'
 
+  get '/login_form' => 'static_page#login_form'
+  get '/registration_form' => 'static_page#registration_form'
+  get '/get_all_crafters_and_users' => 'application#get_all_crafters_and_users'
 end

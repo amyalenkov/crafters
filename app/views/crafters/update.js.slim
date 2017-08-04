@@ -1,6 +1,7 @@
-| $('.info').html("
-= escape_javascript (render partial: 'crafters/partials/info')
-| ");
-| $('.info_crafter').html("
-= escape_javascript (render partial: 'crafters/partials/info_crafter')
+| $('.info_crafter').html('
+= j render ('crafters/partials/info_crafter')
+| ');
+
+| $('#footer').html("
+= j render ('crafters/partials/update')
 | ");

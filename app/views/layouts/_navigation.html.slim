@@ -2,15 +2,14 @@
   .container-fluid
     .row
       .col-xs-12.col-sm-3.col-md-3.col-lg-3.logo
-        a href="/"
-         h1
-          | CraftsMan
+        =link_to '/' do
+          '#{image_tag('logo.png')} <br> <span> В РЕМОНТЕ</span>
       .col-xs-12.col-sm-6.col-md-6.col-lg-6.menu_left
         #imaginary_container
           .input-group.stylish-input-group
             = form_tag('/search', :method => :get, :class => 'search') do
               = text_field_tag 'search', nil, :placeholder => 'Поиск в каталоге. Например, "ИП Анатолий"', :autocomplete => 'off', :class => 'search_input'
-              = submit_tag 'OK', :class => 'search_button'
+              = image_submit_tag 'arrow.png', class: 'search_button'
         #search_result[style="display: none"]
           .search_result
             span
@@ -25,5 +24,5 @@
         - else
           = render 'layouts/unregistered'
     .navigation
-      - cache @menu_hash do
+      /- cache @menu_hash do
         = render 'layouts/caregories', menu: @menu_hash

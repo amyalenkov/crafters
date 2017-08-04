@@ -58,4 +58,11 @@ class StaticPageController < ApplicationController
     @cities.uniq!
   end
 
+
+  def login_form
+  end
+
+  def registration_form
+  end
+
 end

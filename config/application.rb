@@ -20,5 +20,10 @@ module Crafters
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.active_record.schema_format = :sql
+    # Precompile additional assets.
+    # application.js, application.css.scss, and all non-JS/CSS in app/assets folder are already added.
+    # config.assets.precompile += %w( bx_loader.gif controls.png )
+    # config.assets.precompile += %w( fonts/flexslider-icon.eot fonts/flexslider-icon.woff fonts/flexslider-icon.ttf )
+    # config.assets.precompile += %w( flexslider-icon.eot flexslider-icon.woff flexslider-icon.ttf )
   end
 end

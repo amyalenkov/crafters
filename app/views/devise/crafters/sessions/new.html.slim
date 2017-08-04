@@ -1,7 +1,7 @@
 #login_form
   h2
     | Log in crafter
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = form_for(Crafter.new, as: Crafter.new, url: session_path(Crafter.new)) do |f|
     .field
       = f.label :email
       br
@@ -10,10 +10,10 @@
       = f.label :password
       br
       = f.password_field :password, autocomplete: 'off'
-    - if devise_mapping.rememberable?
+    /- if devise_mapping.rememberable?
       .field
         = f.check_box :remember_me
         = f.label :remember_me
     .actions
       = f.submit 'Log in'
-  = render 'crafters/shared/links'
+  /= render 'crafters/shared/links'

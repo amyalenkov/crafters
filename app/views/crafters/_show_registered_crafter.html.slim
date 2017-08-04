@@ -2,17 +2,18 @@
   .row
     .col-xs-12.col-sm-12.col-md-12.col-lg-12
       h2
-        | Личный кабинет 
-        = current_crafter.company_name
+        | Личный кабинет&nbsp;"
+        =current_crafter.company_name
+        |"
       br
       .avatar
         = image_tag current_crafter.avatar.url
       .description.description_show
         p
           b
-            | Название компании:
+            | Название компании:&nbsp;
           = current_crafter.company_name
-        p
+        /p
           b
             | Категория/подкатегория:
           = current_crafter.subcategory.category.name
@@ -20,18 +21,31 @@
           = current_crafter.subcategory.name
         p
           b
-            | Email:
+            | Email:&nbsp;
           = current_crafter.email
         p
           b
-            | Город:
+            | Город:&nbsp;
           = current_crafter.city
         p
           b
-            | Описание:
-          = current_crafter.description
+            | Адрес:&nbsp;
+          = current_crafter.address
         p
           b
-            | Альбомы:
+            | Номер телефона:&nbsp;
+          = current_crafter.phone_number
+        p
+          b
+            | Сайт:&nbsp;
+          = current_crafter.site
+        p
+          b
+            | Описание:&nbsp;
+          textarea
+            = current_crafter.description
+        p
+          b
+            | Альбомы:&nbsp;
         p
           = link_to 'Редактировать профиль', edit_crafter_path

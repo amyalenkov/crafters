@@ -1,11 +1,18 @@
-= link_to 'In User', new_user_session_path
-|  / 
-= link_to 'Up User', new_user_registration_path
-br
-= link_to 'In Crafter', new_crafter_session_path
-|  / 
-= link_to 'Up Crafter', new_crafter_registration_path
-br
-= link_to 'Facebook', user_omniauth_authorize_path(:facebook)
-|  /
-= link_to 'VK', user_omniauth_authorize_path(:vkontakte)
+/= link_to 'Войти', '/login_form'
+= link_to 'Войти', '', data: {toggle: 'modal', target: '#myModal'}
+span &nbsp|&nbsp
+= link_to 'Регистрация', '/registration_form'
+
+
+
+/= link_to 'In User', new_user_session_path
+/|  /
+/= link_to 'Up User', new_user_registration_path
+/br
+/= link_to 'In Crafter', new_crafter_session_path
+/|  /
+/= link_to 'Up Crafter', new_crafter_registration_path
+/br
+/= link_to 'Facebook', user_omniauth_authorize_path(:facebook)
+/|  /
+/= link_to 'VK', user_omniauth_authorize_path(:vkontakte)
