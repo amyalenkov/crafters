@@ -10,5 +10,5 @@
             = f.file_field :avatar
           p
             | jpg, jpeg, png, gif, не более 2 МБ
-          = f.submit 'Сохранить', class: 'btn btn-success', id: 'button_for_safe_img'
+          = f.submit 'Сохранить', class: 'btn btn-success', id: 'button_for_safe_img', disabled: true
     = render 'crafters/partials/albums/albums'

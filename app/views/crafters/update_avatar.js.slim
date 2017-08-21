@@ -1,6 +1,7 @@
-| $('#crafter_avatar_img').html("
-= escape_javascript (render partial: 'crafters/partials/img')
-| "); 
-| $('.menu_right').html("
-= escape_javascript (render partial: 'layouts/crafters_registered')
-| ");
+| $('#crafter_avatar_img').html('
+= j render ('crafters/partials/img')
+| ');
+
+| $('.menu_right').html('
+= j render ('layouts/crafters_registered')
+| ');

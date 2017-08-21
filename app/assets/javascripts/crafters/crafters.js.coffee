@@ -22,7 +22,26 @@ jQuery ->
           $('#crafter_subcategory_id').append option
 
   $('#crafter_avatar').on 'change', ->
-    $('#img_view_upload').attr('src', URL.createObjectURL(@.files[0]));
+    hideMessage = () ->
+      $("#ErrorMessage").modal("hide")
+      $('#ErrorMessageText').html("")
+
+    if @.files[0].size < 2000000 && /image\/(png|jpeg|jpg|gif)/.test(@.files[0].type)
+      $('#img_view_upload').attr('src', URL.createObjectURL(@.files[0]));
+      document.getElementById('button_for_safe_img').disabled = false;
+
+    else if !(/image\/(png|jpeg|jpg|gif)/.test(@.files[0].type))
+      document.getElementById('button_for_safe_img').disabled = true;
+      $("#ErrorMessageText").append('<p>Проверьте тип загрузаемой картинки (*.png, *.jpeg, *.jpg)<p/>')
+      $("#ErrorMessage").modal("show");
+      setTimeout(hideMessage, 3500);
+
+    else if @.files[0].size > 2000000
+      document.getElementById('button_for_safe_img').disabled = true;
+      $("#ErrorMessageText").append('<p>Проверьте размер загрузаемой картинки (не более 2Мб)<p/>')
+      $("#ErrorMessage").modal("show");
+      setTimeout(hideMessage, 3500);
+
 
   $('#crafter_images').on 'change', ->
     $('#img_view_upload').attr('src', URL.createObjectURL(@.files[0]));
@@ -52,7 +71,6 @@ jQuery ->
 
       div_box_right.appendTo(div_box)
       div_box.appendTo(images)
-
 
 # событие на динамические создаваемые checbox'ы
   $('.modal-body').on 'change', '[type=checkbox]',->

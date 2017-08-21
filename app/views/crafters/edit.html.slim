@@ -34,8 +34,17 @@
     .modal-content
       .modal-header
         button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
-        h4.modal-title id="myModalLabel" Сообщение
+        h4.modal-title id="messageModal" Сообщение
       .modal-body
         p Изменения успешно сохранены
+
+#ErrorMessage.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title id="errorModal" Сообщение
+      .modal-body
+        #ErrorMessageText
       /.modal-footer
         button type="button" id='login_form' class="btn btn-default" Войти
