@@ -4,6 +4,7 @@
       | #{@album.name}
   - @album.album_images.each do |image|
     .image_box
+      span id="deleteButton" class="deleteButton" name="image_box_'+#{image}+'" &times;
       .left
         .img
           = image_tag image.image.url

@@ -4,21 +4,21 @@
       = form_for(current_crafter, url: update_images_crafter_path(current_crafter), method: 'post', remote: true, multipart: true, class: 'modal_form_albums')  do |f|
         .modal-header
           button.close[type="button" data-dismiss="modal"]
-            | ×
-          = f.label :Имя_альбома, class: 'label_login'
+            | &times;
+          = f.label :Название_альбома, class: 'label_login'
           = text_field_tag :album_name, '', class: 'form-control'
-          = f.label :Описание_альбома, class: 'label_login'
+          = f.label :Краткое_описание, class: 'label_login'
           = text_area_tag :album_desc, '', class: 'form-control'
 
           /= f.label :Загруженные_изображения, class: 'label_login upload_text'
 
-        .show_album
-          #div_album_images
-
         .modal-body
+          .show_album
+            #div_album_images
+
           span.btn.btn-large.btn-default.btn-file
-            |  Загрузить изображение
-            = f.file_field :images, multiple: true
+            |  Загрузить изображение (jpg, jpeg, png, gif, не более 3 МБ)
+            = f.file_field :images, multiple: true, accept: 'image/*'
 
         .modal-footer
           = f.submit 'Сохранить', class: 'btn btn-success', id: 'button_for_safe_img'

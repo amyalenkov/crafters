@@ -1,7 +1,7 @@
 ///**
 // * Created by sushi on 7/20/17.
 // */
-var login = function(){
+function login(){
     var email = document.getElementById('sign_in_email');
     var password = document.getElementById('sign_in_password');
     var BreakException = {};
@@ -70,6 +70,12 @@ function fadeIn(el, display){
 
 
 $(document).on("click", "#login_form", login);
+//$(document).keydown(function(event){
+//    if(event.keyCode == 13){
+//        login;
+//        return false;
+//    }
+//});
 
 var post_request_for_login = function(email, password, role_url, role, error_text){
     $.ajax({

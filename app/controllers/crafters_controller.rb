@@ -29,14 +29,17 @@ class CraftersController < ApplicationController
     album.name = params[:album_name]
     album.description = params[:album_desc]
     images.each_with_index { |image, index|
-      album_image = album.album_images.build
-      if params['logo'+(index+1).to_s] == '1'
-        album.logo = image
+      if /.(png|jpeg|jpg|gif)/ === image.original_filename
+        Rails.logger.warn 'image: ' + image.original_filename
+        album_image = album.album_images.build
+        if params['logo'+(index).to_s] == '1'
+          album.logo = image
+        end
+        album_image.name = params['img_name'+(index).to_s]
+        album_image.description = params['img_decs'+(index).to_s]
+        album_image.image = image
+        album_image.save!
       end
-      album_image.name = params['img_name'+(index+1).to_s]
-      album_image.description = params['img_decs'+(index+1).to_s]
-      album_image.image = image
-      album_image.save!
     }
     album.save!
   end

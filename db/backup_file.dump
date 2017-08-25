@@ -1,0 +1,1660 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: active_admin_comments; Type: TABLE; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE TABLE active_admin_comments (
+    id integer NOT NULL,
+    namespace character varying(255),
+    body text,
+    resource_id character varying(255) NOT NULL,
+    resource_type character varying(255) NOT NULL,
+    author_id integer,
+    author_type character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.active_admin_comments OWNER TO sushi_new;
+
+--
+-- Name: active_admin_comments_id_seq; Type: SEQUENCE; Schema: public; Owner: sushi_new
+--
+
+CREATE SEQUENCE active_admin_comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.active_admin_comments_id_seq OWNER TO sushi_new;
+
+--
+-- Name: active_admin_comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sushi_new
+--
+
+ALTER SEQUENCE active_admin_comments_id_seq OWNED BY active_admin_comments.id;
+
+
+--
+-- Name: admin_users; Type: TABLE; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE TABLE admin_users (
+    id integer NOT NULL,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255),
+    last_sign_in_ip character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.admin_users OWNER TO sushi_new;
+
+--
+-- Name: admin_users_id_seq; Type: SEQUENCE; Schema: public; Owner: sushi_new
+--
+
+CREATE SEQUENCE admin_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.admin_users_id_seq OWNER TO sushi_new;
+
+--
+-- Name: admin_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sushi_new
+--
+
+ALTER SEQUENCE admin_users_id_seq OWNED BY admin_users.id;
+
+
+--
+-- Name: album_images; Type: TABLE; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE TABLE album_images (
+    id integer NOT NULL,
+    album_id integer,
+    name character varying(255),
+    description character varying(255),
+    image character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.album_images OWNER TO sushi_new;
+
+--
+-- Name: album_images_id_seq; Type: SEQUENCE; Schema: public; Owner: sushi_new
+--
+
+CREATE SEQUENCE album_images_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.album_images_id_seq OWNER TO sushi_new;
+
+--
+-- Name: album_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sushi_new
+--
+
+ALTER SEQUENCE album_images_id_seq OWNED BY album_images.id;
+
+
+--
+-- Name: albums; Type: TABLE; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE TABLE albums (
+    id integer NOT NULL,
+    crafter_id integer,
+    logo character varying(255),
+    name character varying(255),
+    description character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.albums OWNER TO sushi_new;
+
+--
+-- Name: albums_id_seq; Type: SEQUENCE; Schema: public; Owner: sushi_new
+--
+
+CREATE SEQUENCE albums_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.albums_id_seq OWNER TO sushi_new;
+
+--
+-- Name: albums_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sushi_new
+--
+
+ALTER SEQUENCE albums_id_seq OWNED BY albums.id;
+
+
+--
+-- Name: categories; Type: TABLE; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE TABLE categories (
+    id integer NOT NULL,
+    name text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.categories OWNER TO sushi_new;
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: sushi_new
+--
+
+CREATE SEQUENCE categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.categories_id_seq OWNER TO sushi_new;
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sushi_new
+--
+
+ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
+
+
+--
+-- Name: conversations; Type: TABLE; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE TABLE conversations (
+    id integer NOT NULL,
+    theme text,
+    sender_crafter_id integer,
+    receiver_crafter_id integer,
+    sender_user_id integer,
+    receiver_user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.conversations OWNER TO sushi_new;
+
+--
+-- Name: conversations_id_seq; Type: SEQUENCE; Schema: public; Owner: sushi_new
+--
+
+CREATE SEQUENCE conversations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.conversations_id_seq OWNER TO sushi_new;
+
+--
+-- Name: conversations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sushi_new
+--
+
+ALTER SEQUENCE conversations_id_seq OWNED BY conversations.id;
+
+
+--
+-- Name: crafters; Type: TABLE; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE TABLE crafters (
+    id integer NOT NULL,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255),
+    last_sign_in_ip character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    confirmation_token character varying(255),
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone,
+    subcategory_id integer,
+    description text,
+    company_name text,
+    city text,
+    address text,
+    phone_number text,
+    contact_person text,
+    site text,
+    work_time text,
+    "check" boolean DEFAULT false,
+    delta boolean DEFAULT true NOT NULL,
+    avatar character varying(255),
+    like_counter integer DEFAULT 0
+);
+
+
+ALTER TABLE public.crafters OWNER TO sushi_new;
+
+--
+-- Name: crafters_id_seq; Type: SEQUENCE; Schema: public; Owner: sushi_new
+--
+
+CREATE SEQUENCE crafters_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.crafters_id_seq OWNER TO sushi_new;
+
+--
+-- Name: crafters_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sushi_new
+--
+
+ALTER SEQUENCE crafters_id_seq OWNED BY crafters.id;
+
+
+--
+-- Name: identities; Type: TABLE; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE TABLE identities (
+    id integer NOT NULL,
+    user_id integer,
+    provider character varying(255),
+    uid character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.identities OWNER TO sushi_new;
+
+--
+-- Name: identities_id_seq; Type: SEQUENCE; Schema: public; Owner: sushi_new
+--
+
+CREATE SEQUENCE identities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.identities_id_seq OWNER TO sushi_new;
+
+--
+-- Name: identities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sushi_new
+--
+
+ALTER SEQUENCE identities_id_seq OWNED BY identities.id;
+
+
+--
+-- Name: messages; Type: TABLE; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE TABLE messages (
+    id integer NOT NULL,
+    body text,
+    read boolean DEFAULT false,
+    conversation_id integer,
+    sender_crafter_id integer,
+    receiver_crafter_id integer,
+    sender_user_id integer,
+    receiver_user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.messages OWNER TO sushi_new;
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: sushi_new
+--
+
+CREATE SEQUENCE messages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.messages_id_seq OWNER TO sushi_new;
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sushi_new
+--
+
+ALTER SEQUENCE messages_id_seq OWNED BY messages.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO sushi_new;
+
+--
+-- Name: subcategories; Type: TABLE; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE TABLE subcategories (
+    id integer NOT NULL,
+    name text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    category_id integer,
+    title_sub_category text
+);
+
+
+ALTER TABLE public.subcategories OWNER TO sushi_new;
+
+--
+-- Name: subcategories_id_seq; Type: SEQUENCE; Schema: public; Owner: sushi_new
+--
+
+CREATE SEQUENCE subcategories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.subcategories_id_seq OWNER TO sushi_new;
+
+--
+-- Name: subcategories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sushi_new
+--
+
+ALTER SEQUENCE subcategories_id_seq OWNED BY subcategories.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255),
+    last_sign_in_ip character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    confirmation_token character varying(255),
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone,
+    name character varying(255),
+    avatar character varying(255)
+);
+
+
+ALTER TABLE public.users OWNER TO sushi_new;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: sushi_new
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO sushi_new;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sushi_new
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sushi_new
+--
+
+ALTER TABLE ONLY active_admin_comments ALTER COLUMN id SET DEFAULT nextval('active_admin_comments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sushi_new
+--
+
+ALTER TABLE ONLY admin_users ALTER COLUMN id SET DEFAULT nextval('admin_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sushi_new
+--
+
+ALTER TABLE ONLY album_images ALTER COLUMN id SET DEFAULT nextval('album_images_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sushi_new
+--
+
+ALTER TABLE ONLY albums ALTER COLUMN id SET DEFAULT nextval('albums_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sushi_new
+--
+
+ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sushi_new
+--
+
+ALTER TABLE ONLY conversations ALTER COLUMN id SET DEFAULT nextval('conversations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sushi_new
+--
+
+ALTER TABLE ONLY crafters ALTER COLUMN id SET DEFAULT nextval('crafters_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sushi_new
+--
+
+ALTER TABLE ONLY identities ALTER COLUMN id SET DEFAULT nextval('identities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sushi_new
+--
+
+ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sushi_new
+--
+
+ALTER TABLE ONLY subcategories ALTER COLUMN id SET DEFAULT nextval('subcategories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sushi_new
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Data for Name: active_admin_comments; Type: TABLE DATA; Schema: public; Owner: sushi_new
+--
+
+COPY active_admin_comments (id, namespace, body, resource_id, resource_type, author_id, author_type, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: active_admin_comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sushi_new
+--
+
+SELECT pg_catalog.setval('active_admin_comments_id_seq', 1, false);
+
+
+--
+-- Data for Name: admin_users; Type: TABLE DATA; Schema: public; Owner: sushi_new
+--
+
+COPY admin_users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at) FROM stdin;
+1	admin@example.com	$2a$10$88dNfhS6K1ydBuwv42dKDO1LeDJANeelaMj/GgbWTVsjC6Hk92.ey	\N	\N	\N	2	2015-11-10 07:07:38.380977	2015-11-09 13:28:36.032978	10.1.2.32	10.1.2.32	2015-11-09 13:25:44.802341	2015-11-11 11:52:22.102162
+\.
+
+
+--
+-- Name: admin_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sushi_new
+--
+
+SELECT pg_catalog.setval('admin_users_id_seq', 1, true);
+
+
+--
+-- Data for Name: album_images; Type: TABLE DATA; Schema: public; Owner: sushi_new
+--
+
+COPY album_images (id, album_id, name, description, image, created_at, updated_at) FROM stdin;
+1	1			allReadyProjects.png	2015-12-14 09:18:19.517695	2015-12-14 09:18:19.517695
+2	1			allReadyProjects1.png	2015-12-14 09:18:19.600902	2015-12-14 09:18:19.600902
+3	1			allReadyProjects2.png	2015-12-14 09:18:19.616862	2015-12-14 09:18:19.616862
+4	1			allReadyProjects3.png	2015-12-14 09:18:19.635013	2015-12-14 09:18:19.635013
+5	1			allReadyProjects4.png	2015-12-14 09:18:19.645269	2015-12-14 09:18:19.645269
+6	1			allReadyProjects12.png	2015-12-14 09:18:19.664535	2015-12-14 09:18:19.664535
+7	1			allReadyProjects22.png	2015-12-14 09:18:19.677642	2015-12-14 09:18:19.677642
+8	1			allReadyProjects32.png	2015-12-14 09:18:19.692922	2015-12-14 09:18:19.692922
+9	1			allReadyProjects42.png	2015-12-14 09:18:19.702239	2015-12-14 09:18:19.702239
+10	2	asd		allReadyProjects12.png	2015-12-16 09:13:43.043133	2015-12-16 09:13:43.043133
+11	2			allReadyProjects22.png	2015-12-16 09:13:43.149616	2015-12-16 09:13:43.149616
+12	2			allReadyProjects32.png	2015-12-16 09:13:43.158779	2015-12-16 09:13:43.158779
+13	2			allReadyProjects42.png	2015-12-16 09:13:43.168225	2015-12-16 09:13:43.168225
+14	3	\N	\N	\N	2015-12-16 09:14:14.447264	2015-12-16 09:14:14.447264
+15	3			allReadyProjects3.png	2015-12-16 09:14:14.453639	2015-12-16 09:14:14.453639
+16	3			allReadyProjects4.png	2015-12-16 09:14:14.480853	2015-12-16 09:14:14.480853
+17	3			allReadyProjects12.png	2015-12-16 09:14:14.514583	2015-12-16 09:14:14.514583
+18	3			allReadyProjects22.png	2015-12-16 09:14:14.54311	2015-12-16 09:14:14.54311
+19	4			allReadyProjects1.png	2015-12-18 13:21:38.773131	2015-12-18 13:21:38.773131
+20	4			allReadyProjects2.png	2015-12-18 13:21:38.787168	2015-12-18 13:21:38.787168
+21	4			allReadyProjects4.png	2015-12-18 13:21:38.80572	2015-12-18 13:21:38.80572
+22	4			allReadyProjects12.png	2015-12-18 13:21:38.817155	2015-12-18 13:21:38.817155
+23	4	\N	\N	\N	2015-12-18 13:21:38.836877	2015-12-18 13:21:38.836877
+24	5			ball.png	2015-12-18 13:23:18.32755	2015-12-18 13:23:18.32755
+25	5			beforeMen2.png	2015-12-18 13:23:18.393597	2015-12-18 13:23:18.393597
+26	5			beforeMen3.png	2015-12-18 13:23:18.403808	2015-12-18 13:23:18.403808
+27	5			bg1.jpg	2015-12-18 13:23:18.412251	2015-12-18 13:23:18.412251
+28	5			bg4.png	2015-12-18 13:23:18.424238	2015-12-18 13:23:18.424238
+29	5			bgMail.png	2015-12-18 13:23:18.433337	2015-12-18 13:23:18.433337
+30	5			bgTop.png	2015-12-18 13:23:18.441877	2015-12-18 13:23:18.441877
+31	5	\N	\N	\N	2015-12-18 13:23:18.454603	2015-12-18 13:23:18.454603
+32	6			dot1_2New.png	2015-12-18 13:24:13.781213	2015-12-18 13:24:13.781213
+33	6			dot1New.png	2015-12-18 13:24:13.7926	2015-12-18 13:24:13.7926
+34	6			dot2_2New.png	2015-12-18 13:24:13.804898	2015-12-18 13:24:13.804898
+35	6			dot2New.png	2015-12-18 13:24:13.814318	2015-12-18 13:24:13.814318
+36	6			dot2Z.png	2015-12-18 13:24:13.825459	2015-12-18 13:24:13.825459
+37	6			dot3.png	2015-12-18 13:24:13.837156	2015-12-18 13:24:13.837156
+38	6			dot3_2New.png	2015-12-18 13:24:13.847276	2015-12-18 13:24:13.847276
+39	6			dot3New.png	2015-12-18 13:24:13.860775	2015-12-18 13:24:13.860775
+40	6			dot3Z.png	2015-12-18 13:24:13.87685	2015-12-18 13:24:13.87685
+41	6			dot4_2New.png	2015-12-18 13:24:13.894282	2015-12-18 13:24:13.894282
+42	6			dot4New.png	2015-12-18 13:24:13.921421	2015-12-18 13:24:13.921421
+43	6			dot4Z.png	2015-12-18 13:24:13.944893	2015-12-18 13:24:13.944893
+44	6			dotLine.png	2015-12-18 13:24:13.972221	2015-12-18 13:24:13.972221
+45	6			drop.png	2015-12-18 13:24:13.984823	2015-12-18 13:24:13.984823
+46	6	\N	\N	\N	2015-12-18 13:24:14.011105	2015-12-18 13:24:14.011105
+47	7			allReadyProjects12.png	2015-12-18 13:25:40.469862	2015-12-18 13:25:40.469862
+48	7	\N	\N	\N	2015-12-18 13:25:40.518215	2015-12-18 13:25:40.518215
+49	8	\N	\N	allReadyProjects3.png	2016-01-13 08:49:53.307769	2016-01-13 08:49:53.307769
+50	8	\N	\N	allReadyProjects4.png	2016-01-13 08:49:53.449063	2016-01-13 08:49:53.449063
+51	8	\N	\N	allReadyProjects12.png	2016-01-13 08:49:53.473272	2016-01-13 08:49:53.473272
+52	8	\N	\N	allReadyProjects22.png	2016-01-13 08:49:53.54142	2016-01-13 08:49:53.54142
+53	8	\N	\N	allReadyProjects32.png	2016-01-13 08:49:53.58228	2016-01-13 08:49:53.58228
+54	9	\N	\N	allReadyProjects22.png	2016-01-13 09:08:52.855804	2016-01-13 09:08:52.855804
+55	9	\N	\N	allReadyProjects32.png	2016-01-13 09:08:52.874404	2016-01-13 09:08:52.874404
+56	9	\N	\N	allReadyProjects42.png	2016-01-13 09:08:52.89123	2016-01-13 09:08:52.89123
+57	10	\N	\N	allReadyProjects12.png	2016-01-13 09:30:30.235067	2016-01-13 09:30:30.235067
+58	10	\N	\N	allReadyProjects22.png	2016-01-13 09:30:30.275785	2016-01-13 09:30:30.275785
+59	10	\N	\N	allReadyProjects32.png	2016-01-13 09:30:30.288582	2016-01-13 09:30:30.288582
+60	10	\N	\N	allReadyProjects42.png	2016-01-13 09:30:30.304277	2016-01-13 09:30:30.304277
+68	14	\N	\N	2.jpg	2016-01-14 12:23:38.178248	2016-01-14 12:23:38.178248
+69	14	\N	\N	3.jpeg	2016-01-14 12:23:38.208859	2016-01-14 12:23:38.208859
+70	14	\N	\N	3.jpg	2016-01-14 12:23:38.221271	2016-01-14 12:23:38.221271
+71	15	\N	\N	1.jpeg	2016-01-14 12:31:16.003245	2016-01-14 12:31:16.003245
+72	15	\N	\N	2.jpg	2016-01-14 12:31:16.03482	2016-01-14 12:31:16.03482
+73	15	\N	\N	3.jpeg	2016-01-14 12:31:16.04661	2016-01-14 12:31:16.04661
+74	15	\N	\N	3.jpg	2016-01-14 12:31:16.056628	2016-01-14 12:31:16.056628
+75	15	\N	\N	4.jpg	2016-01-14 12:31:16.069851	2016-01-14 12:31:16.069851
+76	15	\N	\N	5.jpg	2016-01-14 12:31:16.08056	2016-01-14 12:31:16.08056
+77	15	\N	\N	new.png	2016-01-14 12:31:16.104332	2016-01-14 12:31:16.104332
+78	16	3.jpeg		3.jpeg	2016-01-27 08:50:19.421682	2016-01-27 08:50:19.421682
+79	16	3.jpg		3.jpg	2016-01-27 08:50:19.550514	2016-01-27 08:50:19.550514
+80	16	4.jpg		4.jpg	2016-01-27 08:50:19.578314	2016-01-27 08:50:19.578314
+81	16	5.jpg		5.jpg	2016-01-27 08:50:19.603546	2016-01-27 08:50:19.603546
+82	17	3.jpg		3.jpg	2016-01-27 08:50:35.414014	2016-01-27 08:50:35.414014
+83	17	4.jpg		4.jpg	2016-01-27 08:50:35.453783	2016-01-27 08:50:35.453783
+84	17	5.jpg		5.jpg	2016-01-27 08:50:35.470878	2016-01-27 08:50:35.470878
+85	18	1.jpeg		1.jpeg	2016-02-12 08:55:34.467679	2016-02-12 08:55:34.467679
+86	18	2.jpg		2.jpg	2016-02-12 08:55:34.674075	2016-02-12 08:55:34.674075
+87	18	3.jpeg		3.jpeg	2016-02-12 08:55:34.717656	2016-02-12 08:55:34.717656
+88	18	3.jpg		3.jpg	2016-02-12 08:55:34.760164	2016-02-12 08:55:34.760164
+89	18	4.jpg		4.jpg	2016-02-12 08:55:34.817397	2016-02-12 08:55:34.817397
+90	18	5.jpg		5.jpg	2016-02-12 08:55:34.849405	2016-02-12 08:55:34.849405
+91	18	new.png		new.png	2016-02-12 08:55:34.896343	2016-02-12 08:55:34.896343
+92	19	1.jpeg		1.jpeg	2016-02-15 07:49:02.337082	2016-02-15 07:49:02.337082
+93	19	2.jpg		2.jpg	2016-02-15 07:49:02.464131	2016-02-15 07:49:02.464131
+94	19	3.jpeg		3.jpeg	2016-02-15 07:49:02.539686	2016-02-15 07:49:02.539686
+95	20	\N	\N	image.jpg	2016-02-16 12:35:07.600265	2016-02-16 12:35:07.600265
+96	20	\N	\N	image.jpg	2016-02-16 12:35:07.654037	2016-02-16 12:35:07.654037
+203	39	132.jpg		2.jpg	2017-08-22 12:58:29.269074	2017-08-22 12:58:29.269074
+204	39	height.jpg		132.jpg	2017-08-22 12:58:29.29644	2017-08-22 12:58:29.29644
+205	39	lion.jpg		height.jpg	2017-08-22 12:58:29.309763	2017-08-22 12:58:29.309763
+206	39	lion2.gif		lion.jpg	2017-08-22 12:58:29.326191	2017-08-22 12:58:29.326191
+207	39	\N	\N	lion2.gif	2017-08-22 12:58:29.339091	2017-08-22 12:58:29.339091
+208	39	\N	\N	lion22.jpg	2017-08-22 12:58:29.35521	2017-08-22 12:58:29.35521
+209	39	\N	\N	loading.gif	2017-08-22 12:58:29.368875	2017-08-22 12:58:29.368875
+210	39	mikki.jpg		mikki_pluto.png	2017-08-22 12:58:29.395095	2017-08-22 12:58:29.395095
+211	39	pluto.png		mikki.jpg	2017-08-22 12:58:29.466272	2017-08-22 12:58:29.466272
+212	39	pluto2.gif		pluto.png	2017-08-22 12:58:29.480639	2017-08-22 12:58:29.480639
+213	39	\N	\N	pluto2.gif	2017-08-22 12:58:29.494918	2017-08-22 12:58:29.494918
+220	43	132.jpg		2.jpg	2017-08-23 12:52:01.656882	2017-08-23 12:52:01.656882
+221	43	mikki.jpg		132.jpg	2017-08-23 12:52:01.680228	2017-08-23 12:52:01.680228
+222	43	\N	\N	mikki.jpg	2017-08-23 12:52:01.865191	2017-08-23 12:52:01.865191
+223	44	mikki.jpg		mikki.jpg	2017-08-23 12:57:17.972109	2017-08-23 12:57:17.972109
+224	44	\N	\N	sunNew.png	2017-08-23 12:57:18.028659	2017-08-23 12:57:18.028659
+225	44	Untitled-1.jpg		Untitled-1.jpg	2017-08-23 12:57:18.260864	2017-08-23 12:57:18.260864
+226	44	Безымянный.png		Безымянный.png	2017-08-23 12:57:18.279739	2017-08-23 12:57:18.279739
+\.
+
+
+--
+-- Name: album_images_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sushi_new
+--
+
+SELECT pg_catalog.setval('album_images_id_seq', 226, true);
+
+
+--
+-- Data for Name: albums; Type: TABLE DATA; Schema: public; Owner: sushi_new
+--
+
+COPY albums (id, crafter_id, logo, name, description, created_at, updated_at) FROM stdin;
+1	103	allReadyProjects.png	wfe	wefwef	2015-12-14 09:18:19.349252	2015-12-14 09:18:19.349252
+2	103	\N	fsds	dsddd	2015-12-16 09:13:42.918517	2015-12-16 09:13:42.918517
+3	103	allReadyProjects2.png	sdf	 f 43w	2015-12-16 09:14:14.442833	2015-12-16 09:14:14.442833
+4	107	allReadyProjects3.png	a	aa	2015-12-18 13:21:38.750794	2015-12-18 13:21:38.831636
+5	107	beforeMen1.png	sss	sqw	2015-12-18 13:23:18.320893	2015-12-18 13:23:18.451517
+6	107	dot1Z.png			2015-12-18 13:24:13.778872	2015-12-18 13:24:14.008166
+7	107	allReadyProjects22.png	sac		2015-12-18 13:25:40.466065	2015-12-18 13:25:40.512858
+14	105	\N	1-ый	чушь	2016-01-14 12:23:38.159047	2016-01-14 12:23:38.159047
+15	105	\N	2-ой	чушь 2	2016-01-14 12:31:15.98993	2016-01-14 12:31:15.98993
+16	105	\N	3-ий		2016-01-27 08:50:19.259404	2016-01-27 08:50:19.259404
+17	105	\N	4-ый		2016-01-27 08:50:35.40883	2016-01-27 08:50:35.40883
+18	105	1.jpeg	14	asdasdas da sd wq qw zxcd f re	2016-02-12 08:55:34.140886	2016-02-12 08:55:34.140886
+19	105	2.jpg	ewq	wq	2016-02-15 07:49:02.196043	2016-02-15 07:49:02.598219
+20	105	\N			2016-02-16 12:35:07.557696	2016-02-16 12:35:07.557696
+39	111	\N	gnnnn		2017-08-22 12:58:29.261686	2017-08-22 12:58:29.261686
+43	111	\N	уццццццццц	ууу	2017-08-23 12:52:01.651584	2017-08-23 12:52:01.651584
+44	111	mikki.jpg	6	123654	2017-08-23 12:57:17.965143	2017-08-23 12:57:17.965143
+\.
+
+
+--
+-- Name: albums_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sushi_new
+--
+
+SELECT pg_catalog.setval('albums_id_seq', 44, true);
+
+
+--
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: sushi_new
+--
+
+COPY categories (id, name, created_at, updated_at) FROM stdin;
+1	Авто	2015-11-09 13:28:12.405232	2015-11-09 13:28:12.405232
+2	Бытовые услуги	2015-11-09 13:28:12.44132	2015-11-09 13:28:12.44132
+3	Государство и общество	2015-11-09 13:28:12.446447	2015-11-09 13:28:12.446447
+4	Дети	2015-11-09 13:28:12.45132	2015-11-09 13:28:12.45132
+5	Домашние животные	2015-11-09 13:28:12.457813	2015-11-09 13:28:12.457813
+6	Еда	2015-11-09 13:28:12.46217	2015-11-09 13:28:12.46217
+7	Красота и медицина	2015-11-09 13:28:12.467616	2015-11-09 13:28:12.467616
+8	Магазины	2015-11-09 13:28:12.472034	2015-11-09 13:28:12.472034
+9	Недвижимость	2015-11-09 13:28:12.476563	2015-11-09 13:28:12.476563
+10	Образование	2015-11-09 13:28:12.480912	2015-11-09 13:28:12.480912
+11	Отдых и развлечения	2015-11-09 13:28:12.485014	2015-11-09 13:28:12.485014
+12	Спорт	2015-11-09 13:28:12.489296	2015-11-09 13:28:12.489296
+13	Праздники	2015-11-09 13:28:12.49348	2015-11-09 13:28:12.49348
+14	Строительство и ремонт	2015-11-09 13:28:12.498313	2015-11-09 13:28:12.498313
+15	Связь	2015-11-09 13:28:12.503295	2015-11-09 13:28:12.503295
+16	Транспорт	2015-11-09 13:28:12.50766	2015-11-09 13:28:12.50766
+17	Туризм и путешествия	2015-11-09 13:28:12.512058	2015-11-09 13:28:12.512058
+18	Финансы	2015-11-09 13:28:12.516389	2015-11-09 13:28:12.516389
+19	B2B	2015-11-09 13:28:12.520918	2015-11-09 13:28:12.520918
+20	Новый год	2015-11-09 13:28:12.52578	2015-11-09 13:28:12.52578
+\.
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sushi_new
+--
+
+SELECT pg_catalog.setval('categories_id_seq', 1, false);
+
+
+--
+-- Data for Name: conversations; Type: TABLE DATA; Schema: public; Owner: sushi_new
+--
+
+COPY conversations (id, theme, sender_crafter_id, receiver_crafter_id, sender_user_id, receiver_user_id, created_at, updated_at) FROM stdin;
+1	qwe	\N	100	4	\N	2015-12-21 07:44:17.605413	2015-12-21 07:44:17.605413
+2	qwe	\N	100	4	\N	2015-12-21 07:44:20.823752	2015-12-21 07:44:20.823752
+3	qwe	\N	100	4	\N	2015-12-21 07:44:21.648545	2015-12-21 07:44:21.648545
+4	qwe	\N	100	4	\N	2015-12-21 07:44:21.820649	2015-12-21 07:44:21.820649
+5	qwe	\N	100	4	\N	2015-12-21 07:44:22.01231	2015-12-21 07:44:22.01231
+6	hhh	\N	105	4	\N	2016-01-11 08:19:39.699644	2016-01-11 08:19:39.699644
+7	123	\N	105	5	\N	2016-02-08 13:36:26.036296	2016-02-08 13:36:26.036296
+\.
+
+
+--
+-- Name: conversations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sushi_new
+--
+
+SELECT pg_catalog.setval('conversations_id_seq', 7, true);
+
+
+--
+-- Data for Name: crafters; Type: TABLE DATA; Schema: public; Owner: sushi_new
+--
+
+COPY crafters (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at, confirmation_token, confirmed_at, confirmation_sent_at, subcategory_id, description, company_name, city, address, phone_number, contact_person, site, work_time, "check", delta, avatar, like_counter) FROM stdin;
+1	callie.blanda@.com	$2a$10$b.ZTqiCplymA4MYdiNlo3.ispAJ8B9cTHBJxNLgg4.dYup/Ls5Ju2	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:22.785161	2015-11-09 13:28:22.785168	\N	\N	\N	193	Ab autem sequi sed ad ratione ratione et ea sed adipisci neque. Consequuntur consequuntur qui expedita sint enim sint ea vero minus autem quo esse voluptates doloremque nulla autem sit. Aspernatur et error omnis inventore eum magnam sunt id est dolore sed et in voluptatibus et qui. Eligendi ut eos rerum vel autem sed eaque non illum velit sit at cupiditate cum fuga vero. Aut inventore et nobis harum repudiandae nulla reprehenderit optio autem rerum amet est qui dolores. Corrupti debitis quisquam sit aut non itaque. Est aut architecto illum repellendus maxime quia odit suscipit laborum dolor	ОАО БелгородСнаб	Санкт-Петербург	проспект Нагорная, 847	(980)123-52-79	Вячеслав Эдуардович Волков	\N	\N	t	f	\N	0
+2	blaze_deckow@.ru	$2a$10$yNrgb7cFZiuWgXbMSdN0d.vqcnh5rdEhwYMotoVT3x2wJ3//DUrx2	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:22.911099	2015-11-09 13:28:22.911105	\N	\N	\N	272	Perspiciatis vitae ex eos aut sit eum tempore suscipit occaecati deserunt consequuntur nemo. Hic molestiae itaque sed nobis consequatur aliquid eum qui quidem. Nobis quas a voluptas quia atque et quia. Et doloribus quam et hic rem labore et doloremque. Voluptates asperiores facilis quam doloremque eum architecto fuga quidem possimus expedita dolores officiis maxime cumque. Omnis magnam excepturi dolores atque laborum officia facere dicta voluptates sed commodi cum facilis illo reprehenderit eum	ЗАО СбытСнабТрейд	Томск	пр. Красная, 141	(911)018-60-80	Бирюков Борис	\N	\N	t	f	\N	0
+3	ignacio.bergstrom@.рф	$2a$10$dUzHWyBBYp8K56UueKVcgOa9ikN4Sn1aGaZ.7e7OBw4PqMe3OlV0G	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:22.998319	2015-11-09 13:28:22.998326	\N	\N	\N	162	Enim consequatur numquam et consequatur quam odit autem vel delectus in aut est autem facilis inventore id accusamus aut numquam. A fugiat in sint neque excepturi ipsum eveniet magnam vel sit corporis vel a. Rerum harum et omnis totam nobis similique eius. Repudiandae dolor ex incidunt hic nisi perferendis. Sequi veniam et et enim ad sunt adipisci voluptatem nam ratione omnis eum repellendus amet voluptatem. Maxime dolores nulla dolore expedita explicabo dolor maiores harum vel quaerat harum ipsum minus sed ex	ТСЖ Евгений	Владивосток	проспект Красная, 262	(991)604-21-13	Гусев Сергей Евгеньевич	\N	\N	t	f	\N	0
+4	shanel.stracke@.net	$2a$10$YwuDSnCIAN.jiHqb2MkGm.BKbwID5qd4Tf3xYHzmdgzyGcyJJHGD2	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:23.085788	2015-11-09 13:28:23.085795	\N	\N	\N	206	Eos id natus at saepe praesentium beatae qui et sit voluptatum accusamus laborum similique consequatur fuga molestiae incidunt. Eos quae perspiciatis rerum quod. Blanditiis dolorem et sunt quisquam. Sint perspiciatis eos iste adipisci. Atque provident velit dolores voluptates consequatur ex saepe aliquid et qui provident dolorem ea. Nobis odit qui aliquam quibusdam facilis eaque illo. Voluptas qui reiciendis necessitatibus neque aliquid architecto corporis cumque libero amet voluptate sint dolores	ТСЖ Артём	Владимир	ул. Сосновая, 902	(926)013-39-08	Ульяна Алексеевна Белозерова	\N	\N	t	f	\N	0
+5	amely@.рф	$2a$10$O3MhzjKNZMBO/VJWNva68.pkVVuFJUDEjdgIJZ45yNMVlm8/YpHH.	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:23.172884	2015-11-09 13:28:23.172891	\N	\N	\N	306	Quia quae aut beatae eligendi aspernatur aut molestiae omnis tenetur et enim nisi magnam quo ea. Eum similique et sit autem vero placeat voluptatibus rem dolorum enim laudantium ullam incidunt et iste quis occaecati. Quos necessitatibus suscipit eius illum quis rerum ut impedit amet. Velit libero doloribus aspernatur soluta reprehenderit consequatur impedit ut illum ut sunt expedita est. Autem nihil earum est dolor exercitationem autem consequatur repellendus autem sunt beatae officiis consequatur consectetur eligendi atque	ОП Валентин	Кемерово	пл. Шоссейная, 843	(991)213-39-49	Анфиса Константиновна Смирнова	\N	\N	t	f	\N	0
+6	santiago.mohr@.com	$2a$10$2iPwzJfLYvktManLSelKbOtGg5fQ9ZWIs3Aq8MwV9Q1lCjNOcr4aq	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:23.265642	2015-11-09 13:28:23.26566	\N	\N	\N	71	Repudiandae corporis commodi eum reiciendis. Est facere atque dolorem officiis odio molestiae sapiente accusamus est consequatur dicta exercitationem molestias. Architecto dolorum quis distinctio iste sunt aut. Aut sed rerum est minima esse est pariatur nam nihil veritatis consequuntur quod nihil eos odio similique mollitia eos. Nemo a asperiores impedit rerum similique adipisci qui sit expedita perferendis autem quis porro architecto. Maxime rerum nisi fuga eaque voluptate eum voluptatem aut temporibus reprehenderit corrupti dolores nesciunt sapiente est nostrum	ИП КрасноярскСбыт	Чебоксары	Трудовая пл., 259	(912)046-20-10	Комиссаров Вячеслав	\N	\N	t	f	\N	0
+7	alvis@.info	$2a$10$BhVWGRBxQfBB9Ss/ZHy6JeMUrFnplmjvW74hTYQogiC5ZSp4uaOg6	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:23.353948	2015-11-09 13:28:23.353954	\N	\N	\N	279	Quia ut beatae in pariatur quam qui dignissimos eaque nemo ut. Quia ad qui provident ex voluptatibus magnam placeat quia excepturi voluptatem corporis quis quia. Deleniti temporibus aut quisquam eum corporis laudantium ullam minus eligendi fugiat esse nesciunt officia eum libero. Qui libero ea natus a alias ex et. Quasi vel fugiat dolores expedita nemo id impedit similique quasi vel non voluptas error at eos sint est. Nisi id sapiente et nihil animi consequuntur aut sunt repudiandae. Sequi rerum ut corrupti consequatur repellendus quo dolor id. Fuga error assumenda fuga accusantium ut in tenetur placeat distinctio magni vel ad iste aut reiciendis eius soluta ea et. Expedita qui officiis dolor dolore voluptate	ОП Игнатий	Красноярск	Южная пр., 327	(918)159-83-44	Кулагин Егор Альбертович	\N	\N	t	f	\N	0
+8	joesph@.com	$2a$10$yvEjt.FeDJPPKvgnutviAeRLdqF1S83xQ3Z6UhNzzbMfDUo02v1Iq	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:23.441633	2015-11-09 13:28:23.441651	\N	\N	\N	105	Autem officia et dolor in rerum sunt rerum repudiandae et sunt et officiis neque sed qui rem ipsa. Qui ut dolor nostrum aut ea et molestiae quis perferendis mollitia provident et. Sit fugiat doloribus distinctio totam id voluptatum maiores. Porro reprehenderit quo recusandae quasi molestias et vel dolorem enim dolorem sequi sapiente. Nihil nulla deleniti ut in consectetur consequatur. Minus ut temporibus sunt voluptate maiores dicta fuga aspernatur dolorem quod unde dolores fugiat voluptatem vel voluptas. Assumenda atque eos tempora dolores	ИП СочиСнаб	Тольятти	Советская пр., 981	(935)512-76-65	Ангелина Трофимова	\N	\N	t	f	\N	0
+9	corrine@.com	$2a$10$AEEfbXAXGSkUJLzrEIrrj.eUOm/HjFPW1jDeQreE377qY537uoD0.	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:23.528648	2015-11-09 13:28:23.528655	\N	\N	\N	96	In reprehenderit est ut aut illo vero laboriosam. Est corporis porro ullam est vel deserunt et totam. Officiis iusto facilis eum et quibusdam reiciendis laborum ut quam sint repudiandae. Accusamus doloremque deleniti est harum vitae vel corporis non incidunt. Temporibus cumque natus nulla quia dolore. Ducimus quia quia officia consequatur ratione tempore sequi nihil reprehenderit consequuntur alias sint officiis enim qui ducimus	ТСЖ ТоргТрейдТорг	Томск	пл. Набережная, 662	(975)152-01-15	Игнатов Макар Матвеевич	\N	\N	t	f	\N	0
+10	heather_hintz@.info	$2a$10$hgFLNi9xvShfEcpy9OQdIOVBPmV78dNq8ZhcBPk6rmz5lSmqGOMQu	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:23.615408	2015-11-09 13:28:23.615414	\N	\N	\N	294	Consequatur culpa id quo aspernatur qui et unde aut et. Temporibus deserunt ullam illo omnis ipsam id id iusto ipsum alias qui et ducimus doloremque est	ЗАО ИркутскСбытСбыт	Челябинск	проспект Суворова, 671	(938)887-31-82	Владислав Трофимов	\N	\N	t	f	\N	0
+11	marlene@.com	$2a$10$tHIxSiICLKhAbYNvRWIwX.MQb2msCzs.So/pVFyJJxgXnfNwcYEhu	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:23.704068	2015-11-09 13:28:23.704076	\N	\N	\N	235	Labore et corrupti adipisci in ducimus architecto dolor sit modi nemo. Ducimus voluptas rerum qui totam tempora quo explicabo voluptatem quos omnis veritatis ducimus ipsam voluptatem. Vitae vero voluptates magni omnis nemo quis et. Sit suscipit minima unde qui voluptatem sint explicabo magnam cumque vel corporis labore cumque quo et facere itaque ut	ОАО ТрейдПромТорг	Оренбург	улица Энергетиков, 495	(956)032-17-76	Борис Селиверстов	\N	\N	t	f	\N	0
+12	dayton@.org	$2a$10$5T2s42qNNGBG8pAqqi.KROcvm.WYFapgGtkAb3.biN1wemocm1DAq	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:23.79138	2015-11-09 13:28:23.791388	\N	\N	\N	49	Accusantium ratione laudantium consequuntur labore veritatis quo iste maiores est consequatur. Provident qui et suscipit qui et deleniti facere quia provident. Mollitia voluptas tempore quis sit sit blanditiis rem quas numquam inventore nihil et. Dolores modi consequatur cupiditate iste eius reiciendis ipsam pariatur quam eos voluptates. Nihil non nam magnam rerum soluta ut eos. Aspernatur deserunt qui porro sunt dolorem nihil minima cum quia sapiente et quis illum. Aut voluptatem rerum mollitia fugit maxime in voluptatem qui repudiandae voluptatum ut omnis dolores tempora. Ut exercitationem iste alias ea nisi harum voluptatem aut officia quibusdam molestiae ducimus repudiandae autem	ЗАО ИвановоПромТрейдТорг	Владивосток	ул. Полевая, 236	(973)380-88-87	Игнатий Альбертович Поляков	\N	\N	t	f	\N	0
+13	emmalee@.рф	$2a$10$b3JlhhXfY7O0kaM0w7PCq.b9//uzRK2dXSjN3B9Vo1To5eaaoRzPu	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:23.878544	2015-11-09 13:28:23.878615	\N	\N	\N	120	Vel sapiente possimus dolore eos voluptates maiores aut officiis occaecati cum. Exercitationem nemo unde enim adipisci atque eveniet dolore quia culpa sint ducimus est dicta ipsum eveniet quia. Consectetur aut voluptate quos ut dolore consectetur earum minima. Fuga quae aut quos quia quo expedita nam voluptas autem quia consequatur. Voluptates et ut dolorem vel ratione doloribus et ex. Neque repellendus quidem sunt laudantium iure nulla sapiente laudantium. Repellat corrupti maiores officia dolorem reiciendis ratione deleniti ea adipisci voluptates quod qui autem quo accusamus distinctio fugiat rerum sunt. Iure hic sed labore laudantium voluptate. Labore voluptatem reprehenderit quis voluptatum assumenda molestiae consequatur id dolorum saepe adipisci voluptas mollitia deserunt cupiditate nesciunt cupiditate numquam. Et exercitationem repudiandae laudantium dolores est qui asperiores voluptates labore	ОАО Виктор	Иркутск	Совхозная улица, 722	(971)439-28-83	Арсений Некрасов	\N	\N	t	f	\N	0
+14	jacinthe.konopelski@.org	$2a$10$aX7JZfZE3kDf2SD4h60de.fYprD8DNpurD5RfBFks3wQN079OnANm	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:23.965872	2015-11-09 13:28:23.965879	\N	\N	\N	174	Numquam iste mollitia qui dicta praesentium voluptas reprehenderit rerum sint est consectetur quae. Rerum expedita similique qui accusantium adipisci. Est quas voluptates ut itaque laborum est maxime repellat. Ad quo qui et maiores. Tempora fugiat enim omnis voluptatem aspernatur esse. Laboriosam et sint eaque cum ab modi repudiandae minima veritatis voluptatem. Molestiae ut cumque omnis eligendi optio exercitationem qui aut et enim perspiciatis at tempora odit sint dolor	ТСЖ ТверьСбыт	Владимир	улица Лермонтова, 284	(977)342-97-03	Мамонтова Татьяна Лаврентьевна	\N	\N	t	f	\N	0
+15	darrion_franecki@.org	$2a$10$MyNw9ebTDbz8QmsqHcnNiu.jhD/z8OgzNlGfRYcqydD8t0VlcVpju	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:24.053252	2015-11-09 13:28:24.053259	\N	\N	\N	34	Quasi occaecati maxime quis omnis quos voluptate ut qui sapiente inventore. Temporibus esse omnis id eos saepe rerum fugiat. Aperiam molestiae labore et eos similique enim aut asperiores ut. Ut sit accusantium vel quaerat molestiae et. Cupiditate et incidunt eum sed ea	ТСЖ НовокузнецкСбытСнабСнаб	Брянск	улица Шоссейная, 678	(930)805-93-76	Нина Михайловна Носкова	\N	\N	t	f	\N	0
+16	irwin@.рф	$2a$10$Z1RjEcO1j0kjVoFRkyvUNONHlKvz5Jvkj.taJTHDwvRm63RRHzRXC	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:24.140317	2015-11-09 13:28:24.140324	\N	\N	\N	65	Dignissimos aut quidem doloremque incidunt est quo cupiditate neque qui repudiandae neque qui ipsa natus sed repellendus at explicabo. Dolores autem incidunt quos quisquam exercitationem et delectus aut impedit illum quisquam ea inventore ut ullam molestiae. Deserunt tempora ab voluptatibus ut suscipit	ТСЖ ТоргПромТрейд	Рязань	Строительная пл., 321	(930)554-83-85	Корнилов Лаврентий	\N	\N	t	f	\N	0
+17	jazmyn.barrows@.org	$2a$10$XKb46UGWZ1TFVn3pxG/TpuouQix1rIsS9aYcSTU3AdcVaX3xD7/RO	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:24.226437	2015-11-09 13:28:24.226443	\N	\N	\N	246	Et rerum quam fugit fugit maiores et iusto eos sed ad blanditiis. Porro qui molestiae in praesentium qui repudiandae excepturi voluptas nam cum consequatur dolorem qui ea vel. Omnis debitis consequuntur excepturi sit non in rerum. Eaque voluptas magnam omnis rerum quae adipisci aspernatur nesciunt ut cumque architecto quasi blanditiis sunt adipisci doloribus ad iusto et. Qui qui nisi explicabo accusamus atque quasi numquam unde enim velit. Qui nostrum ducimus molestias beatae quisquam repudiandae nemo debitis aperiam veniam sint autem quas. Qui a facere sapiente voluptate. Molestiae nisi odio quas nihil officiis est voluptatem. Magnam sed explicabo dolore asperiores ut id voluptatem sit quibusdam praesentium sit quis necessitatibus dolorem quibusdam	ОАО Антонида	Омск	Крупской пр., 815	(973)214-21-65	Колесникова Алевтина	\N	\N	t	f	\N	0
+18	bennett_langosh@.net	$2a$10$MmLdyoXiMlIPK64Ci21zheVGJQh112dKeZqDccLf87qLI73S4qnSO	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:24.31358	2015-11-09 13:28:24.31359	\N	\N	\N	241	Omnis magnam laudantium et id sed aut aliquam in et quaerat voluptatem temporibus doloremque. Quidem facilis vel qui voluptatum eligendi repellat eligendi ullam similique architecto neque illum itaque beatae assumenda pariatur quos ut asperiores. Modi minima ea cumque omnis consequatur sunt officia soluta a aut necessitatibus modi quae ut quam non magni. Architecto quibusdam quisquam minus eaque dolor atque itaque iusto et eveniet beatae asperiores ut architecto suscipit. Animi magni sit ut non quia porro explicabo tempore ea nulla	ОАО ПензаТрейд	Уфа	ул. Цветочная, 891	(930)593-26-14	Илья Маслов	\N	\N	t	f	\N	0
+19	veda_wolff@.net	$2a$10$xSe8pttCi5/0eb0SHTTbDuNTrgE.9kY5XncF/UKjAFbcw3gvONkHG	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:24.403013	2015-11-09 13:28:24.40302	\N	\N	\N	133	Cum ipsum quos quo inventore eum aspernatur adipisci eius quidem ea est nobis eligendi inventore. Autem aut magnam praesentium sunt blanditiis blanditiis natus. Est voluptate aperiam ea blanditiis odit. Facere culpa praesentium unde qui quia exercitationem. Voluptates quia et debitis animi voluptates. Incidunt commodi voluptatem recusandae nihil dolor et illo voluptate. Deleniti ad voluptatem ut et impedit et et neque rerum culpa. Dolore dolorem qui in soluta tempora est ea omnis. Eos aut quam adipisci quo omnis voluptatibus temporibus qui rerum mollitia dolorem asperiores repellendus molestias ut earum quo illum	НКО СнабТорг	Челябинск	проспект Ленина, 979	(983)177-86-52	Макаров Олег Анатольевич	\N	\N	t	f	\N	0
+29	kirk@.info	$2a$10$ymlIF63AIbT0aUqbGWe45e1aJBYzbzMKJoZ8qxQDon02SRbpt9bcu	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:25.28705	2015-11-09 13:28:25.287057	\N	\N	\N	185	Quis et reiciendis iusto placeat. Veritatis facere aperiam suscipit aliquid dolorem est nesciunt sed quasi repudiandae soluta explicabo animi est et quasi et quia et	ООО ТрейдСбытПром	Челябинск	Комсомольская ул., 911	(916)526-54-38	Степан Матвеевич Соловьев	\N	\N	t	f	\N	0
+20	keshaun@.ru	$2a$10$O9CLExbH7GWmLjQQ397mBujvAx3YXJiZER.UWKSlOwP89E9HN2xaW	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:24.490119	2015-11-09 13:28:24.490125	\N	\N	\N	154	Omnis et expedita corporis consequuntur corporis non qui quibusdam ut excepturi nam ducimus vel architecto consequatur. Sint eos qui est nam excepturi neque a voluptatem reiciendis corporis dolor nulla qui dolorem. Quia nisi aut est quo voluptatum unde repellat quidem ut et quam voluptate voluptatem quaerat qui corporis. Nemo quas aut veniam alias fugit dolores voluptas voluptas alias temporibus quo quia. Et omnis nihil quae aliquid sequi omnis similique quisquam ut aliquam adipisci magni ab occaecati aut commodi voluptatum aspernatur quidem	НКО СбытТрейд	Владивосток	улица Юбилейная, 254	(946)679-35-16	Кузнецов Антон	\N	\N	t	f	\N	0
+21	ayden@.ru	$2a$10$K2jepmN43hF6DUj8oKNEgulL.9JhFQoZ7P3ZGd8CL4i0wemnO/Oim	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:24.578016	2015-11-09 13:28:24.578023	\N	\N	\N	275	Aperiam quaerat ad nihil atque accusantium adipisci dolorem nihil voluptatibus modi voluptatem rem. Quibusdam sint numquam id totam qui magni consequatur officiis laboriosam exercitationem error perspiciatis ducimus vel laborum et quasi itaque	ОП СнабТрейд	Ижевск	улица Мира, 857	(931)045-54-58	Алексеев Олег Лаврентьевич	\N	\N	t	f	\N	0
+22	ariane@.рф	$2a$10$3SsnFHVGVHtlMUAbn0.67uzDIGIrSzwuVjNjlkjloGiD3K1Plj9zK	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:24.665534	2015-11-09 13:28:24.665541	\N	\N	\N	10	Qui tempore aut perspiciatis quaerat sit autem et non ut ut in et quaerat cumque consequuntur est explicabo. Itaque quaerat voluptate distinctio quisquam qui ipsum aspernatur quis amet eius aut esse. Saepe blanditiis pariatur accusamus fugit non quasi veniam sunt omnis beatae tempore voluptas dolores. Ratione ab dolore provident asperiores totam quidem quidem dolorem voluptas eveniet officiis aut occaecati accusamus perspiciatis quis at et enim. Beatae sunt nisi soluta dolorem qui veritatis. Reprehenderit in quasi sed itaque magnam delectus ut ullam ipsum iusto maiores molestias sit aut enim non accusantium doloribus. Repudiandae culpa dolor dicta suscipit voluptatem numquam maiores eligendi. Omnis totam et quae est harum eius iusto et unde voluptatem sed quia dolores ut culpa. Neque fuga ipsum tenetur distinctio ea perferendis eum temporibus dicta iure omnis voluptas nisi explicabo neque beatae dignissimos aliquam harum. Eum velit et at maiores ratione ducimus ea beatae est velit voluptas vero praesentium quia eaque dolore voluptatem	ИП ЧебоксарыСнаб	Томск	Красная площадь, 276	(919)282-07-32	Терентьева Лариса	\N	\N	t	f	\N	0
+23	carlo.erdman@.info	$2a$10$1yW/Sq5TAlUeTL4EMTRGvefAm3YEcKTmzbFkpSB6NtY.FFAi3JdXu	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:24.752715	2015-11-09 13:28:24.752722	\N	\N	\N	180	Repellat id tempore aut beatae veritatis numquam aut cumque tempora blanditiis illo sint. Est sit consequatur tenetur qui quia et dolorem laborum vitae in veniam ad quia explicabo. Unde repellat sunt qui voluptatem dolores quia impedit accusamus blanditiis sit qui distinctio dolor quo. Cum rem omnis ex aut corporis et sit officiis quae minima in. Rerum delectus provident ducimus odio doloremque ut voluptatem est voluptatem pariatur aspernatur dolorem dicta non molestias. Sapiente blanditiis culpa sit quo placeat totam exercitationem et assumenda autem	НКО Санкт-ПетербургТрейд	Хабаровск	Дачная проспект, 339	(971)303-68-35	Татьяна Блохина	\N	\N	t	f	\N	0
+24	katelyn_fay@.org	$2a$10$JJdsm0/4SCyfGjpOY4x8aO/aHJ/B6qBfEE4qXGLEXP4rdao/iwCSa	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:24.840664	2015-11-09 13:28:24.840671	\N	\N	\N	292	Unde explicabo aspernatur officiis modi labore. Inventore qui est sit ipsum voluptate sit ut modi in dolor nihil dolorem. Aut et ut voluptas illum laudantium accusamus facilis voluptatibus soluta error dolorem est blanditiis. Impedit corporis ex at corrupti. Voluptas corporis repellendus vel qui ut dolorem. Consequatur quis sed et rerum qui sit cupiditate sapiente et sint error distinctio illo vel rerum. Fugit quisquam qui dolor maiores asperiores deserunt et inventore alias rerum harum praesentium ipsam omnis nemo sunt saepe. Consectetur dicta perspiciatis aperiam in officiis natus et numquam ducimus voluptatibus et hic enim. Non corrupti voluptas ipsam hic nobis tenetur odio perspiciatis facere omnis	ОП СочиТрейдСнаб	Липецк	пр. речень улиц, 419	(964)805-53-29	Евгений Михайлович Буров	\N	\N	t	f	\N	0
+25	sherwood.wilderman@.net	$2a$10$KZl8NEouAhJR0qyF/uvebeLA3goSHXiRuXPkPeyQeI0lLbk2NpCle	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:24.928175	2015-11-09 13:28:24.928181	\N	\N	\N	173	Corrupti dolorem et nisi et reiciendis est ea ut at et enim quo in culpa natus voluptates. Nemo velit repellendus nulla et consequatur quia voluptatem aut illum sunt. Vel voluptas blanditiis nisi consectetur voluptas illo et officia mollitia adipisci et tempora omnis ad porro similique ad. Sunt hic aperiam omnis error ea in aspernatur	НКО Таисия	Магнитогорск	проспект Зеленая, 547	(932)565-91-54	Наталья Матвеевна Белова	\N	\N	t	f	\N	0
+26	tia@.net	$2a$10$ZsLLPVQna/8Z6A2w3pBLL.QMvSCPoMlBaM1U90R5mgTCbY40FR50G	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:25.016451	2015-11-09 13:28:25.016457	\N	\N	\N	138	Dolor est voluptatem aut dicta. Error esse earum in est voluptatem et vel numquam rem a aspernatur non soluta occaecati et sed ex necessitatibus omnis. Quae ut quidem maiores est repellat tempora corrupti itaque	ИП Шубин	Ставрополь	Садовый ул., 491	(920)417-27-74	Крюкова Людмила Никитична	\N	\N	t	f	\N	0
+27	chadrick@.org	$2a$10$yHAfeHgGnNRQXOpGkOAMUu.Dsot/OwaZ8x.K7D7UOfxB3Hz9.96W6	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:25.103306	2015-11-09 13:28:25.103313	\N	\N	\N	138	Soluta ea quibusdam atque voluptate perspiciatis sed mollitia voluptatem et et quae velit explicabo nobis magnam inventore fugiat. Deserunt minima at at repudiandae deserunt quod velit amet perspiciatis voluptas cum exercitationem quia consectetur aut quos doloremque aliquid quia. Ratione consequuntur sequi reprehenderit dolorem quo explicabo sit quidem repellat ipsam repellendus. Eum vel saepe ut odio. Aut autem dolorem excepturi quo. Illo qui minus sit magnam eum dolorum magni id ea. Pariatur aut quae mollitia voluptas exercitationem atque nihil cupiditate qui non sint quas ut voluptate. Omnis sit explicabo laudantium placeat veniam nemo omnis explicabo sed sed vero sequi aut	ЗАО КрасноярскСнаб	Москва	Степная ул., 751	(999)330-55-13	Валентин Крюков	\N	\N	t	f	\N	0
+28	ludie@.com	$2a$10$IMXfCCe.xpTSrW2VALoyTOkbV4XzPr9QAAbizy50bwTlom4l1xVma	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:25.199124	2015-11-09 13:28:25.199158	\N	\N	\N	289	Sapiente quo maiores deleniti consequatur sed mollitia dolores distinctio recusandae vel corrupti velit debitis rerum sequi eligendi. Sit earum libero omnis recusandae tempora sint quis voluptates accusamus sapiente temporibus quidem aspernatur et nesciunt. Iusto blanditiis ipsam dolorem enim aut et consectetur temporibus consequatur laudantium quia dicta voluptatem et nam voluptas mollitia nulla et. Nihil sit quaerat et deserunt vero. Minima illum at quis doloremque omnis ipsam itaque facere eaque autem et. Aperiam atque et modi deserunt in facilis aliquid est ipsum quaerat vero voluptatem ab laboriosam sit quia voluptatem error. Expedita omnis libero deserunt nostrum et libero omnis. Eius voluptas commodi atque quis ut occaecati. Quisquam non repellat nostrum incidunt consequuntur laborum et praesentium velit molestiae. Vero et saepe qui sit dolor nostrum eius optio enim itaque eligendi aut id nostrum ducimus eos	НКО ТомскТрейд	Махачкала	ул. Рабочая, 419	(997)977-53-47	Александрова Римма	\N	\N	t	f	\N	0
+30	orville@.net	$2a$10$OvOSyBXrXrSul3MrUcYhh.CeUmaeXmd9GmKMkM6lyVpE1582VEPma	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:25.375647	2015-11-09 13:28:25.375653	\N	\N	\N	45	Hic fugiat est suscipit minus in minima. Quo eos molestias atque in quia voluptatem sapiente quibusdam sit. Qui dignissimos sed minus rerum dolores qui optio consequuntur quod. Vero modi est impedit incidunt pariatur. Similique illo sit aut debitis. Eum unde vero numquam esse quas vero et ut voluptatibus voluptas laborum dolore vero. Eos cumque dignissimos facilis magni quam veritatis iste est dignissimos voluptatem facere repellat aut aut fuga. Explicabo omnis alias ipsum deleniti in quia vitae est aliquid ex quod ut optio quod quis quia. Quo explicabo voluptas et dignissimos	НКО КазаньСбытТрейд	Тверь	проспект Свободы, 915	(972)712-87-18	Корнилов Фёдор Ильич	\N	\N	t	f	\N	0
+31	darrion_kozey@.org	$2a$10$VYHeVYoGLQ8Ps9eta3uw0e5FEOLDzsxbNxPd7Muya2jOmLCNDLWFC	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:25.462628	2015-11-09 13:28:25.462635	\N	\N	\N	329	Unde rerum eos animi illo sunt quis magni consequatur distinctio unde saepe est totam voluptatum nobis voluptatum inventore placeat officiis. Facere optio est unde rerum expedita qui. Sunt beatae expedita temporibus reiciendis ducimus voluptatem dolorem expedita perferendis voluptatum odio nostrum autem ut minima perferendis. Sint reiciendis et ut recusandae aut et illo optio est quos totam impedit laudantium quos. Dolorem odio omnis quis sapiente molestiae eum quia eligendi error aspernatur suscipit molestiae quos aut non pariatur numquam accusantium vel. Ut atque itaque repellat voluptas cum. Enim et qui consequatur sapiente et autem est aut aliquam cumque unde nemo architecto dolores soluta eius aut	ЗАО СбытТрейдТрейд	Иркутск	Набережная площадь, 341	(991)417-04-78	Чернова Анастасия	\N	\N	t	f	\N	0
+32	zack.sanford@.net	$2a$10$m4wj3MnBD20rlP4vDeX5AOl30zjUEd2oZjrXlPjkprKgEAwYNpHbe	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:25.548534	2015-11-09 13:28:25.548541	\N	\N	\N	168	Aut ad ratione repudiandae quod. Iusto vel molestiae unde quo corrupti velit fugit culpa laborum placeat qui quod et debitis non omnis sunt dolorem facere. Ad ab dolor asperiores nihil. Quo laudantium ullam ea omnis aliquid id voluptatibus nesciunt eos qui enim ea fugiat aut. Qui similique dolores incidunt maxime voluptas ut qui quaerat quisquam molestias consequatur sit reprehenderit sapiente et illo. Odio possimus aut enim quis facilis corporis rem	ИП Лаврентий	Липецк	пл. Весенняя, 324	(927)480-37-74	Алексей Георгиевич Лукин	\N	\N	t	f	\N	0
+33	eliza_rogahn@.net	$2a$10$pPkIBYMf4gN7XZa91fkId.EYjAnc8PnY7TkBkriPMF0oJo5OWNlOO	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:25.635224	2015-11-09 13:28:25.635231	\N	\N	\N	16	Et aliquam fuga distinctio culpa ab voluptas sint rerum nostrum quo consequatur nemo modi. Assumenda ipsa beatae esse necessitatibus qui veniam. Explicabo et tempore quod doloremque assumenda fuga sit accusamus itaque aut et quia quidem sunt soluta alias. Earum autem aut eum dolores et non quis laboriosam harum voluptate. Quaerat enim voluptate non sit laborum laudantium molestias corrupti voluptate suscipit aperiam. Deserunt consequatur tempore placeat hic blanditiis fugit at error harum. Voluptatem recusandae quae placeat adipisci qui exercitationem nisi ut aut et. Dicta sapiente distinctio amet aut rem odit id earum odio laborum corporis natus distinctio accusantium sit	ООО Носков	Волгоград	Восточная ул., 606	(926)465-22-09	Дарья Тарасова	\N	\N	t	f	\N	0
+34	rhett@.info	$2a$10$mJ//YSY401P1vLrmax1OBeTq4EKH855zAkeUtpP3Zt.9kMsr18VX2	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:25.721917	2015-11-09 13:28:25.721923	\N	\N	\N	137	Consequuntur sunt accusamus cumque voluptas molestiae similique quo animi reprehenderit voluptate debitis dignissimos voluptate eaque dolore maxime sit aut error. Culpa molestiae soluta ut aut eligendi qui voluptate dolor praesentium totam quia earum dolorem nobis et corrupti. Similique in maxime officiis illo molestias voluptatum ullam. Voluptatem amet et quos quo eum soluta. Officiis aut esse facilis qui eveniet dolorem doloribus quae maiores eius labore nisi alias voluptatum quidem eius autem. Suscipit odio architecto quo nam incidunt porro similique. Veritatis dolorem eum mollitia eos qui expedita quidem enim laboriosam beatae at excepturi et quas quasi ut ut	ТСЖ СнабСнаб	Владимир	проспект Восточная, 671	(935)855-71-64	Кошелев Виталий	\N	\N	t	f	\N	0
+35	margaretta_reinger@.net	$2a$10$9joU4a3sxeLIx.IrV9MObOhTC7JcbkSGOaznOhdT0V9DoRhUO9lH2	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:25.809038	2015-11-09 13:28:25.809045	\N	\N	\N	61	Ut iste maxime facilis dicta sint placeat quia veritatis repellendus rerum sit error iste numquam aut beatae ipsa. Doloremque quia ullam aut accusamus aspernatur ratione odit illo officia incidunt et ex aut harum. Quia perspiciatis quia cumque delectus unde. Quis rerum eius soluta voluptatem voluptates eius iste culpa quos nesciunt maiores cupiditate sint voluptas error aut aliquid. Maxime nihil praesentium officiis quos et enim. Id qui veniam aut amet deserunt minima perspiciatis dolores vero qui odio dignissimos ducimus repudiandae nulla. Nesciunt voluptatem harum deserunt nihil nesciunt sapiente	ТСЖ Екатерина	Краснодар	ул. Вокзальная, 101	(987)269-21-68	Анфиса Денисова	\N	\N	t	f	\N	0
+36	godfrey@.рф	$2a$10$fkI2JbMjqzzQUC3e9fjFMevYafrb/m2dEZQ8FaU34pT/J.NzzObyu	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:25.896274	2015-11-09 13:28:25.896297	\N	\N	\N	191	Molestiae unde quibusdam ut animi recusandae aut distinctio accusamus est suscipit necessitatibus dolorum eos cumque minus quia. Provident saepe ut nihil sit. Omnis neque laborum fugit sapiente ipsam et modi quasi vitae eos excepturi illum consequuntur autem velit. Consectetur natus ipsa accusamus qui illo autem earum sunt fuga. Voluptas animi quia eaque nulla omnis doloremque dignissimos est id sequi quis repellendus officiis. Necessitatibus ut excepturi odit debitis esse eveniet magni magni fugit tempore et nostrum minima assumenda. Impedit et qui rem possimus esse placeat non sed harum molestiae ut eos tempore quas eveniet alias molestias et vel. Consectetur aliquid ab facere modi et expedita eum eum aperiam voluptatem nihil praesentium enim. Repellendus iste ducimus est dignissimos temporibus exercitationem temporibus corporis delectus dolore dolor laudantium provident dignissimos sit quo. Doloribus consequatur ut et quis cupiditate sed voluptates tempora consequuntur laudantium quisquam et porro est unde illum provident	НКО СнабСбытТорг	Рязань	Степная площадь, 364	(932)204-74-10	Денисов Илья Александрович	\N	\N	t	f	\N	0
+37	adrain@.com	$2a$10$cVgGZYAhHGFTTvV7mm5nL.i0WRvO1AavKqA5Lf3Cbz.D/mGDN0T2m	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:25.982274	2015-11-09 13:28:25.98228	\N	\N	\N	251	Eos repudiandae unde assumenda et vel ullam minus tempore sit. Consequatur commodi est et quia iure nesciunt consequatur aut nihil laborum. Itaque error quisquam magnam dolorem ut nulla atque nulla est aut fugiat sint quo dolor est placeat quis. Adipisci accusantium commodi maiores repellendus nemo et. Tempore officiis maxime sunt excepturi qui necessitatibus qui autem. Ut expedita est eligendi nihil quo numquam eum dicta doloremque delectus minus blanditiis modi. Et vel quia unde voluptatum optio porro atque sit accusamus quisquam necessitatibus sed facilis maiores expedita illo illum distinctio nihil. Aspernatur repudiandae iste nam quo quae sit sed quos beatae dolorem facilis	НКО КемеровоТрейдТорг	Белгород	Заречная пл., 253	(927)520-00-07	Горбунова Жанна Леонидовна	\N	\N	t	f	\N	0
+57	shanny_prosacco@.org	$2a$10$ERHD/2jkp5aFsWJDFfk/KuTKupcBANO6ySkG0fD0yFeWSYHl/SVJS	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:27.726865	2015-11-09 13:28:27.726871	\N	\N	\N	371	Modi quod voluptas ut fugit voluptates quae nemo aut voluptatem expedita repellendus distinctio temporibus eum hic nesciunt eos. Quaerat sint fugit nisi debitis asperiores voluptas illum omnis	ТСЖ ТюменьТорг	Иваново	проспект Гоголя, 536	(935)457-31-85	Юрий Борисов	\N	\N	t	f	\N	0
+38	sandra@.рф	$2a$10$wkklpGju5JtRuZENQFd.bOP9Ar8YPmd0iCyS1QJooxBy82ni4EY4m	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:26.069678	2015-11-09 13:28:26.069686	\N	\N	\N	344	Suscipit consequuntur minus explicabo et quia in nemo doloribus suscipit quod. Eum dicta debitis beatae beatae beatae voluptatem architecto soluta in odit cupiditate. Voluptas et beatae dolorem tempore minima voluptas illo enim vel ratione dolor voluptas. Rerum iure est deserunt accusantium eius sed. Laboriosam aut rerum suscipit tempore iusto molestiae est ullam dolorem porro	ИП СочиСнабПром	Рязань	Речная пл., 179	(977)359-22-06	Евгения Колобова	\N	\N	t	f	\N	0
+39	roslyn@.рф	$2a$10$xR4knrE1imFeru1Cq944oOd.iLIeIcf2eRJN7/OY8D7Lsjq.bOjGW	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:26.157059	2015-11-09 13:28:26.157066	\N	\N	\N	300	Et quae voluptatum non placeat rem et delectus ducimus officiis eveniet voluptas at placeat amet praesentium quis. Est eligendi cumque consequuntur saepe quos omnis ipsum aliquam molestiae quo	ОП Красильников	Санкт-Петербург	Победы пр., 826	(971)716-27-58	Александра Михайлова	\N	\N	t	f	\N	0
+40	marjory_marvin@.org	$2a$10$UMkRpJczeNjoadNgPaIXXe.Q.Dgekn/L7AyLIFqcUFulxpyLk.VTy	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:26.243583	2015-11-09 13:28:26.2436	\N	\N	\N	247	Labore voluptas nam enim minus sapiente explicabo optio. Deserunt autem itaque id et eaque iusto soluta occaecati. Reprehenderit quia incidunt officiis porro voluptas. Deserunt ex ipsa laboriosam aut magnam repellendus qui animi magnam corporis consectetur quas minima voluptates. Aliquam ut vitae dolore est eum tempore voluptatem eveniet quos consequatur dolorem non rerum. Est voluptas omnis voluptas eos. Qui consequatur laborum voluptatem quasi ab est consequatur eligendi quis non illum optio quibusdam dignissimos	ЗАО ПермьТоргСнаб	Тольятти	Новая улица, 663	(997)228-95-89	Белова Оксана	\N	\N	t	f	\N	0
+41	jaquelin@.рф	$2a$10$HpHD.0MWvlxA43MsUf2dTeBzpydcPwupE69TVGCJwW4TFx/oqfclC	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:26.332387	2015-11-09 13:28:26.332394	\N	\N	\N	9	Maiores aperiam voluptatem eveniet quibusdam. Natus incidunt molestiae illum in mollitia nostrum sit dolorum impedit explicabo natus non eius. Enim quos magnam cum quidem repellat nesciunt soluta reiciendis ducimus similique modi officia sunt minus. Corrupti quia esse est ut rerum sunt odio velit quod nulla. Commodi dolores aut quia qui. Officia enim aut rerum praesentium atque occaecati veniam omnis. Possimus odit dolorem quas odit beatae consequatur dolorum nihil aut quo a eveniet non sit esse. Voluptatum quas eius optio et molestiae quisquam quisquam fugiat qui officia in sequi molestiae explicabo. Rerum et quia tempora temporibus soluta corrupti et. Aut et nemo numquam excepturi exercitationem placeat aut	ТСЖ ТольяттиСнабТорг	Ульяновск	Западная площадь, 652	(932)319-81-71	Новиков Михаил	\N	\N	t	f	\N	0
+42	eldora_tromp@.com	$2a$10$Ygl4L6HbKUdyYgKSQWbhyevD6I9HSTyPjz3TjFKO20ZJfd16m24sq	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:26.419482	2015-11-09 13:28:26.419488	\N	\N	\N	26	Consequatur sequi et sapiente deserunt. Reiciendis quo est veritatis culpa optio quasi officia officiis aut. Quia ut ex eum aut dolorem et qui facere cumque ut autem nisi qui. Excepturi laudantium nihil sint laboriosam omnis corrupti nam ducimus quas veritatis ab hic consectetur soluta dolores. Qui voluptatum velit magni numquam commodi possimus officia velit et quis rerum voluptatem provident sed unde dolor id vero. Fugit dolorem officia quia provident quasi nostrum omnis omnis a est reprehenderit excepturi commodi. Saepe distinctio omnis est est sint dolorem dolor officia neque occaecati eos quo expedita autem incidunt ut ad praesentium. Omnis vitae in sint enim officia rerum. Occaecati fugiat veniam sint nobis laboriosam alias voluptatibus autem enim rem quaerat ad eaque pariatur commodi voluptatem corporis repudiandae. Natus nihil distinctio eum qui aut eos sunt itaque in est voluptas est dicta nisi minima	ТСЖ Анастасия	Томск	Красноармейская улица, 309	(976)492-81-48	Самсонов Герман	\N	\N	t	f	\N	0
+43	everardo_tremblay@.net	$2a$10$85tVCDt.P58Bx0Z9oQZU9.WVBYivNY0k11ajfkOUb7VUS99T16sEK	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:26.505943	2015-11-09 13:28:26.505949	\N	\N	\N	288	Id quia ipsa fugiat et recusandae voluptas eligendi neque enim laborum earum ipsa ut sint et at dicta. Corrupti eum nisi officia qui laborum ratione aut possimus. Commodi deleniti corrupti quo consequatur ex iste non aliquid voluptas quia fuga qui inventore minus sunt sunt architecto. Blanditiis harum rerum dolores magnam et esse maxime	ИП Соболев	Пермь	Труда проспект, 668	(935)866-06-84	Егоров Леонид Артёмович	\N	\N	t	f	\N	0
+44	rahul@.com	$2a$10$CKjB8QWR1HLiOPYG48P9OeyQnXzPEGPIELjmrQ.0eMEr3d16EaXt6	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:26.593174	2015-11-09 13:28:26.593181	\N	\N	\N	217	Exercitationem ipsa dolor aspernatur veniam quis consequuntur assumenda voluptatum mollitia nisi ipsa quae. Accusantium blanditiis ut iste esse voluptatem et optio perferendis hic blanditiis et adipisci suscipit necessitatibus commodi. Reprehenderit quas eum harum veniam dignissimos. Velit adipisci corporis voluptas expedita odio accusantium est nobis debitis delectus deserunt et eos qui minus ut ut omnis. Sint vel neque dolore error sequi et non fuga et voluptate optio. Qui voluptatem neque delectus saepe quo quaerat ullam beatae magni ipsam ut sequi perferendis fugiat eius molestiae quis autem. Ea voluptatem eius facere blanditiis quia consectetur enim explicabo modi omnis cum ea non id illo cumque. Amet dolores suscipit pariatur vitae vel dolor consequatur eos quae nulla voluptas quos earum at sed	ОАО Ефимов	Красноярск	проспект Чехова, 138	(942)970-43-49	Любовь Ярославовна Логинова	\N	\N	t	f	\N	0
+45	erich@.ru	$2a$10$Hv/P9ATGe.tUtPbs/MZ9tuEdhW29KJTYcq9cHnS2ItK2mI9XtWIRO	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:26.679905	2015-11-09 13:28:26.679913	\N	\N	\N	373	Aliquid accusamus recusandae aspernatur iure sequi nemo exercitationem quod doloribus itaque est blanditiis saepe saepe voluptatum aut iste. Minima laudantium incidunt vel voluptatem consequatur rem temporibus et sed impedit qui enim animi architecto beatae nisi. Repellat aut ea explicabo qui praesentium ut suscipit eaque quaerat sunt ullam eum est ab natus aut. Fugit consequuntur provident harum qui deserunt voluptas alias molestiae adipisci quam	ИП СбытСнабПром	Иркутск	Космонавтов пл., 837	(989)492-77-62	Илья Афанасьев	\N	\N	t	f	\N	0
+46	oswaldo@.com	$2a$10$.YTMyjT3SXK1VQhhswXebOhq.DP4IPN/ImCYXpyIGRz4AhwRDIuKO	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:26.766916	2015-11-09 13:28:26.766922	\N	\N	\N	80	Ut quos dolor aspernatur non nihil vel minus officiis aut praesentium sunt similique facere doloribus quisquam quia molestiae aut deleniti. Consequuntur velit molestiae voluptatem qui rerum tempora hic molestias dolorum. Quae molestiae nihil id qui odit minus laborum illum sint ea voluptas numquam atque et dolorum sed animi aliquam. Delectus illo ut dolorem ut nam nobis amet corrupti. Veniam corrupti et eos nihil repellendus et libero soluta commodi qui ipsum dolor est aut et amet. Ut porro nostrum perspiciatis velit dolorum cupiditate qui necessitatibus magnam atque ratione maiores et	ООО Стрелков	Чебоксары	Больничная площадь, 218	(991)677-82-62	Андреев Григорий	\N	\N	t	f	\N	0
+56	frieda@.рф	$2a$10$p7BsRpr6zwVBh1V6wvGSHOy6tzBb/.wgapoSiWh4q2/Eg9JhGwLVu	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:27.640224	2015-11-09 13:28:27.640231	\N	\N	\N	161	Dolorum rerum sit et quasi. Veniam ipsum itaque temporibus nesciunt veritatis molestiae adipisci. Et esse consequuntur perspiciatis possimus animi laboriosam sit cumque dignissimos quisquam sed inventore eius dolorem. Occaecati suscipit laboriosam debitis et blanditiis itaque voluptatibus facilis veniam nisi non cum. Nesciunt placeat veritatis dignissimos rem ea voluptatem molestiae	ТСЖ Молчанов	Чебоксары	пл. Дружбы, 928	(953)952-01-03	Антонида Романовна Архипова	\N	\N	t	f	\N	0
+47	arne_schinner@.рф	$2a$10$d7tOH5qNvRJBMplxGQ8K2.pR3n/gcjsvG2EkowFNKk2tc8UJ2s6om	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:26.855389	2015-11-09 13:28:26.855395	\N	\N	\N	85	Repellendus ipsa ad consequatur quia quod et ut excepturi similique qui qui explicabo aut delectus laboriosam quas earum necessitatibus. Atque omnis voluptatibus iure quo natus magnam autem dolores et accusamus sit aperiam eaque delectus. Eligendi excepturi ea assumenda voluptas quia vel sequi et amet et et rem qui sit architecto dolorem dolores ab. Autem sunt eius est recusandae molestiae est nulla consequatur temporibus. Ut cumque odio et cupiditate labore sint. Modi numquam nihil nemo vel praesentium. Occaecati dolor accusantium voluptas illo consequatur. Fuga commodi nobis ut facere ex non consequatur iure eum aliquam doloremque et rerum doloribus sit totam. Qui aut minus aliquam voluptatem excepturi voluptates sed qui totam. Voluptates assumenda inventore exercitationem tenetur qui animi	НКО ЕкатеринбургТорг	Ижевск	Заречная проспект, 685	(937)728-43-39	Артём Фадеев	\N	\N	t	f	\N	0
+48	novella@.org	$2a$10$pHSiI6hpEQbRqRQcP8H9/ewuHbdoQ8lo6c2/wBSAAiJLX5/rtdPQG	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:26.943071	2015-11-09 13:28:26.943075	\N	\N	\N	67	In nisi voluptates iure non sed sint. Recusandae cumque in molestiae molestiae rem facere saepe sint facere tempora eos iste atque quos ratione omnis id sequi. Est necessitatibus iusto aperiam nobis officiis fugiat accusantium vel minima ipsum est placeat vel non dolor nostrum aut. Animi vel sequi voluptas quod sint quia rem voluptatem et sit. Est nulla cupiditate minus esse quisquam unde et sed id eum nam nemo rem doloremque omnis debitis. Ea repellendus voluptatum aut repudiandae totam qui quo et libero quibusdam ut ab necessitatibus est excepturi rerum. Unde ea et laudantium accusamus ab voluptatem saepe voluptas accusamus ullam praesentium ducimus autem	ТСЖ КрасноярскСнабТрейд	Томск	пл. Дружбы, 143	(933)959-43-96	Валерия Леонидовна Гаврилова	\N	\N	t	f	\N	0
+49	wyman_murray@.info	$2a$10$PEN5fIpr6jZWzrwxD4Hm4uIQD3uw5psrRTutq5Ww/kGfNb7EmrB2u	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:27.0299	2015-11-09 13:28:27.029907	\N	\N	\N	178	Laborum temporibus aspernatur adipisci sunt soluta doloremque nihil magni minus possimus inventore ullam non qui necessitatibus exercitationem magnam totam et. Quaerat maiores consequatur voluptas dolores eos nemo in corporis doloribus mollitia doloremque delectus inventore officia aspernatur sequi expedita quos. Numquam in quisquam qui in explicabo sunt. Illum assumenda molestiae blanditiis dolorum. Porro et at excepturi sed eos pariatur et recusandae voluptatem vitae saepe quia dolore ipsum saepe suscipit sit ducimus. Autem omnis sint voluptatem laborum est nostrum est velit reprehenderit blanditiis quis dolore perspiciatis nostrum deleniti a	ОП ТюменьТрейдТрейд	Владимир	пр. Луговая, 815	(944)574-82-28	Шаров Юрий	\N	\N	t	f	\N	0
+50	judson.conn@.рф	$2a$10$YN/rKEikylIxXFePQVMxSecyTuODT4wrOdcce84B8DjhG4CXgwJAm	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:27.117106	2015-11-09 13:28:27.117113	\N	\N	\N	355	Quaerat ab minima praesentium vel id distinctio reiciendis ipsa vitae dolorem ipsa sunt autem. Et excepturi dolor fuga inventore rerum modi assumenda magnam omnis tenetur at quia in accusamus sapiente repellendus vel dolores animi. Et et aspernatur eum eaque laboriosam veritatis accusamus repudiandae non alias porro sed unde. Quae tempore fugiat laborum culpa soluta voluptatum. Laboriosam qui qui quis quo autem provident	НКО Васильев	Тольятти	улица Полевая, 618	(964)414-21-64	Миронова Алевтина	\N	\N	t	f	\N	0
+51	deangelo_wilkinson@.net	$2a$10$pBZDuanHPf1mirgps2BkJeAGcx9QZ8cyblFI1mXbkAWttx9JHmrOm	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:27.203791	2015-11-09 13:28:27.203799	\N	\N	\N	292	Aspernatur qui delectus consequatur sit. Quam ipsa placeat laborum nostrum impedit distinctio at officiis minus aut et. Occaecati quo delectus adipisci molestiae vel dicta aut quasi ut similique unde rem. Illo ipsam porro porro ut veritatis sint ipsum atque perspiciatis nihil illo nihil enim inventore	ОАО Вадим	Магнитогорск	проспект Подгорная, 455	(992)328-12-71	Егор Вадимович Сысоев	\N	\N	t	f	\N	0
+52	heath@.com	$2a$10$NaUn6R/2MdIKPaQmCPwbm.MFTBOls..QPG9Mnnwz8BELVIV8l.hWm	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:27.292214	2015-11-09 13:28:27.292222	\N	\N	\N	215	Voluptatibus magni velit ipsa et expedita est. Et provident sunt dignissimos aperiam qui non error hic voluptates aut blanditiis iste ipsa ut in pariatur pariatur praesentium illo. Est ut quia officiis nostrum consequatur officia. Odio aut delectus praesentium libero perspiciatis itaque alias odio quo corporis sit eaque consectetur nesciunt et. Magni autem ut odio nisi. Eum voluptatibus consequatur soluta ducimus sunt odio impedit aliquam dolorem iure deleniti accusamus reprehenderit dolor eius occaecati ab accusamus repudiandae. Saepe aut voluptate eum odit cum illo consequatur ut et accusantium facere eligendi	ИП ТрейдТорг	Тула	Клубная пр., 229	(921)835-67-08	Маргарита Олеговна Фокина	\N	\N	t	f	\N	0
+53	morgan@.org	$2a$10$hC23Ao3.v22PLfAowiLkzOFDieTEFFScyX02c3yK81ld5aUHpSRtS	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:27.379336	2015-11-09 13:28:27.379343	\N	\N	\N	223	Voluptas unde voluptatibus cupiditate voluptatibus nulla. Ipsum sed sit et asperiores similique perferendis est impedit at consequatur voluptatem odit repudiandae temporibus molestiae. Et ipsum ea consectetur est quia possimus in eos quidem officia nulla quos qui rerum tenetur qui quidem sint. Perferendis maxime aliquam eveniet eum ab et illum voluptatem quas sint voluptas aut nesciunt et ea corrupti corrupti ut corrupti. Explicabo ipsa excepturi eos porro et at corporis accusamus rerum iure expedita voluptatem nisi eaque. Aut sequi in sit vero voluptas dolores ut voluptatem ea modi. Iste eum occaecati fuga sed nemo laudantium eos sed voluptatem in et qui aut laudantium rerum dolorem. Maxime eos qui sint voluptas tempore aspernatur et rerum qui. Quaerat itaque libero molestiae dicta molestias atque provident fugit illo	ОП ПромСбытТорг	Иркутск	Московская улица, 978	(917)698-74-22	Кулагина Виктория Юрьевна	\N	\N	t	f	\N	0
+54	marlen@.ru	$2a$10$YkCcujsez1JvXYHegUjlke7A2Z4lmALNhKiRPoXs0mjTPdCHFA.P.	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:27.46641	2015-11-09 13:28:27.466421	\N	\N	\N	32	Ut maxime dolores voluptatem et perferendis dolor culpa et cumque id optio minima voluptatem. Culpa architecto et quaerat quia pariatur aut consequatur voluptas aperiam sed consequatur et reprehenderit totam soluta atque ullam voluptatem et. Et veniam voluptas temporibus ut eveniet officiis ut atque eos pariatur praesentium sint optio impedit sed sed doloremque optio quo. Nihil illum temporibus velit molestias. Dolores excepturi pariatur necessitatibus dolores est aut similique dolor quaerat voluptas aut corrupti incidunt sed id. Veritatis voluptatum quia iure aut soluta	ТСЖ РязаньСнабСнабТрейд	Рязань	ул. Лесная, 505	(980)079-68-30	Лариса Ефимова	\N	\N	t	f	\N	0
+55	damian.beatty@.net	$2a$10$pxfVUS5TFdt2phk0eOkNMOmdfiEqiDoniJwf9P4nnACgzBHjHBOgK	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:27.553404	2015-11-09 13:28:27.553411	\N	\N	\N	366	Asperiores porro eaque vel aut omnis aut quibusdam ex cum dolor nesciunt voluptatum quae voluptate optio asperiores. Error est similique enim quod placeat fugit in provident ex incidunt aperiam assumenda rerum repellat laborum. Dolor hic quam accusantium animi. Ut enim in repellendus unde quasi iure et unde sunt ipsa. Ducimus consectetur voluptatem reprehenderit autem quia debitis eligendi temporibus ullam pariatur vel cupiditate perspiciatis. Accusamus at recusandae consequatur necessitatibus et. Fugit quia ea assumenda cum. Illo laudantium quis dolores enim ducimus vitae quia soluta impedit corporis ducimus aut fugit perspiciatis blanditiis aut voluptate id tempora. Quisquam autem quisquam illo eum ipsa nihil laborum aliquid ea aspernatur. Facilis velit reprehenderit repellendus culpa aspernatur minus esse	ООО Илья	Тюмень	улица Нагорная, 721	(975)056-28-64	Евгений Марков	\N	\N	t	f	\N	0
+58	major_hand@.com	$2a$10$7WBH9uMwzADA.9Jo4uIjsu6Fi4CkkJTUN/qFIOm15Ds6urMbjCFlS	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:27.81321	2015-11-09 13:28:27.813216	\N	\N	\N	221	Fugit optio sed aspernatur inventore quo nisi delectus sit nesciunt velit sit excepturi molestiae. Minima omnis officia repudiandae consequuntur voluptas nihil iure reiciendis maxime qui optio rerum. Et ipsa rerum minima enim dolores aliquid est et ipsam consequatur. Sequi delectus et illum eum et beatae voluptate libero aut labore numquam soluta ipsum magnam in doloremque et voluptatem explicabo. Esse vero maxime cumque facere perferendis et ipsam eius velit in reiciendis voluptatem soluta et reiciendis veniam dignissimos culpa. Perferendis facere est numquam quasi consequatur. Ducimus voluptates cumque autem temporibus est perspiciatis in. Maxime amet accusamus aliquid rerum doloribus exercitationem magni qui quia soluta sit ad iste fuga nobis libero laudantium ut. Ipsam non velit quo quibusdam provident quam rerum aperiam	ОП СаратовТрейдПром	Кемерово	проспект Фрунзе, 724	(925)480-34-90	Ульяна Геннадьевна Ситникова	\N	\N	t	f	\N	0
+59	letitia_simonis@.org	$2a$10$awofG8bZ1XDO9xqCB/RLm.FeFuBP3lOYqEoheIv2EYzqmaan79gqG	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:27.901091	2015-11-09 13:28:27.901097	\N	\N	\N	253	Dolores voluptates dolores delectus sint sint voluptatem sit aut voluptatem rerum nihil eligendi esse aut eos. Natus non unde harum aliquam corporis pariatur odit accusamus quidem sit nam consequuntur. Recusandae sapiente non pariatur sunt rerum aperiam laudantium quo nam eveniet velit velit voluptatem quaerat quas sit. Est placeat quae ipsa modi beatae ex facilis aspernatur placeat unde est. Corrupti tempora sed perferendis voluptas et harum blanditiis harum enim a non ex. Et iure voluptatem et cumque laudantium iusto aperiam eius quis quia. Esse vero vero vitae illo a optio occaecati necessitatibus incidunt. Culpa modi tenetur provident enim rerum doloribus molestiae et molestias saepe deleniti expedita est corrupti. Pariatur fuga et fuga iusto accusamus voluptatem voluptatem assumenda	НКО Игнатий	Краснодар	ул. Весенняя, 409	(970)595-01-72	Егор Георгиевич Сысоев	\N	\N	t	f	\N	0
+60	jayne_schuster@.info	$2a$10$P8WosW8bR.cm10HP4zMz7OOjoISh26h1AuCJmfXpldPaRoFsXepwK	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:27.988526	2015-11-09 13:28:27.988533	\N	\N	\N	291	Cumque tenetur ab adipisci libero aperiam nam perspiciatis voluptatem dolor et molestias dignissimos id velit maiores facilis laboriosam. Odio laboriosam facilis et itaque placeat corrupti minus exercitationem accusamus ad ad est sed tempora itaque quam maxime. Blanditiis ut neque excepturi nemo et reprehenderit ab cupiditate doloribus itaque nisi. Occaecati velit labore sapiente voluptates consequatur error ducimus aut aut qui. Modi mollitia ad consequatur doloremque voluptas deserunt voluptatum quisquam molestiae vel quasi	ЗАО ТольяттиСнабПромСбыт	Брянск	пр. Рабочая, 400	(998)161-80-21	Трофимова Екатерина Артёмовна	\N	\N	t	f	\N	0
+61	bryce@.рф	$2a$10$i3aLaZYTEm8Zc6TFLVfyae9wy1.s71e45jM4fWSSbWNPuCJCEjD4S	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:28.076116	2015-11-09 13:28:28.076122	\N	\N	\N	288	Maxime quos non dolorum nostrum. Deleniti corrupti quaerat placeat ut voluptas vero error voluptatibus id est enim. Minima culpa non tempora est qui dolor porro iure rem. Consequatur doloribus itaque necessitatibus error animi sit iste porro esse. Sed veniam velit deleniti doloribus aut quia eos et sed dolor illo alias quae voluptas ut. Ut autem dolor qui et. Possimus repellat fuga rem non aut repellendus vel veniam dolores ea cum	ТСЖ ТрейдПром	Саратов	пл. Спортивная, 104	(970)165-92-25	Иван Гордеев	\N	\N	t	f	\N	0
+62	robert_wiza@.info	$2a$10$ALReNcqU.xxXjjcFeuTbNeVvgauYgZQ2ObXr/NFGf20LleB.pB/yS	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:28.167353	2015-11-09 13:28:28.167373	\N	\N	\N	282	Ipsam eligendi non blanditiis facilis sit ut id natus quo rerum. Ipsum aut perferendis ex consequatur et delectus doloremque vitae. Voluptatum sunt aperiam eum quia itaque omnis doloremque velit. Aut sed veritatis dicta qui nisi voluptate qui qui et et. Sequi dolorem autem aut aut. Aut id voluptatem odio odit sit optio pariatur quis voluptatem voluptatem quae. Quia sint laboriosam veniam magnam et eius amet adipisci qui recusandae dolor eos laborum quisquam nulla tenetur qui nesciunt ut	ЗАО АстраханьПромТорг	Белгород	пр. Западная, 111	(974)408-27-35	Егор Зимин	\N	\N	t	f	\N	0
+63	oceane@.ru	$2a$10$Jt3wk63aopChwSjoK6/6zuM1D7KrkR8j7R.E/mawdjCClVRKUY1MC	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:28.257227	2015-11-09 13:28:28.257235	\N	\N	\N	150	Dolores unde ipsa quis soluta provident explicabo. Nihil rem excepturi ratione corrupti reprehenderit eveniet fuga amet	ИП КазаньТоргТрейд	Пенза	Трудовая площадь, 870	(971)333-78-59	Авдеева Жанна Владимировна	\N	\N	t	f	\N	0
+64	leanne@.info	$2a$10$lRx96uoEy7BY16l94fsiW.q7xAo5eCQfN2SS1xrLiQmLA5V1HWIQ2	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:28.361235	2015-11-09 13:28:28.361241	\N	\N	\N	373	Quaerat sed officiis error sit tenetur temporibus possimus a ipsa voluptatem. Alias odio cupiditate rerum qui ex doloremque dolorem molestiae non saepe qui ducimus quaerat numquam. At repellendus occaecati praesentium autem cupiditate cumque rerum illo vero necessitatibus reprehenderit rerum aperiam amet eaque error enim. Voluptate doloribus quasi vel praesentium. Eum recusandae rerum est ut ipsam esse nihil omnis repudiandae saepe autem ea dolorem est. Quis velit aliquid eos assumenda est unde molestiae nemo deserunt velit ipsam sunt dolorem. Temporibus voluptas occaecati iusto unde officiis harum vitae voluptatem accusamus dolores qui facere eligendi nostrum aut voluptas. Et ut est debitis maxime officia dolorem repellendus nesciunt illum voluptates et amet quo. Facilis aliquid dicta repudiandae voluptatum non temporibus corporis laborum ut eum. Consectetur quae iusto repellendus exercitationem quisquam ea nulla totam voluptas magni ipsa voluptatem ut sed omnis nihil qui	ООО Гордеев	Челябинск	пл. речень улиц, 667	(937)730-91-19	Горбунова Ольга	\N	\N	t	f	\N	0
+65	leif_lind@.ru	$2a$10$BE3oulEoN./ZtiEQ6WVhZuAeZzbPra0oqr5AkVoYE161usGhG/t3m	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:28.457948	2015-11-09 13:28:28.457957	\N	\N	\N	5	Qui officiis et ipsum aperiam sequi asperiores quisquam illum ullam molestiae maiores quos. Eos qui hic earum qui. Aut distinctio quam alias temporibus officia sed accusantium deserunt maiores qui suscipit omnis. Architecto debitis molestiae vero autem quas soluta amet eaque beatae et dicta assumenda nostrum dolorum voluptate. Reprehenderit doloremque temporibus debitis architecto inventore occaecati eligendi omnis distinctio quo quis. Illo est necessitatibus est id sequi architecto hic expedita ut enim perferendis quia autem. Enim consequuntur eum qui aut harum eius dolor accusamus sint ea sed amet sed at velit et qui veniam sit. Quas sed aliquam numquam exercitationem aut corporis delectus enim perspiciatis incidunt enim voluptas neque mollitia nesciunt voluptas hic recusandae nemo. Non dicta vel ipsa temporibus ea natus asperiores. Dicta cum vel officia quo delectus quos aut nam animi sit in	ОП ТрейдСбытСбыт	Владимир	Майская пл., 160	(985)495-20-83	Гаврилова Регина	\N	\N	t	f	\N	0
+75	elton@.info	$2a$10$f9OwdMl/Pk/h29xYdemq8eRfWiBrhNkvRjlpa24lkIj.mSlZ.cVby	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:29.363891	2015-11-09 13:28:29.363912	\N	\N	\N	55	Est velit officiis autem ut qui quas. Quis beatae porro recusandae enim harum exercitationem totam in dolorem voluptatem natus delectus non est quo atque. Voluptatem quibusdam quam autem eveniet tempore sunt dicta voluptatem rerum quo maxime fugit. Mollitia quam quo nihil quia corrupti provident est enim voluptates dolorum modi eum voluptatem quos. Numquam quis illum odio rerum sint perspiciatis cupiditate qui	НКО Ольга	Тольятти	площадь Кооперативная, 105	(996)220-77-53	Татьяна Александровна Андреева	\N	\N	t	f	\N	0
+66	janet_boyer@.net	$2a$10$lp3.aQtVAbYHCg3AX8GkFeLjMDLekhmN5/wxNuW5xXYEZGiQ0aQ9S	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:28.561015	2015-11-09 13:28:28.561025	\N	\N	\N	182	Aliquam repudiandae excepturi eum vel exercitationem doloribus nulla sed voluptas sapiente sit odio exercitationem sunt neque facere dicta voluptas qui. Impedit veritatis qui nihil rerum perferendis beatae omnis repellat voluptatibus distinctio. Impedit odio nihil aliquid voluptatibus commodi quam unde et et qui tempore ratione debitis et recusandae enim et quia. Deserunt dolor dolores culpa possimus. Hic dicta est minima ipsa et facere mollitia a ullam iste qui quia officia necessitatibus assumenda consectetur at. Dignissimos facilis quas ut et deleniti expedita quis quam nihil aut ut. Qui maxime quos ducimus sint ut suscipit pariatur sit et ad soluta nihil. Ipsam esse cum sit soluta qui possimus nostrum id expedita iusto. Rem in ratione tempore aperiam velit laborum. Quis odio autem voluptatem in eos ab veniam ut eos et aut rem quasi	ОП Дарья	Тольятти	Рабочая площадь, 906	(923)430-56-79	Маслов Василий Денисович	\N	\N	t	f	\N	0
+67	chelsey@.ru	$2a$10$572QVmCAmFQfUXHryr/IY.9jaImPGzXFv6NHXzwUVESij139SnadK	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:28.651005	2015-11-09 13:28:28.651023	\N	\N	\N	175	Accusamus vitae fugit nihil odio ducimus unde dolores enim qui ratione neque tempore quaerat fugit earum eos. Et hic sint quas ut impedit sunt dolor. Aliquam enim ut sit earum accusamus et nobis sed voluptatem. Magnam possimus autem aut laboriosam suscipit et qui quibusdam iure accusamus nihil illo similique reiciendis aperiam nihil recusandae doloribus quibusdam. Corporis aut atque adipisci repellat culpa quidem repellendus officia qui necessitatibus sunt eaque sit quia. Qui rerum dolorum laudantium minima cum est minima quas aut maiores eos ducimus rerum blanditiis corporis. Rerum quaerat autem odit eum vel tempore quasi. Sed totam dolores dolorem voluptates quos cum omnis enim accusamus cum. Sit quasi laudantium labore quibusdam et consequatur nemo blanditiis voluptate voluptatem debitis. Dolorem debitis et quia dolores omnis asperiores dolor doloremque consequatur sit nulla odit praesentium nihil quidem	НКО СнабТорг	Пенза	пр. Строительная, 237	(965)405-21-46	Белоусов Макар Валентинович	\N	\N	t	f	\N	0
+68	patience@.com	$2a$10$pOfVFklHO7InGGTwc8DMG.yQ2s9EbD6Bqaxs7v.UtDbsdJzZeZ18S	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:28.738324	2015-11-09 13:28:28.73833	\N	\N	\N	327	Nostrum quasi vitae voluptatum perferendis quo corporis nesciunt. Quo illo sit magnam vel. Minus nesciunt ad iure inventore voluptas praesentium amet. Accusamus aut quaerat minima voluptatum exercitationem quo quam ut quia consequatur aut similique. Aut veritatis reiciendis sint beatae sit atque modi et aut veniam quae excepturi rerum ducimus voluptatem. Sed voluptas qui soluta quam sunt in tenetur corporis beatae ea consequatur voluptatum provident dolor vel ut. Totam optio aut ut soluta voluptates non sed nemo omnis sequi totam et modi voluptatem eos. Consequatur harum omnis nisi aut rerum distinctio cupiditate sint inventore blanditiis est et repudiandae excepturi	ОП Ольга	Иркутск	пл. Степная, 106	(983)842-70-13	Татьяна Горбунова	\N	\N	t	f	\N	0
+69	marcus.blick@.net	$2a$10$AaN7kqSVmG65IumXjtzu0uOMbvNPiVOcWgocXYnmdFxFdqSftfObO	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:28.82567	2015-11-09 13:28:28.825677	\N	\N	\N	105	Aut deserunt animi aut consequuntur tenetur aut sunt aut debitis ad. Minima sed ipsa architecto eos ullam itaque provident id consequatur molestias dolorum sint. Aperiam ex iure voluptatem totam dolor ipsam voluptatem rerum aliquid qui enim neque praesentium quia excepturi cumque ut iusto. Sint debitis quidem consequatur aut ipsam distinctio non perspiciatis ut ullam minus fugit vel aut beatae. Aut nobis est aut quos nihil vel	ИП ТоргТрейдПром	Тверь	проспект Западная, 683	(916)748-97-60	Стрелкова Валерия Валентиновна	\N	\N	t	f	\N	0
+70	steve@.com	$2a$10$AVMEr5J7f5GxD8XX1KwBuOG8Rw/ESDK/QCjk5f6Df3Axm.IFPO5DK	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:28.916305	2015-11-09 13:28:28.916313	\N	\N	\N	364	Eius perferendis quia odio modi sapiente molestiae consequatur repudiandae voluptatem inventore velit aut et quo qui error aut. Voluptatibus molestiae quis qui occaecati est dolorem error quibusdam labore sit a mollitia odit. Iusto aut quo suscipit eos similique explicabo ab consequatur cumque nobis soluta dignissimos vero et voluptas quia laborum est. Ad eligendi magnam eveniet explicabo neque consectetur autem sint ut. Nostrum ducimus veniam omnis quod nesciunt deleniti velit mollitia sed voluptatem distinctio similique a ut necessitatibus	ЗАО Елизавета	Челябинск	пр. Пушкина, 400	(956)641-23-68	Семенова Раиса Степановна	\N	\N	t	f	\N	0
+71	eliza@.com	$2a$10$13k/cBM9gTbEpgECpnDMNe7jwN.mVqXckdO2AcEH5eIpCtRdMCVrO	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:29.011621	2015-11-09 13:28:29.011642	\N	\N	\N	1	Aperiam eligendi doloremque dolor quidem saepe. Sit dolores rerum ipsa sint. Pariatur delectus id ad qui qui dolorum facere sapiente et exercitationem tempora ut totam et possimus eum quisquam nulla et	ЗАО Лихачев	Нижний Новгород	пр. Солнечная, 415	(965)611-58-62	Людмила Альбертовна Новикова	\N	\N	t	f	\N	0
+72	rebeca_stehr@.info	$2a$10$KedXYXmzpDPv8RL25LZj5uWf3ZatfYgQm4HBmMp/4GQo13EEzyFs2	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:29.101168	2015-11-09 13:28:29.101175	\N	\N	\N	47	Dignissimos inventore porro in ut porro. Architecto nobis deleniti vero velit quia ipsam fugit omnis minus qui. Eum ex iure ratione veniam omnis ad praesentium et. Quibusdam aliquam nobis porro quia et quas ipsum debitis quasi sed excepturi labore occaecati officiis nisi dolorem consequatur illo	ЗАО ИвановоПром	Киров	улица Лесная, 178	(987)228-27-50	Лукина Ольга	\N	\N	t	f	\N	0
+73	alycia@.рф	$2a$10$E8eY6PMn9cuvduv4i5U6suGVbS/6Jz6eaDhslSjzPzCwkWRsi7fuK	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:29.188526	2015-11-09 13:28:29.188533	\N	\N	\N	74	Atque eligendi earum iusto expedita et error sequi eius cumque aut. Eius ad qui non qui ipsa. Ut quo dolores consequatur voluptatem maxime. Provident qui dignissimos quis tempora minus et repudiandae suscipit aut ad neque perspiciatis. Aut adipisci quidem rerum voluptatum veniam nulla quidem eum quaerat. Eius tempore vitae sunt atque asperiores voluptates maxime quo eos ut aut quo ex odit. Non alias dolor autem incidunt amet voluptas consequatur quos velit velit optio voluptas. Quos est aut voluptate accusamus ex tempora sint. Non dolorem eligendi architecto architecto neque eum sapiente sapiente	ОАО МагнитогорскПром	Пермь	Мира ул., 575	(984)676-69-49	Ермаков Василий Игоревич	\N	\N	t	f	\N	0
+74	lindsay_mosciski@.com	$2a$10$knltPqVuPgV6KkTT2dqCdeyizzmFWsxzgEwVJrBfu7xsZZ7rwbI1i	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:29.276648	2015-11-09 13:28:29.276654	\N	\N	\N	62	Sequi incidunt illo recusandae officia ratione accusantium quae repellendus et officiis excepturi accusamus. Maiores nemo voluptatem voluptatem aut deserunt corporis delectus quos omnis voluptatem vitae harum. Qui earum rem aliquid sint est adipisci enim. Minima at nihil eum natus voluptatem sed aut aliquam repellat eos et qui alias porro porro. Ut possimus nemo nisi quam. Sequi aut asperiores fugit adipisci doloribus aut corporis delectus asperiores temporibus occaecati reiciendis. Ipsum quibusdam consequatur id aut animi dolor. Dolorum illum similique dolor earum amet alias veritatis quis tempore et	ТСЖ СнабСнаб	Липецк	Московская пл., 604	(982)727-77-88	Третьяков Степан	\N	\N	t	f	\N	0
+98	cyril_hudson@.рф	$2a$10$2rmk5.1nCfF8LEDwo6T8auew3.LBmL3GZ6mUi83swGO90ksDU3gFm	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:31.642495	2015-11-09 13:28:31.642501	\N	\N	\N	240	Ut enim sit non eos nisi tenetur corporis nobis fuga nesciunt officiis est. Dolorem et voluptas quod pariatur et numquam natus enim quo rerum officia impedit. Omnis vel odio provident alias quibusdam corrupti explicabo beatae nisi qui inventore vel sunt perferendis ut	ЗАО Георгий	Оренбург	Горького пл., 736	(999)078-48-41	Воронцов Леонид Сергеевич	\N	\N	t	f	\N	0
+76	cade.mosciski@.info	$2a$10$wu9JNCL5ABhe9dismocpNORF9y6vgPx2535EzOnfwvAESwNLvq6p.	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:29.472888	2015-11-09 13:28:29.472894	\N	\N	\N	348	Officiis numquam quis delectus labore cum dolorem quo enim nobis voluptatum quis. Est ut quia deleniti voluptates quia quisquam reiciendis nihil eum nobis. Adipisci ullam ducimus aut esse modi et nihil sunt aut. Aliquam magni eligendi quisquam minima eius alias sit ducimus	ОАО Ковалев	Пермь	Южная проспект, 878	(967)194-64-74	Шаров Степан Игнатьевич	\N	\N	t	f	\N	0
+77	era.gerhold@.ru	$2a$10$I1N9nYY11GzJBGrcvXY7tuBaTMWa812cYY74eCyY0t/ydrEn5eEJq	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:29.568037	2015-11-09 13:28:29.568043	\N	\N	\N	163	Eos omnis iure sint in occaecati odit quae rerum ut soluta. Aut est est quam quo	ОП ТоргТорг	Сочи	улица Береговая, 370	(922)454-63-84	Константин Юрьевич Мясников	\N	\N	t	f	\N	0
+78	fletcher@.org	$2a$10$219a1m6TMmTkj2pdeNxCEukiX6HQKurmwmell6ksplgjFA4JkObJa	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:29.660531	2015-11-09 13:28:29.660539	\N	\N	\N	357	Consectetur quia quis ut non neque provident. Id sunt provident sit libero fugiat enim odio enim nihil modi dicta quia iste. Tenetur natus molestias suscipit totam asperiores. Adipisci similique ullam occaecati et praesentium veritatis aspernatur nam porro. Deleniti eaque omnis nam ex consequuntur dolor vel nesciunt quas non. Et non modi porro quia ut sequi non sunt eos	ОП Белозеров	Красноярск	Некрасова площадь, 695	(915)597-74-30	Кира Олеговна Емельянова	\N	\N	t	f	\N	0
+79	erika@.рф	$2a$10$HAw5AQwnbomqBmMo5aPwge0mghc2oj5FxxjEVJuJbNTdwCrT95YkS	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:29.752996	2015-11-09 13:28:29.753004	\N	\N	\N	229	Neque porro beatae laborum repellat inventore voluptatibus cumque et ipsum illum voluptas quia quaerat assumenda doloremque consectetur a. Numquam ea aliquid voluptatum optio dolor. Quam quod eos omnis et qui minus adipisci quo consequatur laboriosam labore voluptatem repellat ut. Autem sint asperiores deserunt quis est mollitia exercitationem et et animi quo quia aut natus eaque nostrum est maxime ullam. Facere est laudantium sit ut eaque in reprehenderit itaque. Consequuntur quia ea incidunt autem corrupti doloremque ut ullam esse. Et eum rerum reiciendis eaque incidunt quia ut voluptatem vero suscipit sed cupiditate commodi consequatur debitis dolor. Et voluptatem modi libero sapiente reiciendis itaque atque minima magni	ЗАО Юлия	Ижевск	площадь Цветочная, 968	(949)712-80-10	Клавдия Михайловна Силина	\N	\N	t	f	\N	0
+80	sonny@.net	$2a$10$9Mwy00rliIBO8/A5vt24mOuM.ygRLrxcnDvwBDyrhvRf1Zbn4gbK.	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:29.844401	2015-11-09 13:28:29.844408	\N	\N	\N	206	Natus omnis quo similique autem quos et pariatur aut pariatur magnam nemo libero sit est culpa accusamus. Quia voluptas facilis consequatur voluptate sed eos magnam commodi accusamus a. Exercitationem accusantium mollitia asperiores asperiores deserunt. Minus explicabo et commodi et illum reprehenderit totam perspiciatis reiciendis aut reiciendis non delectus dolorum. Deleniti soluta expedita voluptates nulla ipsam sunt maiores sint. Sint nihil sint exercitationem architecto qui. Sunt quis error est exercitationem harum. Enim eligendi sint ipsum quas similique et dolor repudiandae ut non nihil blanditiis recusandae quae ducimus facilis quia rerum ipsum. Nemo adipisci eos ea qui debitis quisquam eum quas molestiae qui voluptas vitae impedit labore saepe et iusto quos	ИП ВоронежСбыт	Пенза	пл. Майская, 435	(941)439-05-51	Мишин Алексей Эдуардович	\N	\N	t	f	\N	0
+81	conner_herzog@.com	$2a$10$c9UIOSXfZ4CYMKXb1oiAFee8Jj5uysc00EJ2CrjqQR8Nm4dHAOaqm	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:29.941531	2015-11-09 13:28:29.941537	\N	\N	\N	120	A deserunt laboriosam reiciendis officiis expedita iste ipsa reprehenderit iusto. Voluptatem ipsam ut ipsum at accusamus. Officia eaque nihil iure a quos repellat molestias ut perspiciatis	ЗАО ЕкатеринбургПромСнабПром	Махачкала	Колхозная ул., 507	(969)490-51-98	Сергеев Фёдор	\N	\N	t	f	\N	0
+82	aileen@.ru	$2a$10$4m/1c57NOKF/DrXg8Gf8ieuUzwp07Cr2GgfI5UYLjHp6i0UkfbLXu	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:30.050315	2015-11-09 13:28:30.050323	\N	\N	\N	365	Ipsa minus repellat iste est nisi molestiae expedita facilis. Sit fuga at qui sunt perferendis quasi voluptas pariatur deleniti sint tempora quia autem recusandae odit enim soluta ea. Facere debitis in nihil incidunt at. Provident est id placeat asperiores est ipsum nihil et amet beatae ipsa nesciunt veniam eveniet. Et qui voluptatem commodi nisi eligendi placeat	ИП ПермьСнабСнаб	Тула	Мичурина улица, 769	(944)954-93-38	Александра Федосеева	\N	\N	t	f	\N	0
+83	luella_kilback@.net	$2a$10$ZBwfmYXJColBfxIm/Y78fejsQJTkkWCXEs/ROqvMhUpwalkMtVRKe	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:30.142153	2015-11-09 13:28:30.142162	\N	\N	\N	251	Laudantium beatae nihil tenetur neque dolores in cum et omnis et voluptatum dolores non ut omnis rerum dolore minus. Non atque suscipit deleniti ut velit odit et aut ut praesentium nesciunt non minima voluptas distinctio eveniet numquam deleniti et. Et sapiente ipsam nam est veritatis doloremque quasi. Dignissimos harum explicabo qui reiciendis quaerat aspernatur voluptatem et est architecto commodi. Ratione reiciendis aut nihil repellat dolores corporis ipsam quo sunt quia et ullam aut ut quia eum aut molestias. Corporis aut autem quibusdam quaerat rem repellat ipsam labore qui et non et voluptatem. Itaque est amet veniam quidem. Aspernatur doloribus dolores aut doloremque est dicta officiis repudiandae et et quis autem neque qui	ЗАО КраснодарСнаб	Иваново	ул. Гагарина, 630	(920)761-05-56	Лукина Мария	\N	\N	t	f	\N	0
+84	marion@.ru	$2a$10$m7OwrASFhHYqkGAxM6mSVuEk.C6XDyroOMv93WxYwEeeVYa0o9bZS	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:30.236905	2015-11-09 13:28:30.236916	\N	\N	\N	156	Unde dolore officia deleniti natus maxime id rerum quas et dolor facere ut. Repellendus distinctio optio maxime excepturi cumque possimus asperiores dolorem laudantium odit sint qui aut praesentium pariatur eum voluptas numquam. Aut esse pariatur rerum sint ea esse consectetur aliquid provident quis omnis corporis. Voluptatem nostrum architecto repellendus voluptas maxime consectetur veritatis enim ullam laudantium cupiditate suscipit tempore. Libero sunt consequatur voluptas facere est optio. Doloremque alias ratione sit rerum quia praesentium. Et dicta alias quas sit deserunt et officiis quas perferendis sed dolores. Eos doloribus in voluptatem similique voluptas aut minima reprehenderit repudiandae rerum nihil. Accusamus dolorem quis quae ut. Non aliquam quis hic rerum omnis reprehenderit consequuntur	ООО Геннадий	Владивосток	Набережная проспект, 336	(993)085-20-99	Даниил Тимофеев	\N	\N	t	f	\N	0
+85	benedict@.org	$2a$10$vbNX8b9olBZP0tbaOB0CNOJKVVzGz1jZzo49TA/9/.jwiJgQad7cS	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:30.332149	2015-11-09 13:28:30.332157	\N	\N	\N	288	Aliquid qui cumque architecto cupiditate repellat. Dicta assumenda qui quod ad harum beatae corrupti. Velit quos id fuga distinctio nemo tempore	ООО ПромТрейд	Махачкала	Энергетиков проспект, 219	(981)623-09-61	Ксения Носова	\N	\N	t	f	\N	0
+86	tyra_funk@.org	$2a$10$eHEwxxtrz8kGcOKHV/xucO5M0vG0gXxkvr45ocDZ5TKXfXKfC8hx6	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:30.42883	2015-11-09 13:28:30.428843	\N	\N	\N	360	Rerum voluptatem aut illum ullam qui inventore qui. Dolor reprehenderit quis totam dolores qui illo illo. Beatae ducimus occaecati sed necessitatibus magnam perspiciatis repellat omnis unde totam veritatis nemo	ТСЖ Василиса	Ижевск	площадь Суворова, 199	(946)619-91-42	Лобанов Никита	\N	\N	t	f	\N	0
+87	ethelyn@.рф	$2a$10$tx8uQnnfGmsa9nKXK4p0HevMlzi/b41BglSVCoPBImgJ7UAWPpfxO	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:30.52284	2015-11-09 13:28:30.522852	\N	\N	\N	102	Alias velit consequuntur molestiae natus porro minus qui et numquam impedit placeat maiores. Et consequuntur ex libero dignissimos laudantium saepe iusto sed est. Hic ut dolore occaecati expedita architecto repellat iusto occaecati repellendus aut dolor exercitationem atque qui omnis. Iusto aut repudiandae veniam omnis illo autem repudiandae quidem provident sint necessitatibus deserunt ipsam beatae molestiae. Soluta provident reiciendis inventore saepe rerum aspernatur est deleniti. Maxime sapiente autem aliquam repellat consequatur ipsam molestiae et amet sequi et in esse placeat numquam. Voluptatum eos ut ut officia necessitatibus fugit aliquid ipsa	ТСЖ Андрей	Киров	Строительная площадь, 530	(975)034-71-82	Капустина София Станиславовна	\N	\N	t	f	\N	0
+88	malinda.hirthe@.net	$2a$10$PuSImW0jPjmS..nNPEXIsOI3pnQZGZbFIuXbnLvqSSCY0bTxWDSQK	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:30.614955	2015-11-09 13:28:30.614961	\N	\N	\N	322	Voluptatem dolorem sequi iure veniam ipsum adipisci accusantium quo inventore illo sit inventore sit nostrum ut expedita nihil. Cumque velit placeat velit maiores delectus iure voluptatem sint cupiditate non sed eum. Quia corporis eum enim consequatur eaque. Doloribus qui et eius magni cum omnis. Dolorem odio aut voluptatem explicabo ut culpa voluptas qui rerum eos illum odit quisquam at delectus in est blanditiis maxime. Non et enim cumque enim nesciunt voluptas error aut dolores ut ut. Sit esse eum harum maiores blanditiis est ut quia itaque consequatur soluta est culpa sed voluptatibus dolores. Dicta ea eveniet est aut accusantium sit inventore omnis et odit iusto ut. Consequatur nostrum vitae ut dignissimos	ЗАО КрасноярскТорг	Курск	Сосновая проспект, 519	(950)191-88-45	Алексеев Дмитрий Макарович	\N	\N	t	f	\N	0
+89	ezekiel@.ru	$2a$10$Z3cyNvc60ydSNCeSQfmmu.sgtDTVoTaieZ68hhx/HAdC2d4p2L.JS	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:30.70918	2015-11-09 13:28:30.709191	\N	\N	\N	257	Rerum vero aut debitis est. Praesentium aut dolor ex ab. Est magnam debitis ducimus et perferendis perspiciatis repudiandae eius repellendus cumque. Itaque praesentium pariatur soluta dolorum et veritatis ut saepe iusto. Error ullam dolores repudiandae aut cumque ea occaecati ipsa sint sint voluptatem expedita exercitationem quia perferendis nostrum	ОАО СамараТрейдТоргПром	Воронеж	проспект Новая, 747	(991)766-06-59	Максим Зыков	\N	\N	t	f	\N	0
+90	nya_walter@.com	$2a$10$VmUyFc8E9ivPe8sV.X505.PAPuqPDFLfwmMr/MTeQ20oLRfnLr4t.	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:30.802639	2015-11-09 13:28:30.802645	\N	\N	\N	112	Quasi sit magnam quis iste a quia aut dolores maiores beatae in repellat ea sit et velit rerum doloremque. Non est minima vel rerum autem quia officiis aut cum sit blanditiis vel sapiente ut dolores dolorem. Nulla blanditiis fuga in est minima esse odio impedit quis modi quisquam excepturi dolorum magnam. Facilis eos asperiores non quas ea deserunt ipsa natus commodi. Voluptate non occaecati rerum ducimus autem libero expedita qui aut. Qui nobis quis et voluptates accusantium et voluptas et temporibus quo explicabo	ИП Михаил	Киров	Дорожная улица, 598	(917)723-43-46	Гуляев Георгий	\N	\N	t	f	\N	0
+91	giovanny@.ru	$2a$10$/aOQEkkypXt40LPbCc5cLeFIDJLTWKBiCTYzpY2083E2pWXQUR4Mi	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:30.901695	2015-11-09 13:28:30.901701	\N	\N	\N	280	Aut quos necessitatibus dolore sunt. Quisquam doloremque autem soluta similique mollitia id quaerat eos dolorem autem odit dolorem dolorum itaque enim dolor architecto hic facere. Et maxime nihil sed eos aspernatur dolorem modi sed beatae commodi voluptate hic voluptatem rerum consequatur doloremque. Sit nobis sint laborum et placeat eos adipisci debitis est alias tempora nemo ut minus libero corrupti ullam debitis quis. Sit optio perspiciatis possimus nihil optio temporibus doloremque praesentium neque sit enim qui corporis. Quis enim ea nesciunt deserunt quis qui cupiditate in doloremque est itaque reprehenderit. Delectus deleniti aut ut qui odio illum quisquam autem sint debitis itaque sint corporis voluptate amet ullam accusamus repudiandae	ТСЖ Валерий	Белгород	Садовый пр., 769	(932)377-90-14	Бобров Владимир	\N	\N	t	f	\N	0
+92	rollin@.info	$2a$10$IHD0QMPNBvdYA8.nFO6u4uH.crOAW/OZM64c80AOieEP9awZqFqJS	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:31.005182	2015-11-09 13:28:31.00519	\N	\N	\N	163	Omnis debitis et vel incidunt voluptates iusto rem vitae. Perferendis ea perferendis rem modi molestiae accusamus placeat harum eum. Illo quidem ipsam optio illum itaque ex. Laborum error quisquam et porro reprehenderit labore perspiciatis et mollitia recusandae dolore culpa neque molestias et sit delectus sed qui. Non quia alias error dignissimos est consequatur pariatur hic provident totam at fuga. Nisi omnis magni consequatur laudantium rem autem commodi nihil enim. Ut enim molestiae quaerat blanditiis blanditiis ipsam et commodi sed eligendi assumenda sit nam veritatis in. Nemo soluta deserunt molestiae maiores laboriosam error ab itaque voluptatem fuga vitae	ОП Анна	Ульяновск	Чкалова ул., 977	(997)193-35-25	Алла Ивановна Беляева	\N	\N	t	f	\N	0
+93	gudrun@.org	$2a$10$vvgyPU7iXxzaiAG9bEXL0OfjcDKXQ8.LB5bnhNvaFJJuC5N1bS0ni	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:31.119664	2015-11-09 13:28:31.119676	\N	\N	\N	291	Libero quia quas autem et temporibus. Ipsam rerum labore enim illo voluptate nihil animi velit nihil doloremque animi consequatur rerum veritatis repudiandae. Odio ipsum amet aliquid est libero quod qui qui aut. Quis maxime rerum eaque temporibus aperiam ab minus dolorem voluptate aut in ad iusto qui natus	ОП ЧелябинскТрейдТорг	Курск	пр. Береговая, 316	(939)018-41-64	Игорь Симонов	\N	\N	t	f	\N	0
+94	lucie@.org	$2a$10$TttWtmiGOzniWk23IXdoJ.rC.pIMlRkcfMmmiWagCeAAZnGY/ubLW	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:31.246957	2015-11-09 13:28:31.246964	\N	\N	\N	254	Hic ratione suscipit esse dolor maiores dolor tempora sed eveniet commodi ut corrupti nostrum ut veritatis consequatur quae. Aliquam et ut quisquam deserunt voluptas dolor error. Molestias facere dolorem voluptatem nihil. Eum provident saepe et alias	ИП Виталий	Ростов-на-Дону	пл. Весенняя, 643	(911)939-74-14	Павлов Анатолий Ильич	\N	\N	t	f	\N	0
+95	ana_wolff@.com	$2a$10$KISCfFtOUN/BQ9x4qCaA0.ixQw9B2beXxz6oM24lMf6Xj5sCqabb.	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:31.340409	2015-11-09 13:28:31.340416	\N	\N	\N	129	Enim porro quaerat excepturi et tempora laborum. Qui qui inventore qui provident eveniet et doloribus eaque accusantium occaecati non dolores aut culpa consequatur ipsa molestias facere	ОП СаратовСбыт	Чебоксары	Подгорная площадь, 591	(961)386-92-56	Киселева Елизавета	\N	\N	t	f	\N	0
+96	justina.volkman@.рф	$2a$10$lHh4ItZGnzXXAnKyOCbOqOl2rMNcSFbofwMT7K7UpQsF9LlJv8Mia	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:31.440607	2015-11-09 13:28:31.440614	\N	\N	\N	20	Et ab sed voluptatibus corporis perferendis omnis dolores aut porro nihil. Cupiditate illum facilis sit dolor doloribus autem et cumque corrupti ratione nihil sit in neque. Quibusdam nobis iste odio suscipit perferendis debitis quaerat eos. Distinctio ut deserunt accusantium iure quia voluptatem omnis corporis quas dignissimos est ut nisi. Ut officia et velit reiciendis aliquid sint quos atque. Excepturi et sit eveniet laborum excepturi non accusamus eaque officia cum cumque	ООО СбытТорг	Казань	Комсомольская улица, 609	(925)925-67-90	Даниил Кононов	\N	\N	t	f	\N	0
+99	shyann_rogahn@.org	$2a$10$JMId8uDLcPRu.WnHOAPOcuOLqgHWtKxNP9T/p3lYZiyEsDtub/inO	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:31.730241	2015-11-09 13:28:31.730248	\N	\N	\N	281	Eum possimus et ipsum occaecati ex. Autem natus laboriosam sint sint unde dolorem ratione nisi asperiores eos consequatur sunt quia aut voluptatem et consectetur. Distinctio rem provident ut sunt et aut porro repellendus in provident accusantium quae incidunt perferendis et dolorum quia	ОП Гришин	Магнитогорск	ул. Мичурина, 298	(923)804-14-53	Валерий Одинцов	\N	\N	t	f	\N	0
+100	pietro@.рф	$2a$10$VBivKe3azu6o/B/3ec2d9e6kRtYnj2wmaFaXSTLWXbNQYN6Xk/VL.	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:31.816842	2015-11-09 13:28:31.816849	\N	\N	\N	226	Illum est quia voluptate rerum quaerat hic nulla dolore nostrum nulla qui ipsa aut. Atque est debitis assumenda eos quia est tenetur officiis rerum et quod qui. Perferendis cupiditate illum dicta similique similique voluptatum nobis eveniet est ut sequi culpa esse sit beatae dolorem voluptatem cum. Consequuntur exercitationem a incidunt magni aut earum omnis dolorem nihil. Animi vitae ad blanditiis eveniet dolorum unde autem et. Perferendis maiores quae et labore nemo error dolor repudiandae est blanditiis et saepe eum rem. Sed et id aspernatur consequuntur non nesciunt dolorum culpa odit sed amet eligendi esse	ИП Анатолий	Челябинск	Строительная площадь, 113	(973)900-71-28	Леонид Михайлович Уваров	\N	\N	t	f	\N	0
+101	1@2.com	$2a$10$y9bA92PWPZqzDfWbBO0WiuPTiN4zcky1eZGspDmewTdJD18q/ogdu	\N	\N	\N	1	2015-11-09 13:33:20.405182	2015-11-09 13:33:20.405182	10.1.2.32	10.1.2.32	2015-11-09 13:32:40.079832	2015-11-09 13:34:26.987797	vLUeBzCjBsYtzTRGEkEh	2015-11-09 13:33:20.285272	2015-11-09 13:32:40.782881	1	qqqq	\N	\N	\N	\N	\N	\N	\N	t	f	\N	0
+97	louisa@.com	$2a$10$EFkb53O54X2XylcZnXDM9uvGFLB0/beXFngfDdSaTyAE53AW37XAu	\N	\N	\N	1	\N	\N	\N	\N	2015-11-09 13:28:31.554981	2015-11-09 13:28:31.554988	\N	\N	\N	1	Qui et autem nihil ullam aut. Deleniti nemo minus culpa possimus est id aut voluptas repellat in et sint quia illum voluptas quae velit	ТСЖ КрасноярскТрейдТоргТорг	Тюмень	проспект Садовая, 494	(923)228-85-01	Евсеева Антонида Игоревна	\N	\N	t	f	\N	0
+104	3@3.com	$2a$10$K6yGwNEiC9o90vGcn/pDc.E7Gb9cVvLz4UlwGV7f.KHrdxmi2QCh6	\N	\N	\N	0	\N	\N	\N	\N	2015-11-25 14:13:45.213657	2015-11-25 14:13:45.213657	n2Smz8MyVfuYTW7fsCJc	\N	2015-11-25 14:13:46.086902	60	\N	\N	\N	\N	\N	\N	\N	\N	f	f	\N	0
+102	1@3.com	$2a$10$thTjuAZQpnMpKEdkyttur.SaHbdaPC2XRqKLugcCSD3PckrK.8eEW	\N	\N	\N	1	2015-11-10 07:07:16.225811	2015-11-10 07:07:16.225811	10.1.2.32	10.1.2.32	2015-11-10 07:06:35.416079	2015-11-11 11:52:22.135611	iwsLzfh8aSaRHhCZuDnG	2015-11-10 07:07:15.726223	2015-11-10 07:06:35.420126	1	qweeee	qwerty	qww	qweee					t	f	\N	0
+106	1@7.com	$2a$10$KToE7/1QL9LVzYARhlRJkuZO4u2U5WS8Ru973TGzq0SRF7DH3lUbu	\N	\N	\N	1	2015-12-05 06:49:33.731143	2015-12-05 06:49:33.731143	10.1.2.32	10.1.2.32	2015-12-05 06:49:16.233205	2015-12-05 06:54:12.665164	cLyoB9U6wELNPYYNSdkc	2015-12-05 06:49:33.654674	2015-12-05 06:49:16.236608	42	\N	Прачечная 4	\N	\N	\N	\N	\N	\N	f	f	ball.png	0
+107	1@8.com	$2a$10$XBlfyE9A1Ex530T9vYda1OKkfHFFaSnGanESFq0I3oYUowcoQIzRS	\N	\N	\N	1	2015-12-18 13:20:37.682682	2015-12-18 13:20:37.682682	10.1.2.32	10.1.2.32	2015-12-18 13:20:11.643082	2015-12-18 13:20:37.683686	VqKqXU2VhQFDnXzVKPEP	2015-12-18 13:20:37.591041	2015-12-18 13:20:12.469603	78	\N	qwerty	\N	\N	\N	\N	\N	\N	f	f	\N	0
+105	1@6.com	$2a$10$VOiqi.Jr0F0sDlECjULF3eRsgb1OcGhSz7q99j.TVFhvPXG/l6SSi	\N	\N	\N	10	2016-02-16 12:33:55.754843	2016-02-15 06:47:10.262582	10.16.77.1	10.16.77.1	2015-12-05 06:45:02.66649	2016-02-16 12:33:55.795101	BvYRYEqG6Le9KzWfhH5P	2015-12-05 06:45:32.570582	2015-12-05 06:45:03.350355	42	444446555	Прачечная 99	гомель	465465465	24654655456654	4654564654654	4564564	56454	f	t	3.jpeg	0
+108	asc@asc.ff	$2a$10$KsnW5bPUf1FQNlazgs1TvOHnLKtMlsNg6dyUm43PVFzEnaOL2vkzm	\N	\N	\N	0	\N	\N	\N	\N	2017-07-12 13:04:48.333486	2017-07-12 13:04:48.333486	kj9EXtfEyBokBDxGz5ev	\N	2017-07-12 13:04:49.025628	\N	\N	asc	\N	\N	\N	\N	\N	\N	f	t	\N	0
+109	dssd@asd.ggg	$2a$10$Bnn3GKQfjTMcYP9l8Gb50eQl.OwqPf9K9RvM3vvogv1TKUk336DD6	\N	\N	\N	0	\N	\N	\N	\N	2017-07-19 07:59:00.002152	2017-07-19 07:59:00.002152	xEs65epofUsiKL6ztshq	\N	2017-07-19 07:59:00.117977	\N	\N	asd	\N	\N	\N	\N	\N	\N	f	t	\N	0
+110	wer@asd.gg	$2a$10$0I0tfZCC5b/1xuRu9cxkcOhm1FUFNygvMkokX.Na6Uqe0AkLaen8y	\N	\N	\N	0	\N	\N	\N	\N	2017-07-19 09:41:13.428619	2017-07-19 09:41:13.428619	zmFXGE5e-bs6PFSqbcnU	\N	2017-07-19 09:41:13.459899	\N	\N	ewewewe	\N	\N	\N	\N	\N	\N	f	t	\N	0
+111	mir@email.com	$2a$10$.HPebOorwakGBgV1gWwI.erlMv2GnJRNbKwuMOQeusrETX7hMfvEK	\N	\N	\N	20	2017-08-23 11:39:38.510348	2017-08-23 11:38:18.465909	10.1.5.67	10.1.5.67	2017-07-21 13:11:08.979374	2017-08-23 12:47:23.241386	Wy_6_Te99vtZFaic3uK9	2017-07-21 16:38:30.905	2017-07-21 13:11:09.747195	\N	fvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvdvsdfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvdddddddddd4eeeeeeeeeeeeeeeeeeeeefvfvfvfvfvfvfvsasdfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvfvddddddddddf dfweeeeeeeeegfdfb\r\n1321321111\r\n32111111111\r\n3211111	авто мир	599954e	43111	33333566666		qwe	acsdc	t	t	mikki.jpg	0
+113	mir3@email.com	$2a$10$e6wmgsI8qW/SpFDyP9uRhObfjF8nvG15qDP2HzGVHQOoyT10LZZzG	\N	\N	\N	1	2017-07-24 11:50:16.374153	2017-07-24 11:50:16.374153	10.1.5.67	10.1.5.67	2017-07-24 11:48:21.654216	2017-07-24 11:50:16.378185	6BeW3FyvrRjtF2du3fic	2017-07-24 11:50:16.303544	2017-07-24 11:48:21.659613	\N	999999	sdv	\N	asxasx	454545455445	\N		\N	f	t	\N	0
+112	mir2@email.com	$2a$10$WfYY4Sw8lSmJLOm6dgcKu.6WX/WwoLKHuWAd0JeUG2ZxFJPl2pYRC	\N	\N	\N	1	2017-07-24 10:13:07.210862	2017-07-24 10:13:07.210862	10.1.5.67	10.1.5.67	2017-07-24 10:11:22.192546	2017-07-24 10:13:07.213834	hRo-ywZvSkVZ-hbz8LCN	2017-07-24 10:13:07.018479	2017-07-24 10:11:22.990575	\N	\N	world 2 	\N	\N	\N	\N	\N	\N	f	t	\N	0
+\.
+
+
+--
+-- Name: crafters_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sushi_new
+--
+
+SELECT pg_catalog.setval('crafters_id_seq', 113, true);
+
+
+--
+-- Data for Name: identities; Type: TABLE DATA; Schema: public; Owner: sushi_new
+--
+
+COPY identities (id, user_id, provider, uid, created_at, updated_at) FROM stdin;
+1	2	vkontakte	16578728	2015-11-23 09:36:50.284825	2015-11-23 09:36:50.765909
+\.
+
+
+--
+-- Name: identities_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sushi_new
+--
+
+SELECT pg_catalog.setval('identities_id_seq', 1, true);
+
+
+--
+-- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: sushi_new
+--
+
+COPY messages (id, body, read, conversation_id, sender_crafter_id, receiver_crafter_id, sender_user_id, receiver_user_id, created_at, updated_at) FROM stdin;
+1	dsasdasd 	f	1	\N	100	4	\N	2015-12-21 07:44:17.626913	2015-12-21 07:44:17.626913
+2	dsasdasd 	f	2	\N	100	4	\N	2015-12-21 07:44:20.844501	2015-12-21 07:44:20.844501
+3	dsasdasd 	f	3	\N	100	4	\N	2015-12-21 07:44:21.665605	2015-12-21 07:44:21.665605
+4	dsasdasd 	f	4	\N	100	4	\N	2015-12-21 07:44:21.842192	2015-12-21 07:44:21.842192
+5	dsasdasd 	f	5	\N	100	4	\N	2015-12-21 07:44:22.019557	2015-12-21 07:44:22.019557
+6	nhfgyht	f	1	\N	100	4	\N	2015-12-21 07:45:09.385586	2015-12-21 07:45:09.385586
+7	asdfasdf asdf xc\r\ncxdsac\r\n s\r\nc\r\nsad\r\nf dg r4ew	t	6	\N	105	4	\N	2016-01-11 08:19:39.715626	2016-01-11 08:23:59.971764
+11	456	t	6	\N	105	4	\N	2016-01-11 08:26:05.454551	2016-01-11 13:41:51.695618
+18	ok	t	6	105	\N	\N	4	2016-01-12 11:52:32.038006	2016-01-12 11:52:47.370981
+28	вйцйцв	t	7	\N	105	5	\N	2016-02-08 13:36:26.065873	2016-02-08 13:37:30.514655
+29	ok	t	7	105	\N	\N	5	2016-02-08 13:47:51.205473	2016-02-08 13:47:57.28386
+30	rf	t	7	\N	105	5	\N	2016-02-08 13:49:16.945228	2016-02-08 13:49:37.456611
+31	rf	t	7	\N	105	5	\N	2016-02-08 13:49:19.985232	2016-02-08 13:49:37.478274
+32	ok	t	7	105	\N	\N	5	2016-02-09 08:57:33.209441	2016-02-09 08:58:32.271958
+19	ascwefw we fwe fwed qwed wd wedasd sq	t	6	105	\N	\N	4	2016-01-13 07:15:37.563504	2016-02-09 09:21:07.130715
+\.
+
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sushi_new
+--
+
+SELECT pg_catalog.setval('messages_id_seq', 32, true);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: sushi_new
+--
+
+COPY schema_migrations (version) FROM stdin;
+141124174730
+141124174838
+10141124181819
+11141124181819
+20141125072111
+20150314063203
+20150314063332
+20150314065909
+20150314070341
+20150328090611
+20150328090619
+20150328110306
+20150928124359
+20150929093605
+20150929112105
+20151001131714
+20151021085949
+20151021093111
+20151021095010
+20151102091232
+20151110094315
+20151114100110
+20151118064220
+20151212085833
+20151212090508
+20151212090836
+20151219084430
+20151219084719
+20160212115106
+\.
+
+
+--
+-- Data for Name: subcategories; Type: TABLE DATA; Schema: public; Owner: sushi_new
+--
+
+COPY subcategories (id, name, created_at, updated_at, category_id, title_sub_category) FROM stdin;
+1	Автошколы	2015-11-09 13:28:12.549788	2015-11-09 13:28:12.549788	1	Обучение
+2	Курсы вождения	2015-11-09 13:28:12.555885	2015-11-09 13:28:12.555885	1	 
+3	Аренда автомобилей	2015-11-09 13:28:12.560271	2015-11-09 13:28:12.560271	1	Такси
+4	Аренда грузового  а	2015-11-09 13:28:12.564573	2015-11-09 13:28:12.564573	1	 
+5	Аренда спецтехники	2015-11-09 13:28:12.568815	2015-11-09 13:28:12.568815	1	 
+6	Службы такси	2015-11-09 13:28:12.573648	2015-11-09 13:28:12.573648	1	 
+7	Вскрытие замков	2015-11-09 13:28:12.577674	2015-11-09 13:28:12.577674	1	Автопомощь
+8	Эвакуация	2015-11-09 13:28:12.58182	2015-11-09 13:28:12.58182	1	 
+9	Грузоперевозки	2015-11-09 13:28:12.586119	2015-11-09 13:28:12.586119	1	Перевозки
+10	Пассажирские перевозки	2015-11-09 13:28:12.590943	2015-11-09 13:28:12.590943	1	 
+11	ГАИ	2015-11-09 13:28:12.596013	2015-11-09 13:28:12.596013	1	ГАИ
+12	Гостехосмотр	2015-11-09 13:28:12.600064	2015-11-09 13:28:12.600064	1	 
+13	Платные парковки	2015-11-09 13:28:12.604688	2015-11-09 13:28:12.604688	1	 
+14	Штрафстоянки	2015-11-09 13:28:12.609357	2015-11-09 13:28:12.609357	1	 
+15	Запчасти для грузовых авто	2015-11-09 13:28:12.613822	2015-11-09 13:28:12.613822	1	Грузовые авто
+16	Запчасти для пассажирского  а	2015-11-09 13:28:12.618126	2015-11-09 13:28:12.618126	1	 
+17	Запчасти для сельхозтехники	2015-11-09 13:28:12.622831	2015-11-09 13:28:12.622831	1	 
+18	Запчасти для спецтехники	2015-11-09 13:28:12.627789	2015-11-09 13:28:12.627789	1	 
+19	Продажа грузовых авто	2015-11-09 13:28:12.632283	2015-11-09 13:28:12.632283	1	 
+20	Продажа спецтехники	2015-11-09 13:28:12.635797	2015-11-09 13:28:12.635797	1	 
+21	Продажа и аренда прицепов	2015-11-09 13:28:12.639959	2015-11-09 13:28:12.639959	1	 
+22	Ремонт грузовых авто и спецтехники	2015-11-09 13:28:12.644311	2015-11-09 13:28:12.644311	1	 
+23	Магазины автозапчастей	2015-11-09 13:28:12.648236	2015-11-09 13:28:12.648236	1	Запчасти и аксессуары
+24	Аккумуляторы и батареи	2015-11-09 13:28:12.652798	2015-11-09 13:28:12.652798	1	 
+25	Акустика	2015-11-09 13:28:12.657827	2015-11-09 13:28:12.657827	1	 
+26	Масла и автохимия	2015-11-09 13:28:12.662163	2015-11-09 13:28:12.662163	1	 
+27	Охранные системы	2015-11-09 13:28:12.666387	2015-11-09 13:28:12.666387	1	 
+28	Шины	2015-11-09 13:28:12.671038	2015-11-09 13:28:12.671038	0	\N
+29	Автоломбарды	2015-11-09 13:28:12.676271	2015-11-09 13:28:12.676271	1	Покупка и продажа авто
+30	Автодилеры	2015-11-09 13:28:12.680623	2015-11-09 13:28:12.680623	1	 
+31	Автохаусы	2015-11-09 13:28:12.684728	2015-11-09 13:28:12.684728	1	 
+32	Мототехника	2015-11-09 13:28:12.689275	2015-11-09 13:28:12.689275	1	 
+33	Тюнинг	2015-11-09 13:28:12.69439	2015-11-09 13:28:12.69439	1	Тюнинг и дополнительное оборудование
+34	Аудио	2015-11-09 13:28:12.698069	2015-11-09 13:28:12.698069	0	\N
+35	Газовое оборудование	2015-11-09 13:28:12.7028	2015-11-09 13:28:12.7028	1	 
+36	Дополнительное оборудование	2015-11-09 13:28:12.706944	2015-11-09 13:28:12.706944	1	 
+37	Сигнализация	2015-11-09 13:28:12.711541	2015-11-09 13:28:12.711541	1	 
+38	Автомойки	2015-11-09 13:28:12.716445	2015-11-09 13:28:12.716445	0	\N
+39	АЗС	2015-11-09 13:28:12.720303	2015-11-09 13:28:12.720303	1	\N
+40	Оборудование для СТО	2015-11-09 13:28:12.725001	2015-11-09 13:28:12.725001	0	\N
+41	СТО	2015-11-09 13:28:12.728896	2015-11-09 13:28:12.728896	1	\N
+42	Химчистки	2015-11-09 13:28:12.733103	2015-11-09 13:28:12.733103	2	Бытовые услуги
+43	Услуги прачечных	2015-11-09 13:28:12.73769	2015-11-09 13:28:12.73769	2	 
+44	Клининговые услуги	2015-11-09 13:28:12.74172	2015-11-09 13:28:12.74172	2	 
+45	Ритуальные услуги	2015-11-09 13:28:12.745781	2015-11-09 13:28:12.745781	2	 
+46	Изготовление ключей	2015-11-09 13:28:12.75039	2015-11-09 13:28:12.75039	2	 
+47	Услуги фотоателье	2015-11-09 13:28:12.755275	2015-11-09 13:28:12.755275	2	 
+48	Мастер на час	2015-11-09 13:28:12.759379	2015-11-09 13:28:12.759379	2	 
+49	Прокат и аренда	2015-11-09 13:28:12.764248	2015-11-09 13:28:12.764248	2	 
+50	Ремонт сумок	2015-11-09 13:28:12.76822	2015-11-09 13:28:12.76822	0	\N
+51	Ремонт и пошив одежды	2015-11-09 13:28:12.773387	2015-11-09 13:28:12.773387	2	 
+52	Ремонт и пошив обуви	2015-11-09 13:28:12.778451	2015-11-09 13:28:12.778451	2	 
+53	Ремонт и изготовление ювелирных изделий	2015-11-09 13:28:12.783269	2015-11-09 13:28:12.783269	2	 
+54	Ремонт музыкальных инструментов	2015-11-09 13:28:12.786973	2015-11-09 13:28:12.786973	2	 
+55	Ремонт аудио и видеотехники	2015-11-09 13:28:12.792155	2015-11-09 13:28:12.792155	2	 
+56	Ремонт фототехники	2015-11-09 13:28:12.796487	2015-11-09 13:28:12.796487	2	 
+57	Ремонт компьютерной техники	2015-11-09 13:28:12.801444	2015-11-09 13:28:12.801444	2	 
+58	Ремонт бытовой техники	2015-11-09 13:28:12.804859	2015-11-09 13:28:12.804859	2	 
+59	Ремонт мобильных телефонов и средств связи	2015-11-09 13:28:12.809111	2015-11-09 13:28:12.809111	2	 
+60	ЗАГСы	2015-11-09 13:28:12.813482	2015-11-09 13:28:12.813482	3	Государство и общество
+61	Религиозные организации	2015-11-09 13:28:12.818249	2015-11-09 13:28:12.818249	3	 
+62	Центры занятости населения	2015-11-09 13:28:12.82224	2015-11-09 13:28:12.82224	3	 
+63	Налоговые инспекции	2015-11-09 13:28:12.827335	2015-11-09 13:28:12.827335	3	 
+64	Фонды	2015-11-09 13:28:12.831757	2015-11-09 13:28:12.831757	3	 
+65	Нотариусы	2015-11-09 13:28:12.836295	2015-11-09 13:28:12.836295	3	 
+66	Юридические услуги	2015-11-09 13:28:12.84129	2015-11-09 13:28:12.84129	3	 
+67	Посольства и консульства	2015-11-09 13:28:12.847295	2015-11-09 13:28:12.847295	3	 
+68	Военкоматы	2015-11-09 13:28:12.851326	2015-11-09 13:28:12.851326	3	 
+69	Кадровые агентства	2015-11-09 13:28:12.856274	2015-11-09 13:28:12.856274	3	 
+70	Паспортно-визовая служба	2015-11-09 13:28:12.861636	2015-11-09 13:28:12.861636	3	 
+71	Прокуратуры	2015-11-09 13:28:12.866872	2015-11-09 13:28:12.866872	3	 
+72	Коммунальные службы	2015-11-09 13:28:12.873289	2015-11-09 13:28:12.873289	3	 
+73	Санэпидемстанции	2015-11-09 13:28:12.877476	2015-11-09 13:28:12.877476	3	 
+74	Органы исполнительной власти	2015-11-09 13:28:12.883576	2015-11-09 13:28:12.883576	3	 
+75	Суды	2015-11-09 13:28:12.888112	2015-11-09 13:28:12.888112	3	 
+76	Кадастровые агентства	2015-11-09 13:28:12.893894	2015-11-09 13:28:12.893894	3	 
+77	Министерства	2015-11-09 13:28:12.89909	2015-11-09 13:28:12.89909	3	 
+78	Детские развлекательные центры	2015-11-09 13:28:12.905276	2015-11-09 13:28:12.905276	4	Дети
+79	Прокат детских товаров	2015-11-09 13:28:12.910414	2015-11-09 13:28:12.910414	4	 
+80	Магазины детских товаров	2015-11-09 13:28:12.916518	2015-11-09 13:28:12.916518	4	 
+81	Няни	2015-11-09 13:28:12.921037	2015-11-09 13:28:12.921037	4	 
+82	Детские	2015-11-09 13:28:12.925987	2015-11-09 13:28:12.925987	4	\N
+83	Детские сады	2015-11-09 13:28:12.931111	2015-11-09 13:28:12.931111	4	 
+84	Центры детского развития	2015-11-09 13:28:12.93543	2015-11-09 13:28:12.93543	4	 
+85	Ветаптеки	2015-11-09 13:28:12.940322	2015-11-09 13:28:12.940322	5	Домашние животные
+86	Ветклиники	2015-11-09 13:28:12.94519	2015-11-09 13:28:12.94519	5	 
+87	Гостиницы для домашних животных	2015-11-09 13:28:12.952775	2015-11-09 13:28:12.952775	5	 
+88	Зоомагазины	2015-11-09 13:28:12.95955	2015-11-09 13:28:12.95955	5	 
+89	Питомники	2015-11-09 13:28:12.965012	2015-11-09 13:28:12.965012	5	 
+90	Салоны красоты для животных	2015-11-09 13:28:12.971233	2015-11-09 13:28:12.971233	5	 
+91	Торты на заказ	2015-11-09 13:28:12.978222	2015-11-09 13:28:12.978222	6	Еда
+92	Рестораны	2015-11-09 13:28:12.983606	2015-11-09 13:28:12.983606	0	\N
+93	Кейтеринг	2015-11-09 13:28:12.988883	2015-11-09 13:28:12.988883	6	 
+94	Доставка еды	2015-11-09 13:28:12.993893	2015-11-09 13:28:12.993893	6	 
+95	Банкетные залы	2015-11-09 13:28:12.999333	2015-11-09 13:28:12.999333	6	 
+96	Столовые	2015-11-09 13:28:13.005024	2015-11-09 13:28:13.005024	6	 
+97	Аптеки	2015-11-09 13:28:13.009615	2015-11-09 13:28:13.009615	7	 Красота и медицина
+98	Тату- салоны	2015-11-09 13:28:13.015143	2015-11-09 13:28:13.015143	7	 
+99	Фитнес	2015-11-09 13:28:13.019905	2015-11-09 13:28:13.019905	0	\N
+100	Солярии	2015-11-09 13:28:13.025381	2015-11-09 13:28:13.025381	7	 
+101	Йога	2015-11-09 13:28:13.03118	2015-11-09 13:28:13.03118	7	 
+102	SPA-центры	2015-11-09 13:28:13.036207	2015-11-09 13:28:13.036207	7	 
+103	Парикмахерские	2015-11-09 13:28:13.040807	2015-11-09 13:28:13.040807	7	 
+104	Центры коррекции фигуры	2015-11-09 13:28:13.045226	2015-11-09 13:28:13.045226	7	 
+105	Салоны красоты	2015-11-09 13:28:13.049697	2015-11-09 13:28:13.049697	7	 
+106	Стоматология	2015-11-09 13:28:13.053935	2015-11-09 13:28:13.053935	7	 
+107	Родильные дома	2015-11-09 13:28:13.058152	2015-11-09 13:28:13.058152	7	 
+108	Медицинские центры	2015-11-09 13:28:13.062818	2015-11-09 13:28:13.062818	7	 
+109	Больницы	2015-11-09 13:28:13.067691	2015-11-09 13:28:13.067691	0	\N
+110	Поликлиники	2015-11-09 13:28:13.072275	2015-11-09 13:28:13.072275	7	 
+111	Магазины оптики	2015-11-09 13:28:13.076437	2015-11-09 13:28:13.076437	7	 
+112	Магазины медтехники	2015-11-09 13:28:13.081416	2015-11-09 13:28:13.081416	7	 
+113	Мастера по маникюру и педикюру	2015-11-09 13:28:13.085661	2015-11-09 13:28:13.085661	7	 Мастера красоты
+114	Визажисты	2015-11-09 13:28:13.09126	2015-11-09 13:28:13.09126	0	\N
+115	Массажисты	2015-11-09 13:28:13.099146	2015-11-09 13:28:13.099146	7	 
+116	Мастера по эпиляции	2015-11-09 13:28:13.103737	2015-11-09 13:28:13.103737	7	 
+117	Косметологи	2015-11-09 13:28:13.108095	2015-11-09 13:28:13.108095	7	 
+118	Магазины парфюмерии и косметики	2015-11-09 13:28:13.112106	2015-11-09 13:28:13.112106	8	 Магазины
+119	Магазины бытовой химии	2015-11-09 13:28:13.116421	2015-11-09 13:28:13.116421	8	 
+120	Ювелирные магазины	2015-11-09 13:28:13.120429	2015-11-09 13:28:13.120429	8	 
+121	Магазины музыкальных инструментов	2015-11-09 13:28:13.125438	2015-11-09 13:28:13.125438	8	 
+122	Магазины товаров для охоты и рыбалки	2015-11-09 13:28:13.129543	2015-11-09 13:28:13.129543	8	 
+123	Магазины канцтоваров	2015-11-09 13:28:13.133553	2015-11-09 13:28:13.133553	8	 
+124	Книжные магазины	2015-11-09 13:28:13.137614	2015-11-09 13:28:13.137614	8	 
+125	Конфискат	2015-11-09 13:28:13.141962	2015-11-09 13:28:13.141962	0	\N
+126	Продуктовые магазины	2015-11-09 13:28:13.145993	2015-11-09 13:28:13.145993	8	 
+127	Магазины товаров для хобби	2015-11-09 13:28:13.150861	2015-11-09 13:28:13.150861	8	 
+128	Стоки	2015-11-09 13:28:13.155161	2015-11-09 13:28:13.155161	0	\N
+129	Детская одежда	2015-11-09 13:28:13.159156	2015-11-09 13:28:13.159156	8	 
+130	Женская одежда	2015-11-09 13:28:13.16293	2015-11-09 13:28:13.16293	8	 
+131	Мужская одежда	2015-11-09 13:28:13.167397	2015-11-09 13:28:13.167397	8	 
+132	Магазины обуви	2015-11-09 13:28:13.172731	2015-11-09 13:28:13.172731	8	 
+133	Магазины аксессуаров	2015-11-09 13:28:13.177861	2015-11-09 13:28:13.177861	8	 
+134	Магазины белья	2015-11-09 13:28:13.181984	2015-11-09 13:28:13.181984	8	 
+135	Магазины для беременных	2015-11-09 13:28:13.186017	2015-11-09 13:28:13.186017	8	 
+136	Магазины спортивной одежды	2015-11-09 13:28:13.190901	2015-11-09 13:28:13.190901	8	 
+137	Магазины бижутерии	2015-11-09 13:28:13.195293	2015-11-09 13:28:13.195293	8	 
+138	Магазины верхней одежды	2015-11-09 13:28:13.199796	2015-11-09 13:28:13.199796	8	 
+139	Магазины сумок	2015-11-09 13:28:13.203997	2015-11-09 13:28:13.203997	8	 
+140	Торговые центры	2015-11-09 13:28:13.208629	2015-11-09 13:28:13.208629	8	Торговые площадки
+141	Рынки	2015-11-09 13:28:13.213519	2015-11-09 13:28:13.213519	8	 
+142	Магазины ковров	2015-11-09 13:28:13.221365	2015-11-09 13:28:13.221365	8	 Магазины товаров для дома
+143	Магазины посуды	2015-11-09 13:28:13.225523	2015-11-09 13:28:13.225523	8	 
+144	Магазины постельного белья	2015-11-09 13:28:13.230031	2015-11-09 13:28:13.230031	8	 
+145	Магазины предметов интерьера	2015-11-09 13:28:13.235082	2015-11-09 13:28:13.235082	8	 
+146	Мебельные магазины	2015-11-09 13:28:13.239535	2015-11-09 13:28:13.239535	8	 
+147	Магазины светильников и электрики	2015-11-09 13:28:13.243955	2015-11-09 13:28:13.243955	8	 
+148	Салоны штор	2015-11-09 13:28:13.248362	2015-11-09 13:28:13.248362	8	 
+149	Магазины бытовой техники	2015-11-09 13:28:13.252173	2015-11-09 13:28:13.252173	8	 Магазины техники
+150	Компьютерная и оргтехника	2015-11-09 13:28:13.257041	2015-11-09 13:28:13.257041	8	 
+151	Телефоны и связь	2015-11-09 13:28:13.261477	2015-11-09 13:28:13.261477	8	\N
+152	Фото-	2015-11-09 13:28:13.264915	2015-11-09 13:28:13.264915	0	\N
+153	Игры и развлечения	2015-11-09 13:28:13.269279	2015-11-09 13:28:13.269279	8	 
+154	Аудиотехника	2015-11-09 13:28:13.274396	2015-11-09 13:28:13.274396	8	 
+155	Агентства недвижимости	2015-11-09 13:28:13.278803	2015-11-09 13:28:13.278803	9	Недвижимость
+156	Оценка недвижимости	2015-11-09 13:28:13.282864	2015-11-09 13:28:13.282864	9	 
+157	Коммунальные службы	2015-11-09 13:28:13.287135	2015-11-09 13:28:13.287135	9	 
+158	Кадастровые агентства	2015-11-09 13:28:13.292027	2015-11-09 13:28:13.292027	9	 
+159	Застройщики	2015-11-09 13:28:13.298388	2015-11-09 13:28:13.298388	9	 
+160	Коттеджи и агроусадьбы	2015-11-09 13:28:13.302945	2015-11-09 13:28:13.302945	9	 
+161	Квартиры на сутки	2015-11-09 13:28:13.306886	2015-11-09 13:28:13.306886	9	 
+162	Автошколы	2015-11-09 13:28:13.311186	2015-11-09 13:28:13.311186	10	Образование
+163	Повышение квалификации	2015-11-09 13:28:13.315862	2015-11-09 13:28:13.315862	10	 
+164	Библиотеки	2015-11-09 13:28:13.320249	2015-11-09 13:28:13.320249	10	 
+165	Модельные школы	2015-11-09 13:28:13.324556	2015-11-09 13:28:13.324556	10	 
+166	Школы искусств	2015-11-09 13:28:13.328853	2015-11-09 13:28:13.328853	10	 
+167	Школы танцев	2015-11-09 13:28:13.332588	2015-11-09 13:28:13.332588	10	 
+168	Написание курсовых	2015-11-09 13:28:13.337943	2015-11-09 13:28:13.337943	0	\N
+169	Репетиторы. Подготовка к ЦТ	2015-11-09 13:28:13.341937	2015-11-09 13:28:13.341937	10	 
+170	Тренинги	2015-11-09 13:28:13.345836	2015-11-09 13:28:13.345836	10	 
+171	Детские сады	2015-11-09 13:28:13.350836	2015-11-09 13:28:13.350836	10	 Учебные заведения
+172	Профессиональные колледжи	2015-11-09 13:28:13.354977	2015-11-09 13:28:13.354977	0	\N
+173	Школы	2015-11-09 13:28:13.359167	2015-11-09 13:28:13.359167	10	 
+174	Гимназии	2015-11-09 13:28:13.363702	2015-11-09 13:28:13.363702	10	 
+175	Лицеи	2015-11-09 13:28:13.368291	2015-11-09 13:28:13.368291	10	 
+176	ВУЗЫ	2015-11-09 13:28:13.372608	2015-11-09 13:28:13.372608	10	 
+177	Курсы иностранных языков	2015-11-09 13:28:13.376817	2015-11-09 13:28:13.376817	10	Курсы
+178	Курсы фотографии и видеосъемки	2015-11-09 13:28:13.383374	2015-11-09 13:28:13.383374	10	 
+179	Школы красоты	2015-11-09 13:28:13.38896	2015-11-09 13:28:13.38896	10	 
+180	Курсы рабочих специальностей	2015-11-09 13:28:13.394278	2015-11-09 13:28:13.394278	10	 
+181	Курсы рукоделия	2015-11-09 13:28:13.399128	2015-11-09 13:28:13.399128	10	 
+182	Профессиональные курсы	2015-11-09 13:28:13.403047	2015-11-09 13:28:13.403047	10	 
+183	Кулинарные курсы	2015-11-09 13:28:13.408073	2015-11-09 13:28:13.408073	10	 
+184	Курсы дизайна	2015-11-09 13:28:13.412561	2015-11-09 13:28:13.412561	10	 
+185	IT курсы	2015-11-09 13:28:13.416842	2015-11-09 13:28:13.416842	10	 
+186	Курсы видеосъемки	2015-11-09 13:28:13.4211	2015-11-09 13:28:13.4211	10	 
+187	Рестораны и кафе	2015-11-09 13:28:13.425622	2015-11-09 13:28:13.425622	10	 Отдых и развлечения
+188	Сауны	2015-11-09 13:28:13.430642	2015-11-09 13:28:13.430642	0	\N
+189	Ночные клубы	2015-11-09 13:28:13.434898	2015-11-09 13:28:13.434898	10	 
+190	Караоке-клубы	2015-11-09 13:28:13.439286	2015-11-09 13:28:13.439286	10	 
+191	Детские развлекательные центры	2015-11-09 13:28:13.44434	2015-11-09 13:28:13.44434	10	 
+192	Клубы по интересам	2015-11-09 13:28:13.447959	2015-11-09 13:28:13.447959	10	 
+193	Выставочные центры	2015-11-09 13:28:13.454181	2015-11-09 13:28:13.454181	0	\N
+194	Парки культуры и отдыха	2015-11-09 13:28:13.460082	2015-11-09 13:28:13.460082	10	 
+195	Дворцы и дома культуры	2015-11-09 13:28:13.464463	2015-11-09 13:28:13.464463	10	 
+196	Казино	2015-11-09 13:28:13.468739	2015-11-09 13:28:13.468739	10	Игорные заведения
+197	Залы игровых автоматов	2015-11-09 13:28:13.473978	2015-11-09 13:28:13.473978	10	 
+198	Бильярд	2015-11-09 13:28:13.478468	2015-11-09 13:28:13.478468	10	Развлечения
+199	Театры	2015-11-09 13:28:13.482851	2015-11-09 13:28:13.482851	10	 
+200	Кинотеатры	2015-11-09 13:28:13.487569	2015-11-09 13:28:13.487569	10	 
+201	Цирки	2015-11-09 13:28:13.492735	2015-11-09 13:28:13.492735	10	 
+202	Музеи	2015-11-09 13:28:13.496867	2015-11-09 13:28:13.496867	10	 
+203	Концертные площадки	2015-11-09 13:28:13.502059	2015-11-09 13:28:13.502059	10	 
+204	Зоопарки и дельфинарии	2015-11-09 13:28:13.506025	2015-11-09 13:28:13.506025	10	 
+205	Лазертаг	2015-11-09 13:28:13.511327	2015-11-09 13:28:13.511327	10	 
+206	Картинг	2015-11-09 13:28:13.517443	2015-11-09 13:28:13.517443	0	\N
+207	Тиры	2015-11-09 13:28:13.523422	2015-11-09 13:28:13.523422	10	 
+208	Дайвинг	2015-11-09 13:28:13.527939	2015-11-09 13:28:13.527939	10	 
+209	Страйкбол	2015-11-09 13:28:13.532462	2015-11-09 13:28:13.532462	10	 
+210	Квесты	2015-11-09 13:28:13.536469	2015-11-09 13:28:13.536469	0	\N
+211	Пейнтбол	2015-11-09 13:28:13.54184	2015-11-09 13:28:13.54184	10	 
+212	Верховая езда	2015-11-09 13:28:13.545854	2015-11-09 13:28:13.545854	10	 
+213	Боулинг	2015-11-09 13:28:13.551677	2015-11-09 13:28:13.551677	10	 
+214	Аквапарки	2015-11-09 13:28:13.555946	2015-11-09 13:28:13.555946	10	 
+215	Букмекерские конторы	2015-11-09 13:28:13.560477	2015-11-09 13:28:13.560477	11	Спорт
+216	Прокат и аренда	2015-11-09 13:28:13.564599	2015-11-09 13:28:13.564599	11	 
+217	Спортивные школы	2015-11-09 13:28:13.568869	2015-11-09 13:28:13.568869	0	\N
+218	Спортивное питание	2015-11-09 13:28:13.573662	2015-11-09 13:28:13.573662	11	Магазины
+219	Спортивные товары	2015-11-09 13:28:13.577988	2015-11-09 13:28:13.577988	0	\N
+220	Магазины спортивной одежды	2015-11-09 13:28:13.582721	2015-11-09 13:28:13.582721	11	 
+221	Товары для отдыха и туризма	2015-11-09 13:28:13.587196	2015-11-09 13:28:13.587196	11	 
+222	Товары для рыбалки и охоты	2015-11-09 13:28:13.591526	2015-11-09 13:28:13.591526	11	 
+223	Магазины велосипедов	2015-11-09 13:28:13.596052	2015-11-09 13:28:13.596052	11	 
+224	Бассейны	2015-11-09 13:28:13.600837	2015-11-09 13:28:13.600837	11	 Спортивные центры
+225	Гольф клубы	2015-11-09 13:28:13.606559	2015-11-09 13:28:13.606559	11	 
+226	Горнолыжные центры	2015-11-09 13:28:13.610601	2015-11-09 13:28:13.610601	11	 
+227	Катки	2015-11-09 13:28:13.61484	2015-11-09 13:28:13.61484	11	 
+228	Спортивные комплексы	2015-11-09 13:28:13.619449	2015-11-09 13:28:13.619449	11	 
+229	Теннисные корты	2015-11-09 13:28:13.624375	2015-11-09 13:28:13.624375	11	 
+230	Фитнес	2015-11-09 13:28:13.628928	2015-11-09 13:28:13.628928	0	\N
+231	Йога	2015-11-09 13:28:13.634046	2015-11-09 13:28:13.634046	11	 
+232	Артисты	2015-11-09 13:28:13.638115	2015-11-09 13:28:13.638115	12	Праздники
+233	Ведущие	2015-11-09 13:28:13.643096	2015-11-09 13:28:13.643096	12	 
+234	Детские праздники	2015-11-09 13:28:13.647791	2015-11-09 13:28:13.647791	12	 
+235	Аренда оборудования	2015-11-09 13:28:13.65259	2015-11-09 13:28:13.65259	12	 
+236	Оформление и декор	2015-11-09 13:28:13.656686	2015-11-09 13:28:13.656686	12	 
+237	Полиграфия	2015-11-09 13:28:13.661436	2015-11-09 13:28:13.661436	12	 
+238	Подарки и сувениры	2015-11-09 13:28:13.665835	2015-11-09 13:28:13.665835	12	 
+239	Праздничные агентства	2015-11-09 13:28:13.670591	2015-11-09 13:28:13.670591	12	 
+240	Свадебные	2015-11-09 13:28:13.674954	2015-11-09 13:28:13.674954	0	\N
+241	Карнавальные костюмы	2015-11-09 13:28:13.67924	2015-11-09 13:28:13.67924	12	 
+242	Свадебный кортеж	2015-11-09 13:28:13.684158	2015-11-09 13:28:13.684158	12	 
+243	Шоу-программы	2015-11-09 13:28:13.689501	2015-11-09 13:28:13.689501	12	 
+244	Видеосъёмка	2015-11-09 13:28:13.694735	2015-11-09 13:28:13.694735	12	 
+245	Фотосъёмка	2015-11-09 13:28:13.700256	2015-11-09 13:28:13.700256	12	 
+246	Магазины цветов	2015-11-09 13:28:13.705615	2015-11-09 13:28:13.705615	12	 
+247	Торты на заказ	2015-11-09 13:28:13.710593	2015-11-09 13:28:13.710593	12	 
+248	Двери	2015-11-09 13:28:13.71562	2015-11-09 13:28:13.71562	0	\N
+249	Лестницы	2015-11-09 13:28:13.719305	2015-11-09 13:28:13.719305	12	 
+250	Напольные покрытия	2015-11-09 13:28:13.724101	2015-11-09 13:28:13.724101	13	 
+251	Окна	2015-11-09 13:28:13.729275	2015-11-09 13:28:13.729275	13	 
+252	Обои	2015-11-09 13:28:13.734089	2015-11-09 13:28:13.734089	13	 
+253	Отделочные материалы для внутренних работ	2015-11-09 13:28:13.744853	2015-11-09 13:28:13.744853	13	 
+254	Плитка	2015-11-09 13:28:13.749926	2015-11-09 13:28:13.749926	13	 
+255	Потолки	2015-11-09 13:28:13.754392	2015-11-09 13:28:13.754392	0	\N
+256	Предметы интерьера	2015-11-09 13:28:13.759094	2015-11-09 13:28:13.759094	0	\N
+257	Сантехника	2015-11-09 13:28:13.763145	2015-11-09 13:28:13.763145	13	 
+258	Светильники	2015-11-09 13:28:13.767325	2015-11-09 13:28:13.767325	0	\N
+259	Стекла	2015-11-09 13:28:13.773051	2015-11-09 13:28:13.773051	0	\N
+260	Шторы	2015-11-09 13:28:13.776912	2015-11-09 13:28:13.776912	0	\N
+261	Бетон	2015-11-09 13:28:13.781467	2015-11-09 13:28:13.781467	0	\N
+262	Железобетонные изделия	2015-11-09 13:28:13.786007	2015-11-09 13:28:13.786007	13	 
+263	Изоляция	2015-11-09 13:28:13.790441	2015-11-09 13:28:13.790441	13	 
+264	Камень	2015-11-09 13:28:13.794388	2015-11-09 13:28:13.794388	0	\N
+265	Кровельные материалы	2015-11-09 13:28:13.79882	2015-11-09 13:28:13.79882	13	 
+266	Лакокрасочная продукция	2015-11-09 13:28:13.803118	2015-11-09 13:28:13.803118	13	 
+267	Металл: конструкции	2015-11-09 13:28:13.807985	2015-11-09 13:28:13.807985	0	\N
+268	Пиломатериалы	2015-11-09 13:28:13.81206	2015-11-09 13:28:13.81206	13	 
+269	Стеновые и кладочные материалы	2015-11-09 13:28:13.816312	2015-11-09 13:28:13.816312	13	 
+270	Сухие строительные смеси	2015-11-09 13:28:13.820783	2015-11-09 13:28:13.820783	13	 
+271	Трубопроводная арматура	2015-11-09 13:28:13.826735	2015-11-09 13:28:13.826735	13	 
+272	Фасадные материалы	2015-11-09 13:28:13.830821	2015-11-09 13:28:13.830821	13	 
+273	Строительные супермаркеты	2015-11-09 13:28:13.835145	2015-11-09 13:28:13.835145	13	Строительные торговые площадки
+274	Дизайн помещений	2015-11-09 13:28:13.839542	2015-11-09 13:28:13.839542	13	Услуги по строительству и ремонту
+275	Комплексный ремонт под ключ	2015-11-09 13:28:13.84639	2015-11-09 13:28:13.84639	13	 
+276	Отделочные работы	2015-11-09 13:28:13.850903	2015-11-09 13:28:13.850903	13	 
+277	Отопление. Газоснабжение	2015-11-09 13:28:13.855207	2015-11-09 13:28:13.855207	13	 
+278	Подведение коммуникаций	2015-11-09 13:28:13.859405	2015-11-09 13:28:13.859405	13	 
+279	Проектирование. Смета	2015-11-09 13:28:13.864949	2015-11-09 13:28:13.864949	13	 
+280	Сантехнические работы	2015-11-09 13:28:13.869595	2015-11-09 13:28:13.869595	13	 
+281	Строительство зданий и сооружений	2015-11-09 13:28:13.874231	2015-11-09 13:28:13.874231	13	 
+282	Услуги грузчиков	2015-11-09 13:28:13.880834	2015-11-09 13:28:13.880834	0	\N
+283	Электромонтажные работы	2015-11-09 13:28:13.886441	2015-11-09 13:28:13.886441	13	 
+284	Кровельные работы	2015-11-09 13:28:13.8919	2015-11-09 13:28:13.8919	13	 
+285	Корпусная мебель	2015-11-09 13:28:13.897052	2015-11-09 13:28:13.897052	13	Мебель
+286	Мебельная фурнитура	2015-11-09 13:28:13.901958	2015-11-09 13:28:13.901958	13	 
+287	Мягкая мебель	2015-11-09 13:28:13.907361	2015-11-09 13:28:13.907361	13	 
+288	Ремонт мебели	2015-11-09 13:28:13.911583	2015-11-09 13:28:13.911583	13	 
+289	Специализированная мебель	2015-11-09 13:28:13.916563	2015-11-09 13:28:13.916563	13	 
+290	Стулья и кресла	2015-11-09 13:28:13.9218	2015-11-09 13:28:13.9218	13	 
+291	Кухни	2015-11-09 13:28:13.925863	2015-11-09 13:28:13.925863	13	 
+292	Контрольно-измерительные приборы	2015-11-09 13:28:13.93115	2015-11-09 13:28:13.93115	13	Инструмент и оборудование
+293	Отопительное оборудование	2015-11-09 13:28:13.93591	2015-11-09 13:28:13.93591	13	 
+294	Охранные системы	2015-11-09 13:28:13.94378	2015-11-09 13:28:13.94378	0	\N
+295	Системы кондиционирования и вентиляции	2015-11-09 13:28:13.950257	2015-11-09 13:28:13.950257	13	 
+296	Строительный инструмент	2015-11-09 13:28:13.962102	2015-11-09 13:28:13.962102	13	 
+297	Строительная техника и оборудование	2015-11-09 13:28:14.16126	2015-11-09 13:28:14.16126	13	 
+298	Электрооборудование	2015-11-09 13:28:14.172114	2015-11-09 13:28:14.172114	13	 
+299	Бани	2015-11-09 13:28:14.176162	2015-11-09 13:28:14.176162	0	\N
+300	Бассейны	2015-11-09 13:28:14.181461	2015-11-09 13:28:14.181461	13	 
+301	Беседки	2015-11-09 13:28:14.185798	2015-11-09 13:28:14.185798	0	\N
+302	Все для сада и огорода	2015-11-09 13:28:14.191122	2015-11-09 13:28:14.191122	13	 
+303	Ворота	2015-11-09 13:28:14.195497	2015-11-09 13:28:14.195497	0	\N
+304	Ландшафтный дизайн	2015-11-09 13:28:14.201176	2015-11-09 13:28:14.201176	13	 
+305	Уличное освещение	2015-11-09 13:28:14.205422	2015-11-09 13:28:14.205422	13	 
+306	Интернет-провайдеры	2015-11-09 13:28:14.210532	2015-11-09 13:28:14.210532	14	Связь
+307	Операторы связи	2015-11-09 13:28:14.215347	2015-11-09 13:28:14.215347	14	 
+308	Телевидение	2015-11-09 13:28:14.220704	2015-11-09 13:28:14.220704	14	 
+309	Почтовые отделения	2015-11-09 13:28:14.22512	2015-11-09 13:28:14.22512	14	 
+310	Серверное оборудование	2015-11-09 13:28:14.231344	2015-11-09 13:28:14.231344	14	 
+311	Сетевое оборудование	2015-11-09 13:28:14.241649	2015-11-09 13:28:14.241649	14	 
+312	Аренда легковых автомобилей и автобусов	2015-11-09 13:28:14.246394	2015-11-09 13:28:14.246394	14	 Транспорт
+313	Службы такси	2015-11-09 13:28:14.251463	2015-11-09 13:28:14.251463	14	 
+314	Пассажирские перевозки	2015-11-09 13:28:14.255877	2015-11-09 13:28:14.255877	14	 
+315	Грузоперевозки	2015-11-09 13:28:14.260405	2015-11-09 13:28:14.260405	14	 
+316	Железнодорожные вокзалы	2015-11-09 13:28:14.265175	2015-11-09 13:28:14.265175	14	 
+317	Автовокзалы	2015-11-09 13:28:14.270286	2015-11-09 13:28:14.270286	14	 
+318	Речные вокзалы	2015-11-09 13:28:14.275031	2015-11-09 13:28:14.275031	14	 
+319	Аэропорты	2015-11-09 13:28:14.280117	2015-11-09 13:28:14.280117	14	 
+320	Общественный городской транспорт	2015-11-09 13:28:14.28449	2015-11-09 13:28:14.28449	14	 
+321	Туристические компании	2015-11-09 13:28:14.289161	2015-11-09 13:28:14.289161	15	Туризм и путешествия
+322	Коттеджи и агроусадьбы	2015-11-09 13:28:14.294029	2015-11-09 13:28:14.294029	15	 
+323	Посольства и консульства	2015-11-09 13:28:14.299893	2015-11-09 13:28:14.299893	15	 
+324	Авиакомпании	2015-11-09 13:28:14.304371	2015-11-09 13:28:14.304371	15	 
+325	Гостиницы	2015-11-09 13:28:14.308979	2015-11-09 13:28:14.308979	15	 
+326	Санатории	2015-11-09 13:28:14.313371	2015-11-09 13:28:14.313371	15	 
+327	Базы отдыха	2015-11-09 13:28:14.3184	2015-11-09 13:28:14.3184	15	 
+328	Визовая поддержка	2015-11-09 13:28:14.322999	2015-11-09 13:28:14.322999	15	 
+329	Квартиры на сутки	2015-11-09 13:28:14.3273	2015-11-09 13:28:14.3273	15	 
+330	Детские оздоровительные лагеря	2015-11-09 13:28:14.331437	2015-11-09 13:28:14.331437	15	 
+331	Охотничьи угодья	2015-11-09 13:28:14.335698	2015-11-09 13:28:14.335698	15	 
+332	Рыболовные угодья	2015-11-09 13:28:14.340379	2015-11-09 13:28:14.340379	15	 
+333	Страхование	2015-11-09 13:28:14.344997	2015-11-09 13:28:14.344997	16	Финансы
+334	Банки	2015-11-09 13:28:14.349648	2015-11-09 13:28:14.349648	16	 
+335	Заемные компании и общества	2015-11-09 13:28:14.353998	2015-11-09 13:28:14.353998	16	 
+336	Банкоматы	2015-11-09 13:28:14.358248	2015-11-09 13:28:14.358248	16	 
+337	Ломбарды	2015-11-09 13:28:14.362956	2015-11-09 13:28:14.362956	16	 
+338	Моцная картка	2015-11-09 13:28:14.368387	2015-11-09 13:28:14.368387	16	 
+339	Ведомства	2015-11-09 13:28:14.372797	2015-11-09 13:28:14.372797	16	 
+340	Биржи	2015-11-09 13:28:14.376854	2015-11-09 13:28:14.376854	16	 
+341	Торгово - промышленная палата	2015-11-09 13:28:14.38113	2015-11-09 13:28:14.38113	16	 
+342	Адвокаты	2015-11-09 13:28:14.386334	2015-11-09 13:28:14.386334	17	B2B
+343	Аудит	2015-11-09 13:28:14.391557	2015-11-09 13:28:14.391557	17	 
+344	Банковское оборудование	2015-11-09 13:28:14.397146	2015-11-09 13:28:14.397146	17	 
+345	Бюро переводов	2015-11-09 13:28:14.401697	2015-11-09 13:28:14.401697	17	 
+346	Веб-студии	2015-11-09 13:28:14.405416	2015-11-09 13:28:14.405416	17	 
+347	Инкубаторы малого предпринимательства	2015-11-09 13:28:14.410063	2015-11-09 13:28:14.410063	17	 
+348	Кадровые агентства	2015-11-09 13:28:14.414312	2015-11-09 13:28:14.414312	17	 
+349	Канцтовары	2015-11-09 13:28:14.419107	2015-11-09 13:28:14.419107	17	 
+350	Конференц-залы	2015-11-09 13:28:14.423591	2015-11-09 13:28:14.423591	17	 
+351	Органы контроля за финансовой деятельностью и ценными бумагам	2015-11-09 13:28:14.428111	2015-11-09 13:28:14.428111	17	 
+352	Офисная техника	2015-11-09 13:28:14.43256	2015-11-09 13:28:14.43256	17	 
+353	Охрана труда	2015-11-09 13:28:14.437554	2015-11-09 13:28:14.437554	17	 
+354	Охранные системы	2015-11-09 13:28:14.44224	2015-11-09 13:28:14.44224	17	 
+355	Печати	2015-11-09 13:28:14.446979	2015-11-09 13:28:14.446979	0	\N
+356	Полиграфия	2015-11-09 13:28:14.452101	2015-11-09 13:28:14.452101	0	\N
+357	Продажа бизнеса	2015-11-09 13:28:14.457658	2015-11-09 13:28:14.457658	17	 
+358	Регистрация	2015-11-09 13:28:14.463229	2015-11-09 13:28:14.463229	0	\N
+359	Рекламные агентства	2015-11-09 13:28:14.467888	2015-11-09 13:28:14.467888	0	\N
+360	Сейфы	2015-11-09 13:28:14.472151	2015-11-09 13:28:14.472151	17	 
+361	Сертификация	2015-11-09 13:28:14.476859	2015-11-09 13:28:14.476859	17	 
+362	Торговое оборудование	2015-11-09 13:28:14.481194	2015-11-09 13:28:14.481194	17	 
+363	Хостинг	2015-11-09 13:28:14.485557	2015-11-09 13:28:14.485557	17	 
+364	Программное обеспечение	2015-11-09 13:28:14.49047	2015-11-09 13:28:14.49047	17	 
+365	Центры поддержки предпринимательства	2015-11-09 13:28:14.49439	2015-11-09 13:28:14.49439	17	 
+366	Экология	2015-11-09 13:28:14.498827	2015-11-09 13:28:14.498827	17	 
+367	Экспертиза	2015-11-09 13:28:14.504072	2015-11-09 13:28:14.504072	17	 
+368	Услуги	2015-11-09 13:28:14.508685	2015-11-09 13:28:14.508685	17	 
+369	Бухгалтерский учет	2015-11-09 13:28:14.513182	2015-11-09 13:28:14.513182	17	 
+370	Консалтинговые услуги	2015-11-09 13:28:14.517159	2015-11-09 13:28:14.517159	17	 
+371	Курьерские услуги	2015-11-09 13:28:14.521823	2015-11-09 13:28:14.521823	17	 
+372	Лизинговые услуги	2015-11-09 13:28:14.525876	2015-11-09 13:28:14.525876	17	 
+373	Нотариальные услуги	2015-11-09 13:28:14.53009	2015-11-09 13:28:14.53009	17	 
+374	Патентные услуги	2015-11-09 13:28:14.53511	2015-11-09 13:28:14.53511	17	 
+375	Складские услуги	2015-11-09 13:28:14.539461	2015-11-09 13:28:14.539461	17	 
+376	Таможенные услуги	2015-11-09 13:28:14.543512	2015-11-09 13:28:14.543512	17	 
+377	Юридические услуги	2015-11-09 13:28:14.547693	2015-11-09 13:28:14.547693	17	\N
+\.
+
+
+--
+-- Name: subcategories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sushi_new
+--
+
+SELECT pg_catalog.setval('subcategories_id_seq', 1, false);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: sushi_new
+--
+
+COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at, confirmation_token, confirmed_at, confirmation_sent_at, name, avatar) FROM stdin;
+1	ex@mail.ru	$2a$10$Q4vS6Z7nBYIgzqvzJmPqDOW84bz5V9.3btYB7TIYPKKYjbZ69cp1y	\N	\N	\N	2	2015-11-11 12:07:01.811731	2015-11-11 12:01:06.768396	10.1.2.32	10.1.2.32	2015-11-11 12:00:32.715718	2015-11-11 12:07:01.813593	fvBCYoZGujxzscDqWGBB	2015-11-11 12:01:06.716108	2015-11-11 12:00:33.323192	\N	ad.png
+8	sdv@dvsf.ffs	$2a$10$fhX.tPqUvVCy/zU58J8.HekkDqgAu7kSg6HVjeoMv6Yi.ZE0EcpAW	\N	\N	\N	0	\N	\N	\N	\N	2017-07-19 09:44:55.043663	2017-07-19 09:44:55.043663	j8HDXtMnvWzJ6yyUZizx	\N	2017-07-19 09:44:55.047319	\N	\N
+9	asd@asd.gg	$2a$10$Qbr/E0HecWZsg0nPVXe4ieBN8WJcRLM4ZK0g2/cjlBIv/Myrmw6Ee	\N	\N	\N	0	\N	\N	\N	\N	2017-07-19 09:50:01.856424	2017-07-19 09:50:01.856424	ZZ7yczXzdMNL8PhoXdaa	\N	2017-07-19 09:50:01.865598	\N	\N
+3	new@ru.ru	$2a$10$yAhC4nL4SU6BllnPHXz3Je0E.S1JGZ0HG4MrHu.S4OKfkrLjdIRgC	\N	\N	\N	1	2015-11-25 13:13:59.365062	2015-11-25 13:13:59.365062	10.1.2.32	10.1.2.32	2015-11-25 13:13:23.671205	2015-11-25 13:13:59.371167	_7hzQTpVxrZEcyK_Uvyx	2015-11-25 13:13:59.321211	2015-11-25 13:13:24.506828	\N	\N
+10	dima@email.com	$2a$10$QmTFQLOpOt.lj1HsCiKhI.YhuKmSWQkuZzR3CbAjDstMG8miSVjvm	\N	\N	\N	10	2017-07-21 13:53:49.352176	2017-07-21 13:04:48.159541	10.1.5.67	10.1.5.67	2017-07-21 12:13:59.669489	2017-07-21 13:53:49.357418	xArAv9Y-wQYVpoc9AChD	2017-07-21 15:15:43.964	2017-07-21 12:14:00.453158	\N	\N
+2	change@me-16578728-vkontakte.com	$2a$10$fox81UDrpanuwToIPvd2geMEFAmyB1ax/QNxpWRWw9LYGbf2pMEiy	\N	\N	\N	2	2015-12-15 12:58:19.147723	2015-11-23 09:36:50.812707	10.1.2.32	10.1.2.32	2015-11-23 09:36:50.730445	2015-12-15 12:58:19.149458	\N	2015-11-23 09:36:50.671754	\N	\N	\N
+4	new1@ru.ru	$2a$10$AIwoGK8cp7STYpLgt9pBT.gmOMD0QCcqf0.6Ox62EwAXi7yFJomEi	\N	\N	\N	16	2016-01-11 13:46:39.264834	2016-01-11 08:25:12.009	10.1.2.32	10.1.2.32	2015-11-25 13:43:46.955827	2016-01-12 09:28:44.369751	Qnft83YLzDVEezj3zQTC	2015-11-25 13:44:10.185353	2015-11-25 13:43:46.978624	\N	bag.png
+5	qweqwe@qweqwe.ru	$2a$10$LTIdNQWrifhK/LLq1niZJObNygMzGQLxw9N1r9BbKnKA.0cUfhlly	\N	\N	\N	1	2016-02-08 13:33:59.459398	2016-02-08 13:33:59.459398	10.1.2.32	10.1.2.32	2016-02-08 13:33:23.97265	2016-02-08 13:33:59.464117	S-BF2PiCLfQrKfPwPyg2	2016-02-08 13:33:59.448307	2016-02-08 13:33:24.624529	NewUser	\N
+6	dsuschinsky@gmail.com	$2a$10$McihV2wp8aNOW5wenhgBu.jMsX5M4ngvV7mtpTNSviJuF06tDqmUy	\N	\N	\N	0	\N	\N	\N	\N	2017-07-18 13:39:08.341072	2017-07-18 13:39:08.341072	MtsA7S4a1sRtJ76wEKYg	\N	2017-07-18 13:39:09.264319	\N	\N
+7	sdv@dvsf.ff	$2a$10$5dzeiZ3Zk5hmt6Z0zInzhu1iW/vsNfBK8RA3sjbpd54UtsToUDFPi	\N	\N	\N	0	\N	\N	\N	\N	2017-07-19 09:44:09.509202	2017-07-19 09:44:09.509202	qZ2wpUvSmqd7HxRYY4sU	\N	2017-07-19 09:44:09.512122	\N	\N
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sushi_new
+--
+
+SELECT pg_catalog.setval('users_id_seq', 10, true);
+
+
+--
+-- Name: active_admin_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+ALTER TABLE ONLY active_admin_comments
+    ADD CONSTRAINT active_admin_comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: admin_users_pkey; Type: CONSTRAINT; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+ALTER TABLE ONLY admin_users
+    ADD CONSTRAINT admin_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: album_images_pkey; Type: CONSTRAINT; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+ALTER TABLE ONLY album_images
+    ADD CONSTRAINT album_images_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: albums_pkey; Type: CONSTRAINT; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+ALTER TABLE ONLY albums
+    ADD CONSTRAINT albums_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: conversations_pkey; Type: CONSTRAINT; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+ALTER TABLE ONLY conversations
+    ADD CONSTRAINT conversations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: crafters_pkey; Type: CONSTRAINT; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+ALTER TABLE ONLY crafters
+    ADD CONSTRAINT crafters_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: identities_pkey; Type: CONSTRAINT; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+ALTER TABLE ONLY identities
+    ADD CONSTRAINT identities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT messages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: services_pkey; Type: CONSTRAINT; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+ALTER TABLE ONLY subcategories
+    ADD CONSTRAINT services_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_active_admin_comments_on_author_type_and_author_id; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE INDEX index_active_admin_comments_on_author_type_and_author_id ON active_admin_comments USING btree (author_type, author_id);
+
+
+--
+-- Name: index_active_admin_comments_on_namespace; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE INDEX index_active_admin_comments_on_namespace ON active_admin_comments USING btree (namespace);
+
+
+--
+-- Name: index_active_admin_comments_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE INDEX index_active_admin_comments_on_resource_type_and_resource_id ON active_admin_comments USING btree (resource_type, resource_id);
+
+
+--
+-- Name: index_admin_users_on_email; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_admin_users_on_email ON admin_users USING btree (email);
+
+
+--
+-- Name: index_admin_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_admin_users_on_reset_password_token ON admin_users USING btree (reset_password_token);
+
+
+--
+-- Name: index_crafters_on_confirmation_token; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_crafters_on_confirmation_token ON crafters USING btree (confirmation_token);
+
+
+--
+-- Name: index_crafters_on_email; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_crafters_on_email ON crafters USING btree (email);
+
+
+--
+-- Name: index_crafters_on_reset_password_token; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_crafters_on_reset_password_token ON crafters USING btree (reset_password_token);
+
+
+--
+-- Name: index_crafters_on_subcategory_id; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE INDEX index_crafters_on_subcategory_id ON crafters USING btree (subcategory_id);
+
+
+--
+-- Name: index_identities_on_user_id; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE INDEX index_identities_on_user_id ON identities USING btree (user_id);
+
+
+--
+-- Name: index_subcategories_on_category_id; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE INDEX index_subcategories_on_category_id ON subcategories USING btree (category_id);
+
+
+--
+-- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_confirmation_token ON users USING btree (confirmation_token);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- Name: index_users_on_name; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE INDEX index_users_on_name ON users USING btree (name);
+
+
+--
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: sushi_new; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

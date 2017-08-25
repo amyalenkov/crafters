@@ -27,7 +27,7 @@ jQuery ->
       $('#ErrorMessageText').html("")
 
     if @.files[0].size < 2000000 && /image\/(png|jpeg|jpg|gif)/.test(@.files[0].type)
-      $('#img_view_upload').attr('src', URL.createObjectURL(@.files[0]));
+      $('#img_view_upload_avatar').attr('src', URL.createObjectURL(@.files[0]));
       document.getElementById('button_for_safe_img').disabled = false;
 
     else if !(/image\/(png|jpeg|jpg|gif)/.test(@.files[0].type))
@@ -46,36 +46,47 @@ jQuery ->
   $('#crafter_images').on 'change', ->
     $('#img_view_upload').attr('src', URL.createObjectURL(@.files[0]));
     images = $('.show_album')
-    for i in [1..@.files.length]
-      div_box = $('<div class="image_box"><div/>')
-      $('<button class="delete" name="image'+i+'" type="button">×').appendTo(div_box)
 
-      div_box_left = $('<div class="left"><div/>')
-      div_img = $('<div class="img"><div/>')
-      div_box_right = $('<div class="right"><div/>')
+    for i in [0..@.files.length-1]
+      if @.files[i].size < 3000000 && /image\/(png|jpeg|jpg|gif)/.test(@.files[i].type)
+        div_box = $('<div class="image_box" id="image_box'+i+'"><div/>')
+#        $('<span id="deleteButton" class="deleteButton" name="image_box'+i+'">&times;</span>').appendTo(div_box)
 
-      $('<img/>', {
-        "src": URL.createObjectURL(@.files[i-1]),
-      }).appendTo(div_img)
+        div_box_left = $('<div class="left"><div/>')
+        div_img = $('<div class="img"><div/>')
+        div_box_right = $('<div class="right"><div/>')
 
-      div_img.appendTo(div_box_left)
-      div_box_left.appendTo(div_box)
-      div_box.appendTo(images)
+        $('<img/>', {
+          "src": URL.createObjectURL(@.files[i]),
+        }).appendTo(div_img)
 
-      $('<label class="label_login name">Имя изображения</label>').appendTo(div_box_right)
-      $('<input class="form-control name" id="img_name'+i+'" name="img_name'+i+'" type="text" value="'+@.files[i-1].name+'">').appendTo(div_box_right)
-      $('<label class="label_login description">Описание</label>').appendTo(div_box_right)
-      $('<textarea class="form-control description" id="img_desc'+i+'" name="img_decs'+i+'" type="text" value="">').appendTo(div_box_right)
-      $('<label class="label_login label_checkbox">Обложка альбома</label>').appendTo(div_box_right)
-      $('<input class="set_crafter_album_logo checkbox" name="logo'+i+'" type="checkbox" value="1">').appendTo(div_box_right)
+        div_img.appendTo(div_box_left)
+        div_box_left.appendTo(div_box)
+        div_box.appendTo(images)
 
-      div_box_right.appendTo(div_box)
-      div_box.appendTo(images)
+        $('<label class="label_login name">Имя изображения</label>').appendTo(div_box_right)
+        $('<input class="form-control name" id="img_name'+i+'" name="img_name'+i+'" type="text" value="'+@.files[i].name+'">').appendTo(div_box_right)
+        $('<label class="label_login description">Описание</label>').appendTo(div_box_right)
+        $('<textarea class="form-control description" id="img_desc'+i+'" name="img_decs'+i+'" type="text" value="">').appendTo(div_box_right)
+        if i == 0
+          $('<input class="set_crafter_album_logo checkbox" name="logo'+i+'" type="checkbox" value="1" checked="true">').appendTo(div_box_right)
+        else
+          $('<input class="set_crafter_album_logo checkbox" name="logo'+i+'" type="checkbox" value="1">').appendTo(div_box_right)
 
-# событие на динамические создаваемые checbox'ы
+        $('<label class="label_login label_checkbox">Обложка альбома</label>').appendTo(div_box_right)
+
+        div_box_right.appendTo(div_box)
+        div_box.appendTo(images)
+
+  # событие на динамические создаваемые checbox'ы
   $('.modal-body').on 'change', '[type=checkbox]',->
     checked_name = @.name
     inputs = $('.set_crafter_album_logo')
     for input in inputs
       if input.name != checked_name
         input.checked = false
+
+
+  $('body').on 'click', '#deleteButton', ->
+    parent = $(this).parent().attr('id')
+    $("#"+parent).remove()

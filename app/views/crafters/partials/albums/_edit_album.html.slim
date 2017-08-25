@@ -16,12 +16,13 @@
                   .you_album
                     = link_to get_crafter_album_for_edit_crafter_path(current_crafter)+'?album_id='+album.id.to_s, :class=>'btn btn_album',  :id=>album.id,  :remote=>true
                       = image_tag album.logo.url, :size => '100x100'
+                    = check_box_tag 'album', album.id.to_s, false, class: 'check_album'
 
         .show_album_for_edit
           = render 'crafters/partials/albums/show_album_for_edit'
 
         .modal-footer
-          = f.submit 'Удалить выбранные альбомы', class: 'btn btn-danger pull-left', id: 'button_for_safe_img'
+          = f.submit 'Удалить выбранные альбомы', class: 'btn btn-danger pull-left', id: 'button_for_safe_img', disabled: true
           = f.submit 'Сохранить', class: 'btn btn-success', id: 'button_for_safe_img'
           button.btn.btn-default[type="button" data-dismiss="modal"]
             | Закрыть

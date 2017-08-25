@@ -362,6 +362,11 @@ select:focus {
 
 .description_show{
   border-left: 1px solid #000000;
+  textarea{
+    resize: none;
+    height: 100px;
+    width: 300px;
+  }
 }
 
 .line{
@@ -679,9 +684,26 @@ select:focus {
   .your_albums_line{
     width: 100%;
     float: left;
+    .btn_album {
+      width: 100%;
+      height: 130px;
+      border-radius: 5px;
+      img{
+        margin-top: 8px;
+        width: initial;
+      }
+    }
     .btn_album:hover{
-      transaction: 0.3s;
+      transition: 0.3s;
       background: rgba(16, 16, 16, 0.06);
+    }
+    .check_album{
+      width: 15px;
+      float: right;
+      margin-right: 3px;
+      margin-top: -17px;
+      position: relative;
+      z-index: 1005;
     }
   }
 
@@ -711,11 +733,11 @@ select:focus {
     margin-bottom: 10px;
     .you_album{
       float: left;
-      width: 125px;
-      height: 113px;
+      width: 130px;
+      height: 130px;
       margin-right: 5px;
       margin-bottom: 20px;
-      border-radius: 15px;
+      border-radius: 7px;
       background: rgba(16, 16, 16, 0.05);
     }
   }
@@ -743,19 +765,37 @@ select:focus {
     width: 85%;
     margin-left: 50px;
     float: left;
-    min-height: 100px;
-    padding-top: 20px;
+    //min-height: 100px;
+    padding-top: 15px;
     .image_box{
       float: left;
       width: 100%;
       padding-bottom: 10px;
       margin-bottom: 25px;
       border-bottom: 1px solid rgba(16, 16, 16, 0.20);
-      .delete{
+
+      #deleteButton{
         width: 10px;
         height: 10px;
         float: right;
+        margin-right: -20px;
+        margin-top: -10px;
+        cursor: pointer;
+
+        -moz-transition: all 0.5s ease-out;
+        -o-transition: all 0.5s ease-out;
+        -webkit-transition: all 0.5s ease-out;
       }
+      #deleteButton:hover {
+        -webkit-transform: scale(1.3);
+        -moz-transform: scale(1.3);
+        -o-transform: scale(1.3);
+      }
+      .set_crafter_album_logo{
+        margin-top: 17px !important;
+        margin-left: 8px;
+      }
+
       .left, .right{
         float: left;
         width: 45%;
@@ -919,6 +959,25 @@ select:focus {
 
 /*END_CONVERSATION*/
 
+
+/*ALBUMS*/
+#newAlbum{
+  label {
+    cursor: default;
+    text-align: left;
+    font-size: 16px;
+    padding: 0;
+    margin-bottom: 0;
+  }
+  textarea {
+    width: 100%;
+    height: 100px;
+  }
+  .right{
+    padding-left: 15px;
+  }
+}
+/*END_ALBUMS*/
 
 @media (min-width: 450px) and (max-width: 767px) {
   .logo a{

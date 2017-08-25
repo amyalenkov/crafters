@@ -19,7 +19,6 @@ ready = ->
     registered_user.validate_registered_user_form()
 
   $('input.edit_crafter').on 'keyup', ->
-    console.log('key up !!! ')
     edit_crafter.check_field(@.name)
     edit_crafter.validate_edit_crafter_form()
 
@@ -34,9 +33,7 @@ ready = ->
   $('input.edit_email_or_password_user').on 'keyup', ->
     edit_email_or_password_user.check_field(@.name)
     edit_email_or_password_user.validate_edit_user_form()
-change = ->
-  console.log('page change')
 
 $(document).on('turbolinks:load', ready);
-$(document).on('page:change', change);
-$(document).on('ready page:load', change);
+#$(document).on('page:change', change);
+#$(document).on('ready page:load', change);
