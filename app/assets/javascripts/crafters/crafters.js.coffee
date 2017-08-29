@@ -90,3 +90,31 @@ jQuery ->
   $('body').on 'click', '#deleteButton', ->
     parent = $(this).parent().attr('id')
     $("#"+parent).remove()
+
+
+
+
+  $('body').on 'click', '#album', ->
+    if document.querySelector('#album:checked')
+      document.getElementById('deleteAlbums').disabled = false
+    else
+      document.getElementById('deleteAlbums').disabled = true
+
+    $('.check_box_album input:checked').parent
+
+
+  $('body').on 'click', '#deleteAlbums', ->
+    console.log('call ajax post for delete selected albums for: ')
+    selectedAlbum = []
+    for i in $('.check_album:checkbox:checked')
+      selectedAlbum.push(i.value)
+
+#    $.ajax
+#      url: '/delete_album'
+#      type: 'POST'
+#      dataType: 'html'
+#      data: selectedAlbum
+#      error: () ->
+#        console.log('error')
+#      success: (data) ->
+#        document.getElementById('deleteAlbums').disabled = true

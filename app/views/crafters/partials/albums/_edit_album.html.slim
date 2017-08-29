@@ -22,7 +22,7 @@
           = render 'crafters/partials/albums/show_album_for_edit'
 
         .modal-footer
-          = f.submit 'Удалить выбранные альбомы', class: 'btn btn-danger pull-left', id: 'button_for_safe_img', disabled: true
+          = f.submit 'Удалить выбранные альбомы', class: 'btn btn-danger pull-left', id: 'deleteAlbums', disabled: true
           = f.submit 'Сохранить', class: 'btn btn-success', id: 'button_for_safe_img'
           button.btn.btn-default[type="button" data-dismiss="modal"]
             | Закрыть
