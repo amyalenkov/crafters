@@ -79,6 +79,17 @@ class CraftersController < ApplicationController
     get_album
   end
 
+  def delete_selected_album
+    Rails.logger.warn 'params: '
+    Rails.logger.warn params['params']
+    params['params'].split(',').map { |album_id|
+      @album = Album.find_by_id album_id
+      @album.delete
+      @album.save
+    }
+
+  end
+
   private
 
   def get_album

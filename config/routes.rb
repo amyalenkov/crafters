@@ -48,6 +48,8 @@ Rails.application.routes.draw do
   post '/search_ajax_full' => 'static_page#search_ajax_full'
   post '/search_ajax_full' => 'static_page#search_ajax_full'
 
+  post '/delete_album' => 'crafters#delete_selected_album'
+
   get '/login_form' => 'static_page#login_form'
   get '/registration_form' => 'static_page#registration_form'
   get '/get_all_crafters_and_users' => 'application#get_all_crafters_and_users'

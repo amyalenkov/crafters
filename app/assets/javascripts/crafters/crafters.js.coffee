@@ -109,12 +109,13 @@ jQuery ->
     for i in $('.check_album:checkbox:checked')
       selectedAlbum.push(i.value)
 
-#    $.ajax
-#      url: '/delete_album'
-#      type: 'POST'
-#      dataType: 'html'
-#      data: selectedAlbum
-#      error: () ->
-#        console.log('error')
-#      success: (data) ->
-#        document.getElementById('deleteAlbums').disabled = true
+    console.log(selectedAlbum)
+
+    $.ajax
+      url: '/delete_album'
+      type: 'POST'
+      data: 'params=' + selectedAlbum
+      error: () ->
+        console.log('error')
+      success: (data) ->
+        document.getElementById('deleteAlbums').disabled = true
